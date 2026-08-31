@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Intermediário — Gráficos — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+<style>
+  .nivel{display:inline-block;border-radius:20px;padding:3px 13px;font-size:12.5px;font-weight:700;
+         letter-spacing:.2px;background:#f3e3d4;color:var(--terra-esc);margin:0 6px 12px 0}
+</style>
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Python — Gráficos</h1>
+  <div class="sub"><b>Visualizar dados</b> com matplotlib e seaborn: do gráfico simples ao completo — pontos,
+    linhas, banda de incerteza, histograma, boxplot, heatmap e mais.</div>
+  <div class="fatos">
+    <div class="fato"><span class="nivel">INTERMEDIÁRIO</span></div>
+    <div class="fato"><b>matplotlib · seaborn</b></div>
+    <div class="fato">Código &middot; Explicação &middot; Prática</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Trilha Python · Nível Intermediário.</b> Gráficos com códigos da nossa trilha do GAS.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Sobre este guia</h2>
+
+<p>Um bom gráfico transforma uma tabela em entendimento — é a alma da divulgação científica. Neste guia você
+aprende a construir visualizações com <b>matplotlib</b> (o básico) e <b>seaborn</b> (os tipos mais
+sofisticados), com códigos prontos para adaptar aos seus dados.</p>
+
+<div class="caixa info"><div class="t">Imports que usamos sempre</div>
+<pre><b>import</b> numpy <b>as</b> np
+<b>import</b> pandas <b>as</b> pd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+<b>import</b> seaborn <b>as</b> sns
+
+np.random.seed(42)   <em># para dados aleatórios reproduzíveis</em></pre>
+<p>O <code>seed(42)</code> fixa o gerador de aleatórios: cada vez que rodar, sai o mesmo "aleatório" — útil para
+exemplos didáticos. (42 é uma referência a "O Guia do Mochileiro das Galáxias"!)</p>
+</div>
+
+<h3 id="mapa">O que você vai aprender</h3>
+
+<table>
+<tr><th style="width:200px">Seção</th><th>Você aprende...</th></tr>
+<tr><td><b>1</b> Elementos básicos</td><td>pontos, linhas e múltiplas séries</td></tr>
+<tr><td><b>2</b> Gráfico completo</td><td>título, eixos, grade, legenda, anotações</td></tr>
+<tr><td><b>3</b> Banda de incerteza</td><td>mostrar variação ao redor da média</td></tr>
+<tr><td><b>4</b> Tipos de gráficos</td><td>histograma, boxplot, dispersão, barras, heatmap</td></tr>
+<tr><td><b>5</b> Seaborn</td><td>gráficos estatísticos rápidos e elegantes</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Seção 1 — Elementos básicos</h2>
+
+<h3>1.1 Pontos (dispersão)</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — scatter</span><button onclick="cp(this)">copiar</button></div>
+<pre>x = np.linspace(0, 10, 50)
+y = np.random.rand(50)   <em># 50 valores aleatórios</em>
+
+plt.figure()
+plt.scatter(x, y)        <em># gráfico de dispersão</em>
+plt.title(<u>"Dispersão simples"</u>)
+plt.show()</pre>
+</div>
+
+<h3>1.2 Linhas</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — plot de linha</span><button onclick="cp(this)">copiar</button></div>
+<pre>x = np.linspace(0, 10, 200)
+
+plt.figure()
+plt.plot(x, np.sin(x))   <em># gráfico de linha</em>
+plt.title(<u>"Linha simples"</u>)
+plt.show()</pre>
+</div>
+
+<h3>1.3 Várias séries no mesmo gráfico</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — múltiplas linhas + legenda</span><button onclick="cp(this)">copiar</button></div>
+<pre>x = np.linspace(0, 10, 200)
+
+plt.figure()
+plt.plot(x, np.sin(x), label=<u>"sin"</u>)
+plt.plot(x, np.cos(x), label=<u>"cos"</u>)
+plt.legend()       <em># mostra a legenda</em>
+plt.title(<u>"Múltiplas séries"</u>)
+plt.show()</pre>
+</div>
+
+<div class="caixa ok"><div class="t">A anatomia de um gráfico matplotlib</div>
+<p>Todo gráfico segue este esqueleto: <code>plt.figure()</code> cria a área → <code>plt.plot/scatter</code>
+desenha os dados → <code>plt.title/label/legend</code> embelezam → <code>plt.show()</code> exibe. Guarde essa
+ordem e você monta qualquer gráfico.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Seção 2 — Um gráfico completo</h2>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — gráfico completo e publicável</span><button onclick="cp(this)">copiar</button></div>
+<pre>x = np.linspace(0, 10, 200)
+
+plt.figure()
+plt.plot(x, np.sin(x), label=<u>"sin(x)"</u>)
+plt.plot(x, np.cos(x), label=<u>"cos(x)"</u>)
+plt.xlabel(<u>"x"</u>)          <em># label do eixo x</em>
+plt.ylabel(<u>"valor"</u>)       <em># label do eixo y</em>
+plt.title(<u>"Exemplo de gráfico completo"</u>)
+plt.grid(<b>True</b>)            <em># grade</em>
+plt.legend()
+plt.show()</pre>
+</div>
+
+<div class="caixa dica"><div class="t">Para artigos, capriche</div>
+<p>Um gráfico para publicação precisa de: <b>título</b> ou legenda explicativa, <b>eixos com unidade</b>,
+<b>legenda</b> e <b>grade</b> quando ajudar a leitura. Cores com contraste e <code>alpha</code>
+(transparência) para sobreposição. É isso que separa um gráfico "de rascunho" de um gráfico científico.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Seção 3 — Banda de incerteza e anotações</h2>
+
+<h3>3.1 Banda ao redor da média</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — linha com banda de incerteza</span><button onclick="cp(this)">copiar</button></div>
+<pre>x = np.linspace(0, 10, 50)
+media = np.sin(x)
+ic = 0.3 + 0.2*np.random.rand(len(x))   <em># incerteza entre 0.3 e 0.5</em>
+
+plt.figure()
+plt.plot(x, media, label=<u>"média"</u>)
+plt.fill_between(x, media-ic, media+ic, alpha=0.3, label=<u>"incerteza"</u>)
+plt.title(<u>"Linha com banda de incerteza"</u>)
+plt.legend()
+plt.show()</pre>
+</div>
+
+<h3>3.2 Linhas e faixas de referência</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — axhline, axvline, axvspan, text</span><button onclick="cp(this)">copiar</button></div>
+<pre>plt.figure()
+plt.plot(x, y)
+plt.axhline(0, linestyle=<u>"--"</u>)          <em># linha horizontal em y=0</em>
+plt.axvline(0, linestyle=<u>"--"</u>)          <em># linha vertical em x=0</em>
+plt.axvspan(3, 4, alpha=0.2)               <em># faixa vertical destacada</em>
+plt.text(4.0, 1.1, <u>"Região de interesse"</u>)
+plt.show()</pre>
+</div>
+
+<div class="caixa info"><div class="t">Para que serve</div>
+<p><b>Banda de incerteza</b> mostra a variabilidade de uma estimativa (muito comum em séries temporais e
+modelos). <b>Linhas de referência</b> marcam limiares (ex.: um limite de queimada, um valor crítico).
+<b>Anotações</b> chamam atenção para o que importa — é a base do storytelling nos dados.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Seção 4 — Tipos de gráficos (matplotlib)</h2>
+
+<h3>4.1 Histograma e boxplot</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — distribuição de uma variável</span><button onclick="cp(this)">copiar</button></div>
+<pre>amostra = np.random.normal(loc=50, scale=10, size=200)
+
+plt.figure()
+plt.hist(amostra, bins=20)      <em># histograma</em>
+plt.title(<u>"Histograma"</u>)
+plt.show()
+
+plt.figure()
+plt.boxplot(amostra)            <em># boxplot</em>
+plt.title(<u>"Boxplot"</u>)
+plt.show()</pre>
+</div>
+
+<h3>4.2 Barras categóricas</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — barplot</span><button onclick="cp(this)">copiar</button></div>
+<pre>categorias = [<u>"A"</u>, <u>"B"</u>, <u>"C"</u>, <u>"D"</u>]
+valores = [12, 25, 18, 30]
+
+plt.figure()
+plt.bar(categorias, valores)
+plt.title(<u>"Barplot"</u>)
+plt.show()</pre>
+</div>
+
+<h3>4.3 Heatmap (matriz de correlação)</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — heatmap de correlação</span><button onclick="cp(this)">copiar</button></div>
+<pre>df = pd.DataFrame(np.random.randn(100, 4), columns=[<u>"a"</u>, <u>"b"</u>, <u>"c"</u>, <u>"d"</u>])
+corr = df.corr()
+
+plt.figure()
+plt.imshow(corr, cmap=<u>"coolwarm"</u>, vmin=-1, vmax=1)
+plt.colorbar()
+plt.xticks(range(4), df.columns)
+plt.yticks(range(4), df.columns)
+plt.title(<u>"Matriz de correlação"</u>)
+plt.show()</pre>
+</div>
+
+<div class="caixa dica"><div class="t">Escolhendo o gráfico</div>
+<table>
+<tr><th style="width:200px">O que quer mostrar</th><th>Gráfico</th></tr>
+<tr><td>Distribuição de um dado</td><td>Histograma / boxplot</td></tr>
+<tr><td>Comparar categorias</td><td>Barras</td></tr>
+<tr><td>Relação entre duas variáveis</td><td>Dispersão</td></tr>
+<tr><td>Correlações entre várias</td><td>Heatmap</td></tr>
+<tr><td>Tendência no tempo</td><td>Linha</td></tr>
+</table>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Seção 5 — Gráficos estatísticos com seaborn</h2>
+
+<p>O <b>seaborn</b> é mais alto nível: com uma linha você já faz um gráfico bonito e estatisticamente correto.
+Ele conversa bem com o pandas — basta passar o <code>DataFrame</code>.</p>
+
+<h3>5.1 Boxplot e violin plot por categoria</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — seaborn boxplot e violin</span><button onclick="cp(this)">copiar</button></div>
+<pre>dados = pd.DataFrame({
+    <u>"pais"</u>: np.repeat([<u>"Brasil"</u>, <u>"Colômbia"</u>, <u>"Etiópia"</u>], 50),
+    <u>"media"</u>: np.concatenate([np.random.normal(85, 5, 50),
+                              np.random.normal(78, 4, 50),
+                              np.random.normal(72, 6, 50)]),
+})
+
+sns.boxplot(data=dados, x=<u>"pais"</u>, y=<u>"media"</u>)
+plt.title(<u>"Qualidade por país"</u>)
+plt.show()</pre>
+</div>
+
+<h3>5.2 Pairplot (matriz de dispersão)</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — pairplot com seaborn</span><button onclick="cp(this)">copiar</button></div>
+<pre>sns.pairplot(dados, hue=<u>"pais"</u>)
+plt.show()</pre>
+<div class="obs">O <code>pairplot</code> gera uma grade com a relação entre todas as variáveis de uma vez — o
+resumo visual perfeito para explorar um conjunto de dados.</div>
+</div>
+
+<h3>5.3 Heatmap e errobar</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — heatmap seaborn</span><button onclick="cp(this)">copiar</button></div>
+<pre>sns.heatmap(df.corr(), annot=<b>True</b>, cmap=<u>"coolwarm"</u>, vmin=-1, vmax=1)
+plt.show()</pre>
+</div>
+
+<div class="caixa ok"><div class="t">matplotlib vs seaborn</div>
+<p><b>matplotlib</b> é o "motor" de baixo nível — controle total. <b>seaborn</b> é uma camada acima — rápido e
+bonito para gráficos estatísticos. No dia a dia, você combina os dois: <code>sns</code> para criar e
+<code>plt</code> para ajustar (título, tamanho, salvar).</p>
+</div>
+
+<h3>5.4 Salvar o gráfico</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — salvar em PNG</span><button onclick="cp(this)">copiar</button></div>
+<pre>plt.figure(figsize=(8, 5))            <em># tamanho em polegadas</em>
+plt.plot(x, y)
+plt.title(<u>"Minha figura"</u>)
+plt.savefig(<u>"figura.png"</u>, dpi=300, bbox_inches=<u>"tight"</u>)   <em># alta resolução</em>
+plt.close()                           <em># libera a figura</em></pre>
+<div class="obs"><code>dpi=300</code> dá a resolução de publicação; <code>bbox_inches="tight"</code> corta
+margens sobrando.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5b" class="mod">Checklist</h2>
+
+<ul class="check">
+<li><input type="checkbox"><span>Criei um scatter e um plot de linha</span></li>
+<li><input type="checkbox"><span>Montei um gráfico completo com título, eixos e legenda</span></li>
+<li><input type="checkbox"><span>Usei banda de incerteza (fill_between)</span></li>
+<li><input type="checkbox"><span>Fiz histograma, boxplot e heatmap</span></li>
+<li><input type="checkbox"><span>Usei seaborn para um gráfico por categoria</span></li>
+<li><input type="checkbox"><span>Salvei a figura em PNG de alta resolução</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Próximo passo</div>
+<p>Agora você sabe <b>analisar</b> (pandas) e <b>visualizar</b> (gráficos). O próximo guia da trilha é
+<b>Estatística descritiva e distribuições</b>, e depois <b>regressão e modelos</b> — onde começa a
+modelagem na ciência. Continue na área <b>Python</b>.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

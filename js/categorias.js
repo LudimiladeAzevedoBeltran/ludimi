@@ -104,6 +104,27 @@ const categorias = [
         resumo: "Listas, tuplas e dicionários para guardar e percorrer vários valores.",
         data: "2026-08-31",
         link: "guias/python-basico-estruturas-de-dados.html"
+      },
+      {
+        titulo: "Python — Condicionais e Funções",
+        tag: "Básico",
+        resumo: "Tomar decisões com if e reaproveitar código com funções: a base da lógica.",
+        data: "2026-08-31",
+        link: "guias/python-basico-condicionais-funcoes.html"
+      },
+      {
+        titulo: "Python — Pandas",
+        tag: "Intermediário",
+        resumo: "A biblioteca que analisa dados de verdade: ler, explorar, filtrar e agrupar.",
+        data: "2026-08-31",
+        link: "guias/python-intermediario-pandas.html"
+      },
+      {
+        titulo: "Python — Gráficos",
+        tag: "Intermediário",
+        resumo: "Visualizar dados com matplotlib e seaborn: do simples ao gráfico publicável.",
+        data: "2026-08-31",
+        link: "guias/python-intermediario-graficos.html"
       }
     ]
   },
