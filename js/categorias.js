@@ -85,6 +85,29 @@ const categorias = [
     itens: []
   },
   {
+    id: "python",
+    nome: "Python",
+    desc: "Trilha de programação do básico ao avançado, com código e explicação intercalados.",
+    icone: "&#128220;",
+    niveis: ["Básico", "Intermediário", "Avançado"],
+    itens: [
+      {
+        titulo: "Python — Primeiros Passos",
+        tag: "Básico",
+        resumo: "Variáveis, tipos de dados e operadores: o ponto de partida da trilha.",
+        data: "2026-08-31",
+        link: "guias/python-basico-primeiros-passos.html"
+      },
+      {
+        titulo: "Python — Estruturas de Dados",
+        tag: "Básico",
+        resumo: "Listas, tuplas e dicionários para guardar e percorrer vários valores.",
+        data: "2026-08-31",
+        link: "guias/python-basico-estruturas-de-dados.html"
+      }
+    ]
+  },
+  {
     id: "pesquisa",
     nome: "Pesquisa & Ética",
     desc: "Metodologia científica, segurança de dados e direitos humanos.",
@@ -119,9 +142,13 @@ const avulsos = [
 ];
 
 function cartaoItem(item) {
+  const corNivel =
+    item.tag === "Avançado" ? "nivel-avancado"
+    : item.tag === "Intermediário" ? "nivel-intermediario"
+    : "nivel-basico";
   return `
     <a class="cartao" href="${item.link}">
-      <span class="tag">${item.tag}</span>
+      <span class="tag ${item.tag ? corNivel : ""}">${item.tag}</span>
       <h4>${item.titulo}</h4>
       <p>${item.resumo}</p>
       <div class="data">${item.data}</div>

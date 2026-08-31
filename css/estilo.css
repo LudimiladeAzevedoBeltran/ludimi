@@ -108,6 +108,21 @@ main {
   margin-bottom: 0.6rem;
 }
 
+.cartao .tag.nivel-basico {
+  color: #43523d;
+  background: #e6ebdf;
+}
+
+.cartao .tag.nivel-intermediario {
+  color: #9a5d33;
+  background: #f3e3d4;
+}
+
+.cartao .tag.nivel-avancado {
+  color: #8f2f26;
+  background: #f6e3df;
+}
+
 .cartao h4 {
   font-size: 1.1rem;
   color: #3a4733;
@@ -150,4 +165,112 @@ main {
   background: #43523d;
   color: #e6ded0;
   font-size: 0.9rem;
+}
+
+/* ===== Página Sobre ===== */
+.sobre-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.sobre-hero .foto {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #c98a5d;
+  box-shadow: 0 8px 24px rgba(67, 82, 61, 0.2);
+}
+
+.sobre-hero h1 {
+  font-size: 2rem;
+  color: #3a4733;
+  margin-bottom: 0.4rem;
+}
+
+.sobre-hero .subtitulo {
+  font-size: 1.05rem;
+  color: #5c6657;
+  font-weight: 500;
+}
+
+.sobre-citacao {
+  border-left: 4px solid #c98a5d;
+  background: #fffdf9;
+  padding: 1.4rem 1.6rem;
+  border-radius: 0 10px 10px 0;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #3a4733;
+}
+
+.sobre-citacao .autor {
+  font-style: normal;
+  font-size: 0.9rem;
+  color: #9a917e;
+  margin-top: 0.5rem;
+}
+
+.sobre-secao h2 {
+  font-size: 1.3rem;
+  color: #43523d;
+  border-bottom: 2px solid #c98a5d;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
+  margin-top: 2.2rem;
+}
+
+.sobre-lista li {
+  margin: 0.5rem 0;
+}
+
+.sobre-contato {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.sobre-contato a,
+.sobre-contato span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #eae4d5;
+  border: 1px solid #e3d9c6;
+  color: #5a6b4e;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.sobre-contato a:hover {
+  background: #e3d9c6;
+  color: #43523d;
+}
+
+/* ===== Grupos de nível em uma página de tema ===== */
+.grupo-nivel {
+  margin-bottom: 2.5rem;
+}
+
+.grupo-nivel:last-child {
+  margin-bottom: 0;
+}
+
+.titulo-nivel {
+  font-size: 1.05rem;
+  color: #43523d;
+  background: #eae4d5;
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
 }

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Básico — Primeiros Passos — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+<style>
+  .nivel{display:inline-block;border-radius:20px;padding:3px 13px;font-size:12.5px;font-weight:700;
+         letter-spacing:.2px;background:var(--musgo-cl);color:var(--musgo-esc);margin:0 6px 12px 0}
+  .nivel.avancado{background:#f3e3d4;color:var(--terra-esc)}
+</style>
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Python — Primeiros Passos</h1>
+  <div class="sub">O ponto de partida da nossa trilha de Python: <b>sintaxe, variáveis e tipos</b>, intercalando
+    código e explicação, do jeito simples para você começar a programar.</div>
+  <div class="fatos">
+    <div class="fato"><span class="nivel">BÁSICO</span></div>
+    <div class="fato"><b>Variáveis · Tipos · Operadores</b></div>
+    <div class="fato">Teoria &middot; Código &middot; Prática</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Trilha Python · Nível Básico.</b> Código e explicação intercalados — leia, rode e experimente.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este é o primeiro guia da trilha de <b>Python</b> do Ludimi. A ideia é sempre intercalar
+<b>código</b> e <b>explicação</b>: primeiro você vê o código, depois entende o que ele faz. Em cada bloco,
+copie, rode e experimente mudar algo.</p>
+
+<div class="caixa info"><div class="t">Como rodar</div>
+<p>Instale o Python em python.org e rode os exemplos em um arquivo (<code>meu.py</code>) ou em um
+<code>Jupyter</code>. Basta escrever <code>python meu.py</code> no terminal.</p>
+</div>
+
+<h3 id="mapa">O que você vai aprender</h3>
+
+<table>
+<tr><th style="width:170px">Seção</th><th>Você aprende...</th><th>Nível</th></tr>
+<tr><td><b>1</b> Variáveis</td><td>guardar e usar valores</td><td><span class="nivel">BÁSICO</span></td></tr>
+<tr><td><b>2</b> Tipos de dados</td><td>números, texto e lógicos</td><td><span class="nivel">BÁSICO</span></td></tr>
+<tr><td><b>3</b> Operadores</td><td>somar, comparar e combinar</td><td><span class="nivel">BÁSICO</span></td></tr>
+<tr><td><b>4</b> Entrada e saída</td><td>ler e mostrar dados</td><td><span class="nivel">BÁSICO</span></td></tr>
+<tr><td><b>5</b> Desafio</td><td>fixar com um mini-projeto</td><td><span class="nivel">BÁSICO</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Seção 1 — Variáveis</h2>
+
+<h3>1.1 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — variáveis</span><button onclick="cp(this)">copiar</button></div>
+<pre>nome = <u>"Ludimila"</u>
+idade = 27
+altura = 1.65
+estudante = <b>True</b>
+
+print(nome)
+print(idade, altura, estudante)</pre>
+</div>
+
+<h3>1.2 A explicação</h3>
+<p>Uma <b>variável</b> é um "nome" que guarda um valor dentro da memória. No Python, você não precisa declarar
+o tipo — ele é <b>inferido</b> automaticamente pelo valor que você coloca. <code>nome</code> guarda um texto,
+<code>idade</code> um número inteiro, <code>altura</code> um decimal e <code>estudante</code> um valor
+lógico.</p>
+
+<div class="caixa ok"><div class="t">Regras de nome</div>
+<ul>
+<li>Use letras, números e <code>_</code>, mas <b>não comece com número</b>.</li>
+<li>Prefira nomes descritivos: <code>idade_aluno</code> é melhor que <code>x</code>.</li>
+<li>Python é <b>sensível a maiúsculas</b>: <code>idade</code> e <code>Idade</code> são diferentes.</li>
+</ul>
+</div>
+
+<div class="caixa dica"><div class="t">Experimente</div>
+<p>Crie a sua própria variável (ex.: <code>cidade = "Jaboticabal"</code>) e mostre com <code>print</code>.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Seção 2 — Tipos de dados</h2>
+
+<h3>2.1 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — tipos e o operador type()</span><button onclick="cp(this)">copiar</button></div>
+<pre>inteiro = 42
+decimal = 3.14
+texto = <u>"olá"</u>
+logico = <b>True</b>
+nada = <b>None</b>
+
+print(type(inteiro))   <em># int</em>
+print(type(decimal))   <em># float</em>
+print(type(texto))     <em># str</em>
+print(type(logico))    <em># bool</em>
+print(type(nada))      <em># NoneType</em></pre>
+</div>
+
+<h3>2.2 A explicação</h3>
+<p>Cada valor tem um <b>tipo</b>, e isso determina o que você pode fazer com ele. O operador
+<code>type()</code> revela o tipo — ferramenta essencial para entender o que está acontecendo.</p>
+
+<table>
+<tr><th style="width:120px">Tipo</th><th>Exemplos</th><th>Para quê</th></tr>
+<tr><td><b>int</b></td><td>42, -3, 0</td><td>números inteiros</td></tr>
+<tr><td><b>float</b></td><td>3.14, 1.65</td><td>números decimais</td></tr>
+<tr><td><b>str</b></td><td>"olá", 'hello'</td><td>texto</td></tr>
+<tr><td><b>bool</b></td><td>True, False</td><td>lógico (verdadeiro/falso)</td></tr>
+<tr><td><b>None</b></td><td>None</td><td>ausência de valor</td></tr>
+</table>
+
+<div class="caixa alerta"><div class="t">Atenção</div>
+<p><code>"10"</code> (texto) e <code>10</code> (número) são coisas <b>diferentes</b> no Python. Somar texto
+com número dará erro. Sempre confira os tipos!</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Seção 3 — Operadores</h2>
+
+<h3>3.1 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — operadores aritméticos, de comparação e lógicos</span><button onclick="cp(this)">copiar</button></div>
+<pre># Aritméticos
+print(7 + 3)   <em># 10</em>
+print(7 - 3)   <em># 4</em>
+print(7 * 3)   <em># 21</em>
+print(7 / 2)   <em># 3.5 (divisão real)</em>
+print(7 // 2)  <em># 3 (divisão inteira)</em>
+print(7 % 2)   <em># 1 (resto)</em>
+print(7 ** 2)  <em># 49 (potência)</em>
+
+# Comparação (retorna bool)
+print(5 > 3)   <em># True</em>
+print(5 == 5)  <em># True</em>
+print(5 != 3)  <em># True</em>
+
+# Lógicos
+print(<b>True</b> <b>and</b> <b>False</b>)  <em># False</em>
+print(<b>True</b> <b>or</b> <b>False</b>)   <em># True</em>
+print(<b>not</b> <b>True</b>)          <em># False</em></pre>
+</div>
+
+<h3>3.2 A explicação</h3>
+<p>Os <b>operadores aritméticos</b> fazem matemática. Os de <b>comparação</b> devolvem <code>True</code> ou
+<code>False</code>. Os <b>lógicos</b> (<code>and</code>, <code>or</code>, <code>not</code>) combinam
+condições — a base de qualquer decisão no seu programa.</p>
+
+<div class="caixa info"><div class="t">Destaque</div>
+<p><code>==</code> é <b>igualdade</b> (compara), enquanto <code>=</code> é <b>atribuição</b> (guarda um valor).
+É um erro muito comum confundir os dois!</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Seção 4 — Entrada e saída</h2>
+
+<h3>4.1 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — input() e f-strings</span><button onclick="cp(this)">copiar</button></div>
+<pre>nome = input(<u>"Qual seu nome? "</u>)
+idade = int(input(<u>"Sua idade? "</u>))   <em># converte texto em número</em>
+
+print(<u>f"Olá, {nome}! Você tem {idade} anos."</u>)</pre>
+</div>
+
+<h3>4.2 A explicação</h3>
+<p><code>input()</code> lê o que o usuário digita (sempre como <b>texto</b>), e <code>int()</code>
+converte esse texto em número. As <b>f-strings</b> (começam com <code>f</code>) permitem inserir variáveis
+dentro do texto, junto das chaves <code>{}</code> — o jeito moderno e limpo de formatar.</p>
+
+<div class="caixa dica"><div class="t">Experimente</div>
+<p>Modifique o código para calcular a <b>idade no próximo ano</b>: <code>print(f"Ano que vem: {idade + 1}")</code>.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Desafio — seu primeiro mini-programa</h2>
+
+<p>Agora é a sua vez. Monte um programa que:</p>
+<ul>
+<li>peça o <b>nome</b> e a <b>altura</b> de uma pessoa;</li>
+<li>mostre uma frase como: <i>"Maria tem 1.65 m de altura."</i>;</li>
+<li>diga se a altura é maior que 1.70 (usando <code>if</code> e comparação).</li>
+</ul>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — solução do desafio</span><button onclick="cp(this)">copiar</button></div>
+<pre>nome = input(<u>"Nome: "</u>)
+altura = float(input(<u>"Altura (em metros): "</u>))
+
+print(<u>f"{nome} tem {altura} m de altura."</u>)
+
+<b>if</b> altura &gt; 1.70:
+    print(<u>"Acima da média."</u>)
+<b>else</b>:
+    print(<u>"Na média ou abaixo."</u>)</pre>
+</div>
+
+<h3>Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Criei e usei uma variável</span></li>
+<li><input type="checkbox"><span>Sei a diferença entre int, float, str e bool</span></li>
+<li><input type="checkbox"><span>Usei operadores de comparação e lógicos</span></li>
+<li><input type="checkbox"><span>Li um dado com input()</span></li>
+<li><input type="checkbox"><span>Formatei uma frase com f-string</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Próximo passo</div>
+<p>Este guia é o <b>nível básico</b>. Quando se sentir confortável, o próximo guia da trilha é
+<b>Estruturas de dados</b> (listas, tuplas e dicionários) — a porta de entrada para a análise de dados.
+Você encontra tudo na área <b>Python</b> do blog.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>
