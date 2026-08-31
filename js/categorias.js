@@ -125,6 +125,20 @@ const categorias = [
         resumo: "Visualizar dados com matplotlib e seaborn: do simples ao gráfico publicável.",
         data: "2026-08-31",
         link: "guias/python-intermediario-graficos.html"
+      },
+      {
+        titulo: "Python — Estatística e Distribuições",
+        tag: "Intermediário",
+        resumo: "Média, desvio, padronização e distribuição normal com scipy.",
+        data: "2026-08-31",
+        link: "guias/python-intermediario-estatistica-distribuicoes.html"
+      },
+      {
+        titulo: "Python — Regressão Linear",
+        tag: "Avançado",
+        resumo: "Modelar relações e prever com regressão simples e múltipla.",
+        data: "2026-08-31",
+        link: "guias/python-avancado-regressao-linear.html"
       }
     ]
   },

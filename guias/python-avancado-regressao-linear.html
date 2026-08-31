@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Avançado — Regressão Linear — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+<style>
+  .nivel{display:inline-block;border-radius:20px;padding:3px 13px;font-size:12.5px;font-weight:700;
+         letter-spacing:.2px;background:#f6e3df;color:#8f2f26;margin:0 6px 12px 0}
+</style>
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Python — Regressão Linear</h1>
+  <div class="sub"><b>Modelar a relação</b> entre duas variáveis e fazer previsões: regressão linear simples e
+    múltipla, com interpretação estatística completa.</div>
+  <div class="fatos">
+    <div class="fato"><span class="nivel">AVANÇADO</span></div>
+    <div class="fato"><b>statsmodels · sklearn</b></div>
+    <div class="fato">Código &middot; Explicação &middot; Interpretação</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Trilha Python · Nível Avançado.</b> Regressão linear com código, interpretação e validação.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Sobre este guia</h2>
+
+<p>A <b>regressão linear</b> responde a pergunta: "como uma variável <b>depende</b> de outra (ou de várias)?".
+É o primeiro modelo que você aprende — e a porta de entrada para toda a modelagem estatística e o machine
+learning.</p>
+
+<div class="caixa info"><div class="t">Imports</div>
+<pre><b>import</b> numpy <b>as</b> np
+<b>import</b> pandas <b>as</b> pd
+<b>import</b> statsmodels.api <b>as</b> sm
+<b>import</b> seaborn <b>as</b> sns
+<b>import</b> matplotlib.pyplot <b>as</b> plt</pre>
+</div>
+
+<h3 id="mapa">O que você vai aprender</h3>
+
+<table>
+<tr><th style="width:210px">Seção</th><th>Você aprende...</th></tr>
+<tr><td><b>1</b> O que é regressão</td><td>a reta que melhor explica os dados</td></tr>
+<tr><td><b>2</b> Regressão simples</td><td>uma variável explicativa</td></tr>
+<tr><td><b>3</b> Interpretação</td><td>coeficientes, p-valor, R²</td></tr>
+<tr><td><b>4</b> Regressão múltipla</td><td>várias variáveis explicativas</td></tr>
+<tr><td><b>5</b> Validação</td><td>resíduos e previsão</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Seção 1 — O que é regressão linear</h2>
+
+<h3>1.1 A ideia</h3>
+<p>A regressão linear ajusta uma <b>reta</b> que melhor se encaixa nos pontos, minimizando a distância entre a
+reta e os dados (método dos <b>mínimos quadrados</b> — "Ordinary Least Squares" ou OLS).</p>
+
+<div class="caixa ok"><div class="t">A equação</div>
+<p><code>y = a + b·x</code></p>
+<ul>
+<li><code>a</code> (intercepto) — valor de <code>y</code> quando <code>x = 0</code>.</li>
+<li><code>b</code> (coeficiente angular) — quanto <code>y</code> muda a cada unidade de <code>x</code>.</li>
+</ul>
+</div>
+
+<h3>1.2 Primeiro olhar</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — um exemplo simples</span><button onclick="cp(this)">copiar</button></div>
+<pre>xobs = [1, 3, 5, 2]
+yobs = [1.2, 2.5, 4, 1.7]
+
+sns.scatterplot(x=xobs, y=yobs)   <em># dispersão: já dá pra ver a tendência!</em>
+plt.show()</pre>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Seção 2 — Regressão linear simples</h2>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — ajustando o modelo com statsmodels</span><button onclick="cp(this)">copiar</button></div>
+<pre>xobs = [1, 3, 5, 2]
+yobs = [1.2, 2.5, 4, 1.7]
+
+xobsC = sm.add_constant(xobs)          <em># adiciona o intercepto (constante)</em>
+resultado = sm.OLS(yobs, xobsC).fit()  <em># OLS = mínimos quadrados ordinários</em>
+
+print(resultado.summary())            <em># tabela de interpretação completa</em></pre>
+</div>
+
+<div class="caixa dica"><div class="t">Por que add_constant?</div>
+<p>Regressão precisa do intercepto (<code>a</code>). O <code>sm.add_constant</code> adiciona uma coluna de 1s
+que representa essa constante. Sem ela, a reta é forçada a passar pela origem — quase sempre errado.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Seção 3 — Interpretando o resultado</h2>
+
+<p>No <code>summary()</code>, as três coisas mais importantes são:</p>
+
+<table>
+<tr><th style="width:150px">Valor</th><th>O que significa</th></tr>
+<tr><td><b>Coeficientes (coef)</b></td><td>o <code>a</code> (const) e o <code>b</code> (inclinação) da reta.</td></tr>
+<tr><td><b>p-valor (P&gt;|t|)</b></td><td>se &lt; 0.05, a relação é <b>estatisticamente significativa</b>.</td></tr>
+<tr><td><b>R² (R-squared)</b></td><td>a proporção da variação de <code>y</code> explicada pelo modelo (0 a 1).</td></tr>
+</table>
+
+<div class="caixa alerta"><div class="t">Correlação ≠ causalidade</div>
+<p>Um R² alto e um p-valor significativo mostram que a relação <b>existe</b>, mas <b>não provam causa</b>.
+Duas variáveis podem andar juntas por uma terceira causa. Tenha isso em mente ao escrever sua pesquisa — é o
+erro conceitual mais comum.</p>
+</div>
+
+<h3>3.1 Visualizando a reta</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — lmplot (reta ajustada)</span><button onclick="cp(this)">copiar</button></div>
+<pre>df = pd.DataFrame({<u>"x"</u>: xobs, <u>"y"</u>: yobs})
+sns.lmplot(x=<u>"x"</u>, y=<u>"y"</u>, data=df)   <em># dispersão + reta ajustada</em>
+plt.xticks([0, 1, 2, 3, 4, 5])
+plt.show()</pre>
+<div class="obs">O <code>lmplot</code> desenha os pontos, a reta e ainda a <b>faixa de confiança</b>
+(região sombreada) ao redor — perfeito para apresentar resultados.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Seção 4 — Regressão linear múltipla</h2>
+
+<h3>4.1 Quando usar</h3>
+<p>Quando <code>y</code> depende de <b>mais de uma variável</b>, usamos a <b>regressão múltipla</b>: cada
+variável ganha seu próprio coeficiente, e o modelo estima o efeito de cada uma <b>controlada</b> pelas
+demais.</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — regressão múltipla</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> statsmodels.api <b>as</b> sm
+
+# (exemplo conceitual) y = produtividade; x1, x2, x3 = variáveis explicativas
+X = df[[<u>"x1"</u>, <u>"x2"</u>, <u>"x3"</u>]]
+y = df[<u>"y"</u>]
+
+Xc = sm.add_constant(X)
+modelo = sm.OLS(y, Xc).fit()
+print(modelo.summary())</pre>
+</div>
+
+<div class="caixa ok"><div class="t">Cuidado com multicolinearidade</div>
+<p>Se duas variáveis explicativas <b>são muito correlacionadas</b> entre si, o modelo fica instável e os
+coeficientes perdem sentido. Sempre cheque a correlação entre as variáveis antes de ajustar.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Seção 5 — Validação e previsão</h2>
+
+<h3>5.1 Analisando os resíduos</h3>
+<p>Os <b>resíduos</b> são a diferença entre o valor real e o previsto. Um bom modelo tem resíduos
+<b>aleatórios</b> (sem padrão). Analisá-los é essencial.</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — distribuição dos resíduos</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> statsmodels.api <b>as</b> sm
+
+residuos = resultado.resid
+sm.qqplot(residuos, line=<u>"45"</u>)        <em># normalidade dos resíduos</em>
+plt.show()
+
+sns.histplot(residuos, kde=<b>True</b>)     <em># se for um sino, ok!</em>
+plt.show()</pre>
+</div>
+
+<h3>5.2 Prevendo novos valores</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — previsão</span><button onclick="cp(this)">copiar</button></div>
+<pre>novo_x = sm.add_constant([7, 9])    <em># novos valores de x</em>
+previsao = resultado.predict(novo_x)
+print(previsao)</pre>
+</div>
+
+<div class="caixa info"><div class="t">Recapitulando a validação</div>
+<ul>
+<li><b>R²</b> — quanto os dados são explicados.</li>
+<li><b>p-valor</b> — a relação é significativa?</li>
+<li><b>Resíduos</b> — têm padrão? São normais?</li>
+</ul>
+<p>Um modelo só é confiável se as três coisas estão bem.</p>
+</div>
+
+<h3>5.3 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Sei a equação y = a + b·x e o que é cada termo</span></li>
+<li><input type="checkbox"><span>Ajustei um OLS com statsmodels</span></li>
+<li><input type="checkbox"><span>Interpreto coeficientes, p-valor e R²</span></li>
+<li><input type="checkbox"><span>Fiz regressão múltipla e sei o risco de multicolinearidade</span></li>
+<li><input type="checkbox"><span>Analisei os resíduos e fiz uma previsão</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Próximo passo</div>
+<p>Você agora modela relações. O próximo guia é <b>Modelos de Machine Learning</b> (classificação e
+agrupamento com scikit-learn) — o passo seguinte na trilha, conectando com os seus artigos de PCA, clusters e
+modelos preditivos. Continue na área <b>Python</b>.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>
