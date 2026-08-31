@@ -125,7 +125,22 @@ const categorias = [
     nome: "Inteligência Artificial",
     desc: "Machine learning, deep learning e o profissional do futuro.",
     icone: "&#129504;",
-    itens: []
+    itens: [
+      {
+        titulo: "Machine Learning e Deep Learning — Guia",
+        tag: "Inteligência Artificial",
+        resumo: "Tipos de aprendizado, overfitting, validação e redes neurais.",
+        data: "2026-08-31",
+        link: "guias/machine-learning-deep-learning.html"
+      },
+      {
+        titulo: "Meios Digitais e o Profissional do Futuro — Guia",
+        tag: "Inteligência Artificial",
+        resumo: "Transformação digital, tecnologias emergentes e competências.",
+        data: "2026-08-31",
+        link: "guias/transformacao-digital-profissional-futuro.html"
+      }
+    ]
   },
   {
     id: "python",
