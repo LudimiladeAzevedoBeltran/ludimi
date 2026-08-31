@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processamento de Dados Geográficos e a Ciência da Informação Geográfica — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Processamento de Dados Geográficos</h1>
+  <div class="sub">Além da ferramenta: a <b>Ciência da Informação Geográfica</b>, suas <b>aplicações</b>, as
+    <b>formas de adquirir dados</b> e as <b>funções de um SIG</b>.</div>
+  <div class="fatos">
+    <div class="fato"><b>Ciência · Aplicações · Funções</b></div>
+    <div class="fato">Teoria &middot; Aquisição &middot; Disciplinas</div>
+    <div class="fato">Geotecnologia &middot; Pesquisa</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia da área Geotecnologias.</b> A ciência por trás do processamento de dados geográficos.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia olha para o processamento de dados geográficos por um ângulo <b>acadêmico</b>: não apenas <b>como se
+usa</b> o SIG, mas <b>o que é</b> a <b>Ciência da Informação Geográfica</b>, onde ela é aplicada e quais
+funcionalidades um sistema precisa ter para dar conta dos problemas reais.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:190px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> Aplicações de um SIG</td><td>infra, agro, floresta, transporte</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>2</b> A Ciência da Informação Geográfica</td><td>o que ela estuda</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> As disciplinas</td><td>as áreas que compõem essa ciência</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>4</b> Funções de um SIG</td><td>o que o sistema precisa fazer</td><td><span class="tag geo">Teoria</span></td></tr>
+<tr><td><b>5</b> Como abordar</td><td>aplicar na sua pesquisa</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — Aplicações de um SIG</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>Como toda atividade humana acontece em <b>alguma localidade</b>, as aplicações do SIG são praticamente
+<b>infindáveis</b>. Veja os usos mais consagrados:</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Gestão de infraestrutura (AM/FM)</span></div>
+  <div class="corpo">Companhias de gás, água, energia e telefone gerenciam <b>milhares de consumidores</b> e
+  quilômetros de dutos e cabos. O SIG (chamado aqui de <b>AM/FM</b> — Automatic Mapping / Facility Management)
+  mantém a localização exata de cada <b>equipamento</b> e das <b>atividades de manutenção</b>.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Rodovias e transporte</span></div>
+  <div class="corpo">Armazenar o estado da pavimentação, o cadastro de sinalização e analisar <b>acidentes</b>.
+  Frotas conectadas a <b>GNSS</b> permitem o monitoramento em tempo real.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Agricultura de precisão</span></div>
+  <div class="corpo">Mapas e imagens detalhadas para planejar <b>plantio, aplicação de insumos e colheita</b>,
+  além da previsão de safra — um dos campos mais ativos e conectados à Ciência do Solo.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Manejo florestal</span></div>
+  <div class="corpo">Árvores <b>georreferenciadas</b> e volumetria monitorada para a retirada <b>sustentável</b>
+  de madeira, com replantio nas mesmas posições. Essencial para conservação e uso sustentável.</div>
+</div>
+
+<div class="caixa info"><div class="t">Conexão com seus temas</div>
+<p>Essas aplicações mostram como o SIG é uma ferramenta <b>multipropósito</b>. Para você, o ponto de maior
+sinergia é a <b>agropecuária</b>, o <b>monitoramento ambiental</b> (biomas, queimadas) e o <b>manejo</b> — exatamente
+onde o geoprocessamento e a ciência do solo se encontram.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — A Ciência da Informação Geográfica</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Explicação</h3>
+<p>Usar um SIG é <b>aplicar ferramentas</b>. A <b>Ciência da Informação Geográfica</b> é outra coisa: é o campo
+que estuda <b>como representar, analisar e entender a informação espacial</b> — as teorias e perguntas por trás
+da ferramenta.</p>
+
+<div class="caixa ok"><div class="t">A distinção central</div>
+<p><b>SIG</b> (sistema) = as tecnologias que usamos. <b>Ciência da Informação Geográfica</b> = o conjunto de
+<b>questões científicas</b> sobre como o espaço é percebido, representado e analisado. A primeira é a prática; a
+segunda, o entendimento que a sustenta.</p>
+</div>
+
+<h3>2.2 As perguntas da ciência</h3>
+<p>A área levanta questões profundas, agrupadas em grandes temas:</p>
+<table>
+<tr><th style="width:230px">Tema</th><th>Perguntas que a ciência busca responder</th></tr>
+<tr><td><b>Representação</b></td><td>como avaliar, medir acurácia e incerteza? Como expressar de forma significativa?</td></tr>
+<tr><td><b>Modelos de dados</b></td><td>como armazenar com eficiência? Como recuperar rápido (indexação)?</td></tr>
+<tr><td><b>Percepção humana</b></td><td>como quem não usa equipamentos percebe o espaço? Como raciocinamos com geografia?</td></tr>
+<tr><td><b>Exibição</b></td><td>como os métodos de exibição afetam a interpretação? O que define o sucesso de um mapa?</td></tr>
+<tr><td><b>Análise e decisão</b></td><td>que métodos apoiam decisões usando SIG? Como apresentá-los bem?</td></tr>
+</table>
+
+<div class="caixa dica"><div class="t">Por que isso importa para o pesquisador</div>
+<p>Essas perguntas lembram que um mapa nunca é "neutro": ele é uma <b>representação</b> com escolhas (o que
+mostrar, como colorir, em que escala). Entender isso torna sua análise espacial mais rigorosa — e sua pesquisa
+mais sólida.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — As disciplinas da Ciência da Informação Geográfica</h2>
+<span class="onde teoria">TEORIA</span>
+
+<p>Essa ciência se apoia em várias disciplinas que se complementam:</p>
+
+<table>
+<tr><th style="width:190px">Disciplina</th><th>Contribuição</th></tr>
+<tr><td><b>Cartografia</b></td><td>a arte e a ciência de criar mapas.</td></tr>
+<tr><td><b>Geodésia</b></td><td>medição da forma e das dimensões da Terra.</td></tr>
+<tr><td><b>Sensoriamento remoto</b></td><td>aquisição de dados à distância.</td></tr>
+<tr><td><b>Banco de dados</b></td><td>como guardar e consultar a informação espacial.</td></tr>
+<tr><td><b>Estatística espacial</b></td><td>como medir padrões e relações no espaço.</td></tr>
+<tr><td><b>Computação gráfica</b></td><td>como exibir e desenhar o espaço.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Um campo interdisciplinar</div>
+<p>Perceba que a Ciência da Informação Geográfica <b>não é uma só área</b> — é a interseção de várias. É por isso
+que você, vinda da agronomia e das ciências biológicas, consegue contribuir: seu conhecimento de <b>solo, biomas e
+queimadas</b> é parte essencial do <b>domínio</b> que alimenta essa ciência.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Funções de um SIG</h2>
+<span class="onde geo">TEORIA</span>
+
+<p>Para atender a essas necessidades, um SIG precisa executar um conjunto de <b>funções</b> essenciais:</p>
+
+<table>
+<tr><th style="width:200px">Função</th><th>O que faz</th></tr>
+<tr><td><b>Capturar</b></td><td>entrada de dados: digitalizar, importar imagens e vetores.</td></tr>
+<tr><td><b>Armazenar</b></td><td>guardar dados espaciais e seus atributos.</td></tr>
+<tr><td><b>Editar</b></td><td>modificar e atualizar as feições.</td></tr>
+<tr><td><b>Analisar</b></td><td>operações espaciais (sobreposição, buffer, consultas).</td></tr>
+<tr><td><b>Gerir</b></td><td>organizar, catalogar e garantir qualidade.</td></tr>
+<tr><td><b>Apresentar</b></td><td>gerar mapas, gráficos e relatórios.</td></tr>
+</table>
+
+<div class="caixa ok"><div class="t">Aplicação prática</div>
+<p>É esse ciclo — <b>capturar → armazenar → editar → analisar → apresentar</b> — que você executa, seja no QGIS
+ou no Python com geopandas. Reconhecer cada função ajuda a organizar seu fluxo de trabalho e a explicar seu
+método na escrita científica.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Como abordar na sua pesquisa</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Um caminho para usar a ciência da informação geográfica com rigor:</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Defina a pergunta espacial</b>
+O que você quer responder? "Onde ocorrem as queimadas em cada bioma?" é uma pergunta espacial clara.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Escolha a representação certa</b>
+Matricial ou vetorial? Em que escala? Cada escolha tem implicações (acurácia, incerteza).</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Adquira dados de qualidade</b>
+Use fontes confiáveis (IBGE, INPE, satélites) e documente a origem e o CRS.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Aplique as funções do SIG</b>
+Capture, edite, analise (buffer, sobreposição) e apresente seus resultados.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Valide e comunique</b>
+Confirme a acurácia, documente as limitações e conte a história que o mapa revela (aqui entra o Data
+Storytelling!).</div></div>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>O processamento de dados geográficos é tanto <b>técnica</b> quanto <b>ciência</b>. Dominar as ferramentas
+(geopandas, QGIS) é a base; mas é a compreensão da <b>ciência da informação geográfica</b> — representação,
+coordenação de sistemas, acurácia, interpretação — que diferencia uma análise espacial amadora de uma
+<b>pesquisa</b> consistente.</p>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

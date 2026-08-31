@@ -91,6 +91,20 @@ const categorias = [
         link: "guias/sensoriamento-remoto-vants.html"
       },
       {
+        titulo: "Sistemas de Informação Geográfica (SIG) — Guia",
+        tag: "Geotecnologias",
+        resumo: "Componentes de um SIG, aplicações e a escolha entre ArcGIS e QGIS.",
+        data: "2026-08-31",
+        link: "guias/sistemas-informacao-geografica.html"
+      },
+      {
+        titulo: "Processamento de Dados Geográficos — Guia",
+        tag: "Geotecnologias",
+        resumo: "A ciência da informação geográfica: aplicações, disciplinas e funções de um SIG.",
+        data: "2026-08-31",
+        link: "guias/processamento-dados-geograficos.html"
+      },
+      {
         titulo: "Python — Gráficos de Dados Espaciais",
         tag: "Python",
         resumo: "Mapas temáticos, pontos e polígonos com geopandas e shapely.",

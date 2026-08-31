@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistemas de Informação Geográfica (SIG) — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Sistemas de Informação Geográfica (SIG)</h1>
+  <div class="sub">O que é um <b>SIG</b>, sua <b>arquitetura</b>, os <b>softwares</b> (ArcGIS, QGIS) e como
+    escolher — a ferramenta central de quem trabalha com informação geográfica.</div>
+  <div class="fatos">
+    <div class="fato"><b>Componentes · Aplicações · Software</b></div>
+    <div class="fato">Teoria &middot; Ferramentas &middot; Escolha</div>
+    <div class="fato">Geotecnologia &middot; Pesquisa</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia da área Geotecnologias.</b> Do conceito de informação geográfica à escolha do software certo.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia apresenta o <b>Sistema de Informação Geográfica (SIG)</b> — a ferramenta que dá vida ao
+geoprocessamento. Você vai entender o que é, do que ele é composto, onde é aplicado, e como escolher entre os
+principais programas (<b>ArcGIS</b> e <b>QGIS</b>).</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:180px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> Informação geográfica</td><td>o que é e suas características</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> O que é um SIG</td><td>definição e componentes</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Aplicações</td><td>onde o SIG é usado</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> Classificação</td><td>os tipos de SIG</td><td><span class="tag geo">Teoria</span></td></tr>
+<tr><td><b>5</b> Ferramentas</td><td>ArcGIS, QGIS e como escolher</td><td><span class="tag prat">Prática</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — Informação geográfica</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p>Antes do SIG, é preciso entender o que é <b>informação geográfica (IG)</b>. Em palavras simples:</p>
+<div class="caixa ok"><div class="t">O que é informação geográfica</div>
+<ul>
+<li>Informação sobre <b>locais</b> na superfície da Terra.</li>
+<li>Conhecimento sobre <b>onde</b> algo está.</li>
+<li>Conhecimento sobre <b>o que</b> está em uma dada localização.</li>
+</ul>
+</div>
+
+<h3>1.2 Características</h3>
+<p>A informação geográfica tem algumas propriedades que a tornam especial:</p>
+<table>
+<tr><th style="width:200px">Característica</th><th>O que significa</th></tr>
+<tr><td><b>Resolução variável</b></td><td>pode ser muito detalhada (cada árvore) ou ampla (clima da região).</td></tr>
+<tr><td><b>Relativamente estática</b></td><td>as feições naturais mudam devagar; ao imprimir, fica fixa.</td></tr>
+<tr><td><b>Pode ser volumosa</b></td><td>um único satélite pode gerar <b>terabytes</b> de dados por dia.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Por que ela interessa</div>
+<p>Usar informação georreferenciada permite <b>correlacionar variáveis distintas</b>: umidade, solo, uso da
+terra, relevo. É isso que torna os SIG instrumentos de <b>modelagem, análise e simulação de cenários</b> — e o
+que conecta com os seus temas de pesquisa.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — O que é um SIG</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Definição</h3>
+<p>Um <b>SIG (Sistema de Informação Geográfica)</b> é um conjunto de <b>software, dados, pessoas e métodos</b>
+que permite <b>capturar, armazenar, editar, analisar, gerir e apresentar</b> dados georreferenciados.</p>
+
+<div class="caixa ok"><div class="t">A ideia central</div>
+<p>Pense no SIG como uma "planilha que sabe onde as coisas estão". Ele une, de um lado, os <b>dados descritivos</b>
+(o que é: nome, área, tipo) e, de outro, a <b>localização</b> (onde está: a geometria). É essa união que permite
+perguntar "o que existe nesta região?" e responder com mapa e dados juntos.</p>
+</div>
+
+<h3>2.2 Os componentes de um SIG</h3>
+<table>
+<tr><th style="width:140px">Componente</th><th>O que é</th></tr>
+<tr><td><b>Hardware</b></td><td>os computadores que executam o sistema.</td></tr>
+<tr><td><b>Software</b></td><td>os programas de SIG (ex.: QGIS, ArcGIS).</td></tr>
+<tr><td><b>Dados</b></td><td>a informação geográfica — o componente mais valioso.</td></tr>
+<tr><td><b>Pessoas</b></td><td>quem opera, analisa e toma decisões.</td></tr>
+<tr><td><b>Métodos</b></td><td>os procedimentos e regras de uso.</td></tr>
+</table>
+
+<div class="caixa dica"><div class="t">O dado é o que mais vale</div>
+<p>Um SIG sem dados é uma ferramenta vazia. Por isso, nas análises, a <b>qualidade e a organização dos dados</b>
+importam mais do que o software em si.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Aplicações do SIG</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>O SIG está presente em praticamente todos os setores. Veja onde ele é usado:</p>
+
+<table>
+<tr><th style="width:170px">Área</th><th>Aplicações</th></tr>
+<tr><td><b>Geociências</b></td><td>geologia, solos, recursos hídricos.</td></tr>
+<tr><td><b>Agro</b></td><td>agricultura de precisão, mapeamento de cultivos.</td></tr>
+<tr><td><b>Ambiente</b></td><td>monitoramento de biomas, queimadas, desmatamento.</td></tr>
+<tr><td><b>Planejamento</b></td><td>ordenamento territorial e urbano.</td></tr>
+<tr><td><b>Saúde</b></td><td>mapeamento epidemiológico.</td></tr>
+<tr><td><b>Engenharia</b></td><td>redes de infraestrutura, logística.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Conexão com sua pesquisa</div>
+<p>Para os seus temas (biomas, queimadas, solos), o SIG é a ferramenta que cruza tudo: mostra <b>onde</b> as
+queimadas ocorrem, <b>em quais biomas</b>, e <b>como</b> isso se relaciona com o uso do solo. É a ponte entre seus
+dados e os mapas que comunicam a ciência.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Classificação do SIG</h2>
+<span class="onde geo">TEORIA</span>
+
+<p>Os SIG podem ser classificados de várias formas. Uma das mais úteis considera o <b>tipo de dado</b> com que
+trabalham e o <b>nível de análise</b>:</p>
+
+<table>
+<tr><th style="width:200px">Classificação</th><th>Característica</th></tr>
+<tr><td><b>De referência</b></td><td>foco em <b>cadastro e representação</b> (ex.: mapas de base).</td></tr>
+<tr><td><b>Temáticos</b></td><td>foco em <b>uma variável</b> (ex.: mapa de solos, de vegetação).</td></tr>
+<tr><td><b>De análise</b></td><td>foco em <b>modelagem e simulação</b> (ex.: aptidão agrícola, risco).</td></tr>
+</table>
+
+<div class="caixa dica"><div class="t">Na prática</div>
+<p>Na pesquisa, você geralmente começa com um SIG <b>de referência</b> (mapa base) e evolui para um <b>
+temático</b> e depois <b>de análise</b> — conforme o estudo se aprofunda.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Ferramentas de SIG</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>Existem dois grandes caminhos no mercado:</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">ArcGIS (ESRI) — o comercial</span></div>
+  <div class="corpo"><b>Pago e completo.</b> O mais difundido no setor público e privado. Oferece uma suíte completa
+  (desktop, web, mobile). Muito usado em empresas e prefeituras.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">QGIS — o livre e gratuito</span></div>
+  <div class="corpo"><b>Código aberto, gratuito.</b> Desenvolvido de forma cooperativa (promovido pela
+  <b>OSGeo</b>). Tem qualidade profissional, enorme comunidade e — ótimo para pesquisa — preço zero. É o mais
+  recomendado para começar.</div>
+</div>
+
+<div class="caixa ok"><div class="t">Outros softwares que você pode ouvir falar</div>
+<p><b>gvSIG</b>, <b>GRASS</b>, <b>MapInfo</b> e o <b>SPRING</b> (brasileiro, do INPE) também existem. Mas para a
+maioria dos estudos, <b>QGIS</b> + <b>Python/geopandas</b> (que você já domina) é uma combinação poderosa e
+versátil.</p>
+</div>
+
+<h3>5.1 Como escolher</h3>
+<div class="caixa dica"><div class="t">Critérios de decisão</div>
+<ul>
+<li><b>Custo</b> — QGIS é grátis; ArcGIS exige licença.</li>
+<li><b>Comunidade</b> — ambos têm muita documentação, mas o QGIS é aberto.</li>
+<li><b>Integração com Python</b> — QGIS e geopandas conversam muito bem.</li>
+<li><b>O que seu grupo usa</b> — alinhar com o laboratório facilita o apoio.</li>
+</ul>
+</div>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Um SIG é, acima de tudo, uma forma de <b>pensar espacialmente</b>. Escolher entre ArcGIS e QGIS é uma decisão
+prática — mas o que realmente faz a diferença é saber <b>que pergunta espacial</b> você quer responder e ter
+<b>dados de qualidade</b>. O SIG é a ferramenta; a ciência vem da sua pergunta.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>
