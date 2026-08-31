@@ -38,8 +38,9 @@
 <h2 id="p0">Sobre este guia</h2>
 
 <p>O <b>pandas</b> é a biblioteca mais importante para análise de dados em Python. Ele transforma planilhas e
-arquivos em estruturas fáceis de trabalhar — e é a ponte entre os dados brutos e a análise. Este guia usa dados
-reais de <b>café</b>, como nas aulas do prof. Glauco.</p>
+arquivos em estruturas fáceis de trabalhar — e é a ponte entre os dados brutos e a análise. Neste guia, os
+dados de exemplo são <b>criados no próprio código</b>, então você pode rodar tudo sem precisar de nenhum
+arquivo externo.</p>
 
 <div class="caixa info"><div class="t">Instalação</div>
 <p>Se não tiver o pandas: <code>pip install pandas</code> (e <code>openpyxl</code> para ler Excel).</p>
@@ -86,20 +87,25 @@ os dados). A partir daqui, tudo fica fácil de manipular.</p>
 <h2 id="m2" class="mod">Seção 2 — Lendo dados de arquivos</h2>
 
 <h3>2.1 O código</h3>
-<div class="cole cod"><div class="cab"><span>PYTHON — lendo CSV e Excel</span><button onclick="cp(this)">copiar</button></div>
+<div class="cole cod"><div class="cab"><span>PYTHON — lendo CSV e Excel (exemplos)</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> pandas <b>as</b> pd
 
-csv = pd.read_csv(<u>"dados_cafe.csv"</u>)
-excel = pd.read_excel(<u>"dados_cafe.xlsx"</u>)
+csv = pd.read_csv(<u>"meus_dados.csv"</u>)
+excel = pd.read_excel(<u>"meus_dados.xlsx"</u>)
 
 print(csv.head())     <em># primeiras linhas</em>
 print(excel.shape)    <em># (linhas, colunas)</em></pre>
 </div>
 
+<div class="caixa info"><div class="t">Arquivos de exemplo</div>
+<p>Os nomes <code>meus_dados.csv</code> e <code>meus_dados.xlsx</code> são apenas ilustrativos — substitua pelo
+caminho do <b>seu</b> arquivo. No restante deste guia, os dados são <b>gerados no próprio código</b>, então você
+consegue praticar sem depender de nenhum arquivo externo.</p>
+</div>
+
 <h3>2.2 A explicação</h3>
 <p><code>read_csv()</code>, <code>read_excel()</code> e <code>read_parquet()</code> carregam os dados. O
-pandas <b>entende o formato</b> e monta o DataFrame para você. Isso é o que conecta seu trabalho com as
-planilhas, bancos e arquivos da pesquisa.</p>
+pandas <b>entende o formato</b> e monta o DataFrame para você.</p>
 
 <div class="caixa dica"><div class="t">Métodos úteis</div>
 <ul>
@@ -117,12 +123,14 @@ planilhas, bancos e arquivos da pesquisa.</p>
 <div class="cole cod"><div class="cab"><span>PYTHON — describe e filtros</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> pandas <b>as</b> pd
 
-df = pd.read_excel(<u>"dados_cafe.xlsx"</u>)
+# dados de exemplo criados no próprio código
+df = pd.DataFrame({
+    <u>"pais"</u>: [<u>"Brasil"</u>, <u>"Colômbia"</u>, <u>"Brasil"</u>, <u>"Etiópia"</u>, <u>"Colômbia"</u>],
+    <u>"media"</u>: [85.2, 78.4, 90.1, 72.3, 76.9],
+})
 
 print(df.describe())                 <em># resumo estatístico</em>
-
-# selecionar uma coluna
-medias = df[<u>"media"</u>]
+print(df[<u>"media"</u>])                <em># selecionar uma coluna</em>
 
 # filtrar: países com média acima de 80
 altos = df[df[<u>"media"</u>] &gt; 80]
@@ -148,7 +156,11 @@ e <code>df.dropna()</code> ou <code>df.fillna(valor)</code> para tratar — deci
 <div class="cole cod"><div class="cab"><span>PYTHON — groupby</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> pandas <b>as</b> pd
 
-df = pd.read_excel(<u>"dados_cafe.xlsx"</u>)
+df = pd.DataFrame({
+    <u>"pais"</u>: [<u>"Brasil"</u>, <u>"Colômbia"</u>, <u>"Brasil"</u>, <u>"Etiópia"</u>, <u>"Colômbia"</u>],
+    <u>"tipo_cafe"</u>: [<u>"arábica"</u>, <u>"arábica"</u>, <u>"robusta"</u>, <u>"arábica"</u>, <u>"robusta"</u>],
+    <u>"media"</u>: [85.2, 78.4, 90.1, 72.3, 76.9],
+})
 
 # média por país
 media_pais = df.groupby(<u>"pais"</u>)[<u>"media"</u>].mean()
@@ -170,14 +182,18 @@ dentro do grupo, obtém um resumo completo por categoria. É a base de quase tod
 </div>
 
 <!-- ==================================================================== -->
-<h2 id="m5" class="mod">Desafio — análise de um conjunto real</h2>
+<h2 id="m5" class="mod">Desafio — análise de um conjunto de exemplo</h2>
 
-<p>Você tem os dados de notas dos alunos. Calcule a <b>média por aluno</b> e a <b>média geral da turma</b>.</p>
+<p>Crie um DataFrame com notas de alunos (colunas: aluno, nota) e calcule a <b>média por aluno</b> e a
+<b>média geral da turma</b>.</p>
 
 <div class="cole cod"><div class="cab"><span>PYTHON — solução com pandas</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> pandas <b>as</b> pd
 
-df = pd.read_csv(<u>"notas.csv"</u>)   <em># colunas: aluno, nota</em>
+df = pd.DataFrame({
+    <u>"aluno"</u>: [<u>"Ana"</u>, <u>"Ana"</u>, <u>"Bruno"</u>, <u>"Carla"</u>, <u>"Carla"</u>],
+    <u>"nota"</u>:  [8.5, 9.0, 7.5, 6.0, 8.0],
+})
 
 media_aluno = df.groupby(<u>"aluno"</u>)[<u>"nota"</u>].mean()
 print(media_aluno)

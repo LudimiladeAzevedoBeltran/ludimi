@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Intermediário — Gráficos de Dados Espaciais — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+<style>
+  .nivel{display:inline-block;border-radius:20px;padding:3px 13px;font-size:12.5px;font-weight:700;
+         letter-spacing:.2px;background:#f3e3d4;color:var(--terra-esc);margin:0 6px 12px 0}
+</style>
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Python — Gráficos de Dados Espaciais</h1>
+  <div class="sub"><b>Visualizar dados geográficos</b> com geopandas: pontos, linhas e polígonos, mapas
+    temáticos e consultas espaciais — tudo com geometrias criadas no próprio código.</div>
+  <div class="fatos">
+    <div class="fato"><span class="nivel">INTERMEDIÁRIO</span></div>
+    <div class="fato"><b>geopandas · shapely</b></div>
+    <div class="fato">Mapas &middot; Explicação &middot; Prática</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Trilha Python · Nível Intermediário.</b> Dados espaciais com exemplos prontos para rodar.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Sobre este guia</h2>
+
+<p>Quando seus dados têm <b>localização</b>, você precisa de ferramentas especiais. O <b>geopandas</b> estende o
+pandas para lidar com <b>geometrias</b> (pontos, linhas, polígonos). Neste guia, todas as geometrias são
+<b>criadas no próprio código</b> — assim você pratica de imediato, sem precisar de arquivos externos.</p>
+
+<div class="caixa info"><div class="t">Instalação</div>
+<p><code>pip install geopandas shapely matplotlib</code></p>
+</div>
+
+<h3 id="mapa">O que você vai aprender</h3>
+
+<table>
+<tr><th style="width:210px">Seção</th><th>Você aprende...</th></tr>
+<tr><td><b>1</b> Geometrias</td><td>criar pontos, linhas e polígonos</td></tr>
+<tr><td><b>2</b> GeoDataFrame</td><td>a tabela com coluna de geometria</td></tr>
+<tr><td><b>3</b> Plotando no mapa</td><td>desenhar e colorir por valor</td></tr>
+<tr><td><b>4</b> Consultas espaciais</td><td>o que está dentro / perto de quê</td></tr>
+<tr><td><b>5</b> Aplicação</td><td>um mini-mapa temático</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Seção 1 — Geometrias com shapely</h2>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — criando geometrias</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>from</b> shapely.geometry <b>import</b> Point, LineString, Polygon
+
+ponto = Point(-48.5, -15.8)      <em># longitude, latitude</em>
+linha = LineString([(-48.5, -15.8), (-47.5, -15.8)])
+poligono = Polygon([(-49, -16), (-48, -16), (-48, -15), (-49, -15)])
+
+print(ponto)
+print(linha)
+print(poligono)</pre>
+</div>
+
+<div class="caixa ok"><div class="t">Os três tipos de geometria</div>
+<ul>
+<li><b>Point</b> — um ponto (ex.: uma amostra, uma estação).</li>
+<li><b>LineString</b> — uma linha (ex.: uma estrada, um rio).</li>
+<li><b>Polygon</b> — um polígono (ex.: um município, um bioma).</li>
+</ul>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Seção 2 — O GeoDataFrame</h2>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — criando um GeoDataFrame</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>from</b> shapely.geometry <b>import</b> Point
+
+gdf = gpd.GeoDataFrame(
+    {<u>"nome"</u>: [<u>"Estação A"</u>, <u>"Estação B"</u>, <u>"Estação C"</u>],
+     <u>"temperatura"</u>: [28.5, 30.1, 26.9]},
+    geometry=[Point(-48.5, -15.8), Point(-48.2, -16.1), Point(-47.9, -15.7)],
+)
+
+print(gdf.head())
+print(gdf.geometry)     <em># a coluna de geometrias</em></pre>
+</div>
+
+<div class="caixa info"><div class="t">Diferença para o pandas</div>
+<p>Um <b>GeoDataFrame</b> é um DataFrame com uma coluna especial <code>geometry</code>. É isso que permite
+<span style="font-style:normal">desenhar no mapa</span> e fazer consultas espaciais. Todo o resto funciona
+igual ao pandas (<code>groupby</code>, <code>describe</code>, filtros).</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Seção 3 — Plotando no mapa</h2>
+
+<h3>3.1 Pontos simples</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — plotando pontos</span><button onclick="cp(this)">copiar</button></div>
+<pre>gdf.plot(color=<u>"#43523d"</u>, markersize=40)
+plt.title(<u>"Estações"</u>)
+plt.show()</pre>
+</div>
+
+<h3>3.2 Mapa temático (coroplético)</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — colorindo por valor</span><button onclick="cp(this)">copiar</button></div>
+<pre># um pequeno conjunto de polígonos com um valor
+poligonos = gpd.GeoDataFrame(
+    {<u>"regiao"</u>: [<u>"A"</u>, <u>"B"</u>, <u>"C"</u>],
+     <u>"indice"</u>: [12, 45, 30]},
+    geometry=[
+        Polygon([(-49,-16),(-48,-16),(-48,-15),(-49,-15)]),
+        Polygon([(-48,-16),(-47,-16),(-47,-15),(-48,-15)]),
+        Polygon([(-49,-15),(-48,-15),(-48,-14),(-49,-14)]),
+    ],
+)
+
+poligonos.plot(column=<u>"indice"</u>, cmap=<u>"YlOrRd"</u>, legend=<b>True</b>)
+plt.title(<u>"Índice por região"</u>)
+plt.show()</pre>
+</div>
+
+<div class="caixa dica"><div class="t">Parâmetros do plot</div>
+<ul>
+<li><code>column</code> — a coluna usada para colorir.</li>
+<li><code>cmap</code> — a paleta de cores (ex.: <code>YlOrRd</code>, <code>Greens</code>).</li>
+<li><code>legend=True</code> — mostra a legenda de valores.</li>
+</ul>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Seção 4 — Consultas espaciais</h2>
+
+<h3>4.1 O que está dentro de uma área</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — within</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>from</b> shapely.geometry <b>import</b> Point, Polygon
+
+area = Polygon([(-49, -16), (-48, -16), (-48, -15), (-49, -15)])
+
+pontos = gpd.GeoDataFrame(
+    {<u>"nome"</u>: [<u>"A"</u>, <u>"B"</u>, <u>"C"</u>]},
+    geometry=[Point(-48.5, -15.5), Point(-48.8, -15.9), Point(-47.6, -15.3)],
+)
+
+dentro = pontos[pontos.geometry.within(area)]
+print(dentro)</pre>
+</div>
+
+<h3>4.2 Distância e interseção</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — distance e intersects</span><button onclick="cp(this)">copiar</button></div>
+<pre># distância entre pontos
+print(pontos.geometry.distance(area.centroid))
+
+# quais pontos intersectam a área
+print(pontos[pontos.geometry.intersects(area)])</pre>
+</div>
+
+<div class="caixa ok"><div class="t">As três operações-chave</div>
+<table>
+<tr><th style="width:140px">Operação</th><th>Pergunta</th></tr>
+<tr><td><code>within</code></td><td>está dentro de?</td></tr>
+<tr><td><code>intersects</code></td><td>toca / cruza?</td></tr>
+<tr><td><code>distance</code></td><td>a que distância?</td></tr>
+</table>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Seção 5 — Um mini-mapa temático</h2>
+
+<p>Vamos juntar tudo: criar polígonos, associar um valor e plotar um mapa colorido por categoria.</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — mapa temático completo</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+<b>from</b> shapely.geometry <b>import</b> Polygon
+
+regioes = gpd.GeoDataFrame(
+    {<u>"nome"</u>: [<u>"Norte"</u>, <u>"Sul"</u>, <u>"Leste"</u>],
+     <u>"umidade"</u>: [70, 45, 58]},
+    geometry=[
+        Polygon([(0,2),(2,2),(2,4),(0,4)]),
+        Polygon([(0,0),(2,0),(2,2),(0,2)]),
+        Polygon([(2,0),(4,0),(4,2),(2,2)]),
+    ],
+)
+
+fig, ax = plt.subplots(figsize=(7, 5))
+regioes.plot(column=<u>"umidade"</u>, cmap=<u>"Greens"</u>, legend=<b>True</b>, ax=ax)
+ax.set_title(<u>"Umidade por região"</u>)
+ax.set_axis_off()          <em># tira os eixos</em>
+plt.show()</pre>
+<div class="obs"><code>ax.set_axis_off()</code> remove os eixos, deixando o mapa limpo — um toque profissional.
+Depois é só salvar com <code>plt.savefig("mapa.png", dpi=300)</code>.</div>
+</div>
+
+<h3>Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Criei pontos, linhas e polígonos com shapely</span></li>
+<li><input type="checkbox"><span>Montei um GeoDataFrame com coluna de geometria</span></li>
+<li><input type="checkbox"><span>Plotei um mapa temático colorido por valor</span></li>
+<li><input type="checkbox"><span>Fiz consultas with/intersects</span></li>
+<li><input type="checkbox"><span>Criei um mini-mapa limpo para apresentar</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Próximo passo</div>
+<p>Agora você visualiza dados espaciais — o que é essencial na sua área. O próximo passo é explorar os <b>guias
+de Geotecnologias</b> do blog, que aprofundam SIG, geoprocessamento e sensoriamento remoto. Continue
+explorando!</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

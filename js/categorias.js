@@ -60,13 +60,6 @@ const categorias = [
         resumo: "Classificação, agrupamento, associação e anomalias, e o que são os bancos NoSQL.",
         data: "2026-08-31",
         link: "guias/mineracao-dados-nosql.html"
-      },
-      {
-        titulo: "Bancos de Dados Geográficos — Guia",
-        tag: "Geotecnologias",
-        resumo: "Dados espaciais, modelos matricial e vetorial, PostGIS e geopandas.",
-        data: "2026-08-31",
-        link: "guias/banco-de-dados-geograficos.html"
       }
     ]
   },
@@ -75,7 +68,29 @@ const categorias = [
     nome: "Geotecnologias",
     desc: "SIG, geoprocessamento, sensoriamento remoto e dados geográficos.",
     icone: "&#127757;",
-    itens: []
+    itens: [
+      {
+        titulo: "Bancos de Dados Geográficos — Guia",
+        tag: "Geotecnologias",
+        resumo: "Dados espaciais, modelos matricial e vetorial, PostGIS e geopandas.",
+        data: "2026-08-31",
+        link: "guias/banco-de-dados-geograficos.html"
+      },
+      {
+        titulo: "Geoprocessamento Aplicado — Guia",
+        tag: "Geotecnologias",
+        resumo: "Do conceito ao mapeamento de bacias e ao planejamento urbano.",
+        data: "2026-08-31",
+        link: "guias/geoprocessamento-aplicado.html"
+      },
+      {
+        titulo: "Python — Gráficos de Dados Espaciais",
+        tag: "Python",
+        resumo: "Mapas temáticos, pontos e polígonos com geopandas e shapely.",
+        data: "2026-08-31",
+        link: "guias/python-intermediario-graficos-espaciais.html"
+      }
+    ]
   },
   {
     id: "ia",
@@ -132,6 +147,13 @@ const categorias = [
         resumo: "Média, desvio, padronização e distribuição normal com scipy.",
         data: "2026-08-31",
         link: "guias/python-intermediario-estatistica-distribuicoes.html"
+      },
+      {
+        titulo: "Python — Gráficos de Dados Espaciais",
+        tag: "Intermediário",
+        resumo: "Mapas temáticos, pontos e polígonos com geopandas e shapely.",
+        data: "2026-08-31",
+        link: "guias/python-intermediario-graficos-espaciais.html"
       },
       {
         titulo: "Python — Regressão Linear",

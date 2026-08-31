@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geoprocessamento Aplicado — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Geoprocessamento Aplicado</h1>
+  <div class="sub">Entenda o que é <b>geoprocessamento</b>, seu universo, e como ele é <b>aplicado</b> — do
+    mapeamento geomorfológico de uma bacia ao planejamento urbano.</div>
+  <div class="fatos">
+    <div class="fato"><b>SIG · Sensoriamento · Cartografia</b></div>
+    <div class="fato">Teoria &middot; Casos &middot; Aplicação</div>
+    <div class="fato">Geotecnologia &middot; Pesquisa</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia da área Geotecnologias.</b> Do conceito à aplicação real, com casos que mostram o valor da ferramenta.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia apresenta o <b>geoprocessamento</b> — uma área que une várias tecnologias para lidar com
+<b>informações espaciais</b>. Ele mostra o conceito, as ferramentas e, principalmente, <b>como ele é aplicado</b>
+em estudos reais, com foco em quem está começando na pesquisa.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> O que é geoprocessamento</td><td>o conceito e seu universo multidisciplinar</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> As tecnologias</td><td>SIG, sensoriamento, cartografia, CAD</td><td><span class="tag geo">Teoria</span></td></tr>
+<tr><td><b>3</b> Case: bacia hidrográfica</td><td>hipsometria, declividade, vertentes</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> Case: planejamento urbano</td><td>gestão e simulação de paisagem</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>5</b> Como começar</td><td>um roteiro na área</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — O que é Geoprocessamento</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p><b>Geoprocessamento</b> é uma área do conhecimento que usa <b>tecnologias computacionais</b> para coletar,
+armazenar, processar e analisar <b>informações geográficas</b>. No Brasil, esse é o termo consagrado; no exterior,
+ele é conhecido como <b>GIS</b> (<i>Geographical Information Systems</i>) ou <b>SIG</b> (Sistema de Informações
+Geográficas).</p>
+
+<div class="caixa ok"><div class="t">A ideia central</div>
+<p>Os mapas existem desde tempos remotos para registrar e comunicar o espaço. Mas a <b>folha de papel</b>
+limitava a quantidade de informação. O geoprocessamento <b>quebrou esse limite</b>: agora é possível sobrepor
+dezenas de camadas (clima, solo, relevo, uso da terra) e analisar tudo computacionalmente.</p>
+</div>
+
+<h3>1.2 Fundamentação teórica</h3>
+<p>O geoprocessamento é <b>multidisciplinar</b>: ele nasceu da união de várias áreas.</p>
+
+<table>
+<tr><th style="width:200px">Área que contribui</th><th>O que traz</th></tr>
+<tr><td><b>Fotogrametria</b></td><td>obtenção de dados a partir de fotos/imagens.</td></tr>
+<tr><td><b>Sensoriamento remoto</b></td><td>medição por satélites (a distância).</td></tr>
+<tr><td><b>Cartografia</b></td><td>a arte e ciência de representar o espaço.</td></tr>
+<tr><td><b>Banco de dados</b></td><td>armazenar e consultar as informações.</td></tr>
+<tr><td><b>Geodésia</b></td><td>medição da forma e dimensões da Terra.</td></tr>
+<tr><td><b>Computação gráfica / CAD</b></td><td>desenho e processamento espacial.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Por que importa</div>
+<p>Informações geográficas são <b>estratégicas</b>: para planejar cidades, monitorar o meio ambiente, mapear
+recursos naturais e orientar pesquisas. É a ponte entre o dado espacial e a decisão.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — As tecnologias do geoprocessamento</h2>
+<span class="onde geo">TEORIA</span>
+
+<p>O geoprocessamento reúne <b>ferramentas</b> que, juntas, transformam dados em informação espacial.</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">SIG — Sistema de Informações Geográficas</span></div>
+  <div class="corpo">Sistemas que <b>capturam, armazenam, analisam e exibem</b> dados georreferenciados. São a
+  "interface" do geoprocessamento. Ex.: <b>QGIS</b>, ArcGIS, SPRING.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Sensoriamento remoto</span></div>
+  <div class="corpo">Captação de informações da superfície <b>sem contato</b>, por sensores em satélites ou
+  aeronaves. É a fonte de imagens que alimentam os SIGs.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Cartografia digital</span></div>
+  <div class="corpo">Representar o espaço em forma digital, com projeções e precisão <b>geodésica</b>.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">CAD — Desenho Assistido por Computador</span></div>
+  <div class="corpo">Ferramentas de desenho técnico, muito usadas em <b>projetos de engenharia e arquitetura</b>.</div>
+</div>
+
+<div class="caixa dica"><div class="t">No Brasil</div>
+<p>O <b>SPRING</b> (INPE) é um software brasileiro clássico de geoprocessamento. Hoje, o <b>QGIS</b> (livre e
+gratuito) é o mais usado, junto com o <b>Python/geopandas</b> para análises — que você já conhece do seu guia
+de dados espaciais.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Case: mapeamento geomorfológico de uma bacia</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>Vamos ver o geoprocessamento <b>em ação</b>. Um estudo clássico é o <b>mapeamento geomorfológico</b> de uma
+<b>bacia hidrográfica</b>: entender as <b>formas do relevo</b> para planejar o uso da terra, a conservação do
+solo e a gestão da água.</p>
+
+<h3>3.1 As etapas do estudo</h3>
+<div class="passo"><div class="num">1</div><div class="txt"><b>Área de estudo</b>
+Definir a bacia e obter seus dados (limites, modelo digital de elevação).</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Desenvolvimento</b>
+Processar os dados no SIG: gerar maps de hipsometria, declividade, etc.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Resultados</b>
+Ler os produtos: hipsometria, declividade, exposição da vertente, formas do relevo.</div></div>
+
+<h3>3.2 O que cada produto revela</h3>
+<table>
+<tr><th style="width:190px">Produto</th><th>O que mostra</th><th>Para quê</th></tr>
+<tr><td><b>Hipsometria</b></td><td>a <b>altitude</b> do terreno em faixas de cor.</td><td>zonear altitudes.</td></tr>
+<tr><td><b>Declividade</b></td><td>a <b>inclinação</b> (em graus ou %).</td><td>aptidão agrícola, risco de erosão.</td></tr>
+<tr><td><b>Exposição da vertente</b></td><td>qual <b>direção</b> a encosta enfrenta.</td><td>rebatimento de insolação e umidade.</td></tr>
+<tr><td><b>Formas do relevo</b></td><td>classificação do <b>tipo de relevo</b> (topos, vertentes, fundos).</td><td>caracterização geomorfológica.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Por que isso é ciência</div>
+<p>O mapa de <b>declividade</b>, por exemplo, é decisivo para saber <b>onde plantar</b> (áreas planas) e
+<b>onde proteger</b> (áreas íngremes, sujeitas a erosão). Em bacia hidrográfica, isso orienta a conservação do
+solo e da água — conectando direto com a sua pesquisa em Ciência do Solo.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Case: aplicações no planejamento urbano</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>No planejamento urbano, o geoprocessamento mostra seu poder de <b>gestão</b> — muito além do mapa.</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Gestão urbana</span></div>
+  <div class="corpo">Cruzar dados de <b>uso do solo, infraestrutura, população e risco</b> para embasar decisões
+  de zoneamento e expansão.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Navegação virtual</span></div>
+  <div class="corpo">Representar a cidade em 3D e <b>simular intervenções</b> (um prédio, uma via, uma praça)
+  <b>antes</b> de construí-las.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">Monitoramento ambiental</span></div>
+  <div class="corpo">Acompanhar <b>queimadas, desmatamento e expansão urbana</b> ao longo do tempo — temas
+  diretamente ligados à sua pesquisa.</div>
+</div>
+
+<div class="caixa alerta"><div class="t">O valor está na combinação</div>
+<p>Um mapa isolado é uma figura. O poder do geoprocessamento está em <b>sobrepor camadas</b> e <b>fazer
+perguntas</b>: "onde as áreas de alta declividade coincidem com uso inadequado?" É essa análise que gera
+conhecimento e decisão.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Como começar na área</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Um caminho prático e realista para entrar no geoprocessamento.</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Entenda os dois formatos de dado</b>
+<b>Matricial</b> (imagem/raster) e <b>vetorial</b> (pontos, linhas, polígonos) — já vimos isso no guia de
+bancos de dados geográficos.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Use o QGIS</b>
+Ferramenta livre e gratuita para aprender os conceitos visualmente.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Parta para o Python</b>
+Com geopandas, você automatiza e analisa — como no seu guia de dados espaciais.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Trabalhe com um dado real</b>
+Baixe dados abertos (ex.: limites de municípios, modelo de elevação) e faça um mapa temático.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Conecte com sua pesquisa</b>
+Relacione o dado espacial à sua área: solos, biomas, queimadas, uso da terra.</div></div>
+
+<h3>5.1 Primeiro exercício</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — um mapa temático simples</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+<b>from</b> shapely.geometry <b>import</b> Polygon
+
+# polígonos de exemplo (substitua pelos seus dados)
+camadas = gpd.GeoDataFrame(
+    {<u>"tipo"</u>: [<u>"floresta"</u>, <u>"agro"</u>, <u>"urbano"</u>]},
+    geometry=[
+        Polygon([(0,2),(2,2),(2,4),(0,4)]),
+        Polygon([(0,0),(2,0),(2,2),(0,2)]),
+        Polygon([(2,0),(4,0),(4,2),(2,2)]),
+    ],
+)
+camadas.plot(column=<u>"tipo"</u>, categorical=<b>True</b>, legend=<b>True</b>)
+plt.title(<u>"Uso da terra"</u>)
+plt.show()</pre>
+<div class="obs"><code>categorical=True</code> gera um mapa com cores por <b>categoria</b> — o primeiro passo de
+muitos estudos de uso e ocupação do solo.</div>
+</div>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Geoprocessamento é, acima de tudo, uma forma de <b>pensar espacialmente</b>. Dominar as ferramentas (SIG e
+o Python/geopandas) é importante, mas o que realmente gera ciência é saber <b>fazer a pergunta espacial certa</b>
+e conectá-la ao seu objeto de estudo.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

@@ -16,8 +16,14 @@ function renderizarTemas() {
 
 function renderizarRecentes() {
   const grid = document.getElementById("grid-recentes");
+  const vistos = new Set();
   const recentes = avulsos
     .concat(categorias.flatMap((c) => c.itens))
+    .filter((item) => {
+      if (vistos.has(item.link)) return false;
+      vistos.add(item.link);
+      return true;
+    })
     .sort((a, b) => (a.data < b.data ? 1 : -1))
     .slice(0, 5);
   grid.innerHTML = recentes.map(cartaoItem).join("");
