@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Avançado — Dados Espaciais: CRS e Análise — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+<style>
+  .nivel{display:inline-block;border-radius:20px;padding:3px 13px;font-size:12.5px;font-weight:700;
+         letter-spacing:.2px;background:#f6e3df;color:#8f2f26;margin:0 6px 12px 0}
+</style>
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Python — Dados Espaciais: CRS e Análise</h1>
+  <div class="sub"><b>Sistemas de coordenadas, reprojeção, joins espaciais e mapas interativos</b>: o nível
+    avançado do geoprocessamento com geopandas.</div>
+  <div class="fatos">
+    <div class="fato"><span class="nivel">AVANÇADO</span></div>
+    <div class="fato"><b>CRS · to_crs · sjoin · folium</b></div>
+    <div class="fato">Teoria &middot; Código &middot; Prática</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Trilha Python · Nível Avançado.</b> Análise espacial com geopandas — leia, rode e experimente.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Sobre este guia</h2>
+
+<p>Você já sabe criar e plotar geometrias. Agora vamos ao nível que a pesquisa exige: entender <b>sistemas de
+coordenadas (CRS)</b>, <b>reprojetar</b> dados, fazer <b>joins espaciais</b> e gerar <b>mapas interativos</b>.
+Este guia usa um conjunto de dados <b>público</b> (via <code>geodatasets</code>) para você praticar de imediato.</p>
+
+<div class="caixa info"><div class="t">Imports</div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+<b>import</b> folium</pre>
+<p>Se não tiver o <b>folium</b>: <code>pip install folium</code> (e <code>pip install geodatasets</code> para o
+conjunto de dados de exemplo).</p>
+</div>
+
+<h3 id="mapa">O que você vai aprender</h3>
+
+<table>
+<tr><th style="width:210px">Seção</th><th>Você aprende...</th></tr>
+<tr><td><b>1</b> Sistemas de coordenadas</td><td>o que é CRS e por que importa</td></tr>
+<tr><td><b>2</b> Reprojeção</td><td>converter com <code>to_crs</code></td></tr>
+<tr><td><b>3</b> Joins espaciais</td><td>combinar dados por localização</td></tr>
+<tr><td><b>4</b> Mapas interativos</td><td>folium e marcadores</td></tr>
+<tr><td><b>5</b> Aplicação</td><td>um fluxo de análise completo</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Seção 1 — Sistemas de referência de coordenadas (CRS)</h2>
+
+<h3>1.1 Explicação</h3>
+<p>Até aqui usávamos coordenadas <code>(x, y)</code> sem perguntar <b>o que elas significam</b>. Mas a Terra é um
+<b>globo</b>, e para representá-la no plano (um mapa) precisamos de um <b>sistema de referência</b> — o
+<b>CRS</b> (<i>Coordinate Reference System</i>).</p>
+
+<div class="caixa ok"><div class="t">Os dois tipos de coordenadas</div>
+<table>
+<tr><th style="width:200px">Tipo</th><th>Usa</th><th>EPSG comum</th></tr>
+<tr><td><b>Geográficas</b></td><td>graus de longitude/latitude.</td><td>EPSG:4326 (WGS84)</td></tr>
+<tr><td><b>Projetadas</b></td><td>metros (planas).</td><td>EPSG:31982 (BR)</td></tr>
+</table>
+<p><b>EPSG:4326</b> (WGS84) é o mais comum (GPS, mapas). <b>EPSG:31982</b> é uma projeção em <b>metros</b> usada
+no Brasil. Usar coordenadas geográficas para <b>medir distâncias</b> dá resultado errado — por isso reprojetamos.</p>
+</div>
+
+<h3>1.2 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — inspecionando o CRS</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geodatasets <b>as</b> gds
+
+usa = gpd.read_file(gds.get_path(<u>'geoda.natregimes'</u>))
+print(usa.crs)          <em># o sistema de referência</em>
+print(usa.crs.name)     <em># nome do CRS</em></pre>
+</div>
+
+<div class="caixa dica"><div class="t">Por que se importar com o CRS</div>
+<p>Se você sobrepõe duas camadas com CRS diferentes <b>sem reprojetar</b>, elas ficam "descascadas" — cada uma
+num sistema, e as formas não se alinham. Verificar e alinhar o CRS é o passo <b>nº 1</b> de qualquer análise
+espacial séria.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Seção 2 — Reprojeção</h2>
+
+<h3>2.1 O código</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — to_crs</span><button onclick="cp(this)">copiar</button></div>
+<pre>f, ax = plt.subplots(figsize=(5, 5))
+usa.plot(ax=ax)
+ax.set_title(fr'USA - CRS: {usa.crs.name}', fontsize=12)
+ax.axis(<u>'off'</u>)
+plt.show()
+
+# reprojetando para a projeção Albers (em metros)
+usa_albers = usa.to_crs(<u>'ESRI:102003'</u>)
+f, ax = plt.subplots(figsize=(5, 5))
+usa_albers.plot(ax=ax)
+ax.set_title(fr'USA - CRS: {usa_albers.crs.name}', fontsize=12)
+ax.axis(<u>'off'</u>)
+plt.show()</pre>
+</div>
+
+<h3>2.2 A explicação</h3>
+<p><code>to_crs(codigo)</code> converte o GeoDataFrame para outro sistema de referência. É o que você usa para:
+- <b>unificar</b> camadas de fontes diferentes;
+- passar de graus (EPSG:4326) para <b>metros</b> e poder <b>calcular áreas e distâncias</b> corretamente.
+
+<div class="caixa info"><div class="t">Criar um GeoDataFrame já reprojetado</div>
+<pre>campo = gpd.GeoDataFrame(geometry=[<u>sua_geometria</u>],
+                         crs=<u>'EPSG:4326'</u>).to_crs(<u>'EPSG:31982'</u>)</pre>
+<p>Repare: você informa o CRS de origem (<code>crs=</code>) e logo converte com <code>to_crs</code>. Esse padrão é
+muito usado para dados de GPS (4326) → projeção local em metros.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Seção 3 — Joins espaciais</h2>
+
+<h3>3.1 Explicação</h3>
+<p>Um <b>spatial join</b> combina duas camadas <b>pela localização</b>: "para cada ponto, qual é o polígono que o
+contém?". É a operação que conecta dados de pontos a dados de área.</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — sjoin</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>from</b> shapely.geometry <b>import</b> Point, Polygon
+
+# camada de áreas (ex.: municípios)
+areas = gpd.GeoDataFrame(
+    {<u>"municipio"</u>: [<u>"A"</u>, <u>"B"</u>]},
+    geometry=[Polygon([(0,0),(2,0),(2,2),(0,2)]),
+              Polygon([(2,0),(4,0),(4,2),(2,2)])],
+)
+
+# camada de pontos (ex.: estações)
+pontos = gpd.GeoDataFrame(
+    {<u>"estacao"</u>: [<u>"E1"</u>, <u>"E2"</u>, <u>"E3"</u>]},
+    geometry=[Point(1,1), Point(3,1), Point(5,5)],
+)
+
+unido = gpd.sjoin(pontos, areas, how=<u>"left"</u>, predicate=<u>"within"</u>)
+print(unido)</pre>
+<div class="obs"><code>predicate="within"</code> diz "para cada ponto, qual polígono o contém". O resultado
+<b>adiciona</b> a coluna do município a cada estação — exatamente o que se faz em estudos de campo.</div>
+</div>
+
+<h3>3.2 Aplicação</h3>
+<p>Essa operação responde perguntas práticas: "em qual bioma está cada ponto de queimada?", "a qual setor
+censitário pertence cada imóvel?", "quais amostras de solo caem em cada tipo de relevo?". É o coração da análise
+espacial aplicada.</p>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Seção 4 — Mapas interativos com folium</h2>
+
+<h3>4.1 Explicação</h3>
+<p>O <b>folium</b> gera mapas <b>interativos</b> (que podem ser clicados, com zoom) e salva em HTML — perfeito para
+apresentar e publicar na web, direto no seu blog.</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — mapa interativo com marcadores</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> folium
+
+# centro do mapa e zoom
+m = folium.Map(location=[-15.8, -48.5], zoom_start=10)
+
+folium.Marker([-15.8, -48.5], popup=<u>"Ponto 1"</u>).add_to(m)
+folium.Marker([-16.1, -48.2], popup=<u>"Ponto 2"</u>).add_to(m)
+
+m.save(<u>"meu_mapa.html"</u>)     <em># gera um arquivo que abre no navegador</em></pre>
+</div>
+
+<h3>4.2 Mapas interativos a partir de um GeoDataFrame</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — pontos de um GeoDataFrame no folium</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> folium
+<b>import</b> geopandas <b>as</b> gpd
+<b>from</b> shapely.geometry <b>import</b> Point
+
+gdf = gpd.GeoDataFrame(
+    {<u>"nome"</u>: [<u>"A"</u>, <u>"B"</u>]},
+    geometry=[Point(-48.5, -15.8), Point(-48.2, -16.1)],
+)
+
+m = folium.Map(location=[-15.9, -48.4], zoom_start=9)
+<b>for</b> _, linha <b>in</b> gdf.iterrows():
+    folium.Marker(
+        [linha.geometry.y, linha.geometry.x],
+        popup=linha[<u>"nome"</u>],
+    ).add_to(m)
+
+m</pre>
+<div class="obs">No Colab/Jupyter, digitar <code>m</code> ao final já exibe o mapa. Com <code>m.save()</code>, você
+gera um HTML que pode <b>incorporar ao seu blog</b> — dando interatividade à divulgação científica.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Seção 5 — Um fluxo de análise completo</h2>
+
+<p>Vamos juntar tudo em um fluxo realista e reprodutível:</p>
+
+<div class="cole cod"><div class="cab"><span>PYTHON — análise espacial completa</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>import</b> folium
+
+# 1) carregar e conferir o CRS
+areas = gpd.read_file(<u>"meus_municipios.shp"</u>)            <em># seu arquivo</em>
+print(areas.crs)
+
+# 2) reprojetar para metros (se precisar calcular área)
+areas_m = areas.to_crs(<u>'EPSG:31982'</u>)
+areas_m[<u>"area_km2"</u>] = areas_m.geometry.area / 1_000_000
+print(areas_m[[<u>"nome"</u>, <u>"area_km2"</u>]])
+
+# 3) associar pontos às áreas (spatial join)
+pontos = gpd.read_file(<u>"meus_pontos.shp"</u>)
+unido = gpd.sjoin(pontos, areas, predicate=<u>"within"</u>)
+
+# 4) mapa interativo dos resultados
+m = folium.Map(location=[areas.total_bounds[1], areas.total_bounds[0]], zoom_start=8)
+<b>for</b> _, p <b>in</b> unido.iterrows():
+    folium.Marker([p.geometry.y, p.geometry.x],
+                  popup=f"{p[<u>'nome'</u>]} - {p.get(<u>'municipio'</u>, <u>''</u>)}").add_to(m)
+m</pre>
+</div>
+
+<div class="caixa dica"><div class="t">O fluxo padrão da análise espacial</div>
+<p><b>1)</b> Carregar e checar CRS → <b>2)</b> reprojetar se preciso → <b>3)</b> espacial join para associar →
+<b>4)</b> visualizar/mapas interativos. Memorize essa sequência — ela resolve a maioria das análises
+espaciais que você fará na pesquisa.</p>
+</div>
+
+<h3>Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Sei a diferença entre coordenadas geográficas e projetadas</span></li>
+<li><input type="checkbox"><span>Verifico o CRS e reprojeto com to_crs</span></li>
+<li><input type="checkbox"><span>Faço spatial join para associar pontos a áreas</span></li>
+<li><input type="checkbox"><span>Crio um mapa interativo com folium</span></li>
+<li><input type="checkbox"><span>Montar um fluxo completo de análise espacial</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Próximo passo</div>
+<p>Você chegou ao nível avançado da análise espacial. Explore os demais guias da área <b>Geotecnologias</b> —
+SIG, sensoriamento remoto e geoprocessamento aplicado — para conectar esse poder computacional aos conceitos da
+sua pesquisa.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

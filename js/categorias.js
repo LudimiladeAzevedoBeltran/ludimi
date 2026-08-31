@@ -84,11 +84,25 @@ const categorias = [
         link: "guias/geoprocessamento-aplicado.html"
       },
       {
+        titulo: "Sensoriamento Remoto e VANTs — Guia",
+        tag: "Geotecnologias",
+        resumo: "Espectro eletromagnético, satélites e drones, com regulamentação.",
+        data: "2026-08-31",
+        link: "guias/sensoriamento-remoto-vants.html"
+      },
+      {
         titulo: "Python — Gráficos de Dados Espaciais",
         tag: "Python",
         resumo: "Mapas temáticos, pontos e polígonos com geopandas e shapely.",
         data: "2026-08-31",
         link: "guias/python-intermediario-graficos-espaciais.html"
+      },
+      {
+        titulo: "Python — Dados Espaciais: CRS e Análise",
+        tag: "Python",
+        resumo: "Reprojeção, joins espaciais e mapas interativos com folium.",
+        data: "2026-08-31",
+        link: "guias/python-avancado-dados-espaciais-crs.html"
       }
     ]
   },
@@ -161,6 +175,13 @@ const categorias = [
         resumo: "Modelar relações e prever com regressão simples e múltipla.",
         data: "2026-08-31",
         link: "guias/python-avancado-regressao-linear.html"
+      },
+      {
+        titulo: "Python — Dados Espaciais: CRS e Análise",
+        tag: "Avançado",
+        resumo: "Sistemas de coordenadas, reprojeção, joins espaciais e mapas interativos.",
+        data: "2026-08-31",
+        link: "guias/python-avancado-dados-espaciais-crs.html"
       }
     ]
   },
