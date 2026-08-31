@@ -213,13 +213,6 @@ const categorias = [
         link: "guias/python-avancado-dados-espaciais-crs.html"
       }
     ]
-  },
-  {
-    id: "pesquisa",
-    nome: "Pesquisa & Ética",
-    desc: "Metodologia científica, segurança de dados e direitos humanos.",
-    icone: "&#128218;",
-    itens: []
   }
 ];
 
