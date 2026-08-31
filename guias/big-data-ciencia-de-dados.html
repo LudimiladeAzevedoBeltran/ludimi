@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Data e Ciência de Dados — Ludimila Beltran</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Big Data e Ciência de Dados</h1>
+  <div class="sub">Um guia para descobrir o que são, <b>como funcionam</b> e <b>por onde começar</b> —
+    pensado para quem está entrando na carreira acadêmica e precisa de um norte claro e, ao mesmo
+    tempo, profundidade no tema.</div>
+  <div class="fatos">
+    <div class="fato"><b>5 módulos</b> &middot; do conceito ao início prático</div>
+    <div class="fato">Teoria &middot; Prática &middot; Caminho de estudo</div>
+    <div class="fato">Dados &middot; IA &middot; Iniciação científica</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> Cada seção explica o <b>que é</b>, o <b>porquê</b> e <b>como aplicar</b>, e o índice lateral navega os módulos.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia transforma um tema grande — <b>Big Data e Ciência de Dados</b> — em uma leitura
+organizada e acessível. Ele não exige nenhum conhecimento prévio e é feito para quem está
+<b>começando uma jornada acadêmica ou de pesquisa</b> nessa área.</p>
+
+<p>Cada módulo segue a mesma estrutura, organizada em uma progressão didática:</p>
+
+<ol>
+<li><b>Explicação</b> — apresenta-se o fenômeno, em linguagem acessível, sem prejuízo da precisão.</li>
+<li><b>Fundamentação teórica</b> — os conceitos, modelos e autores que sustentam o tema.</li>
+<li><b>Prática</b> — como o fenômeno se manifesta no mundo real e o que se pode fazer hoje.</li>
+<li><b>Como abordar</b> — percurso de estudo e armadilhas recorrentes de quem inicia.</li>
+<li><b>Aprofundamento</b> — direções para prosseguir, caso o tema desperte interesse científico.</li>
+</ol>
+
+<div class="caixa dica"><div class="t">Público-alvo</div>
+<p>Este material destina-se a <b>estudantes de pós-graduação</b>, pesquisadores em formação e
+interessados no campo dos dados. Percorre a <b>interseção</b> entre estatística, computação e
+gestão — área na qual se situa a ciência de dados — e propõe um percurso que conduz da
+compreensão conceitual à aplicação prática.</p>
+</div>
+
+<h3 id="mapa">Os módulos, do conceito ao início prático</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> O que é Big Data</td><td>a definição, os 5 Vs e por que a escala importa</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> O que é Ciência de Dados</td><td>o campo, o ciclo de vida do dado e as fases de um projeto</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Onde usar</td><td>as aplicações reais e o valor que os dados geram</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> O cientista de dados</td><td>o papel, as competências e como se formar</td><td><span class="tag geo">Perfil</span></td></tr>
+<tr><td><b>5</b> Por onde começar</td><td>um roteiro de estudo e os primeiros passos práticos</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — O que é Big Data</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p><b>Big Data</b> designa conjuntos de dados de <b>volume e complexidade</b> tais que as ferramentas
+tradicionais de gerenciamento de bancos de dados não os comportam com eficiência. Não se trata,
+portanto, apenas de "muitos dados", mas de dados que exigem <b>tecnologias específicas</b> para
+serem úteis.</p>
+
+<div class="caixa ok"><div class="t">A ideia central</div>
+<p>Considere-se uma planilha: ela é adequada até certo limite de escala. Quando passam a chegar
+<b>milhões</b> de registros — de sensores, redes sociais e transações — a cada instante, a planilha
+torna-se insuficiente. O Big Data atua nesse ponto, empregando <b>processamento distribuído</b>, no
+qual múltiplas máquinas operam em conjunto para tratar volumes que não cabem em um único
+servidor.</p>
+</div>
+
+<h3>1.2 Fundamentação teórica</h3>
+<p>O conceito consolidou-se por meio de marcos históricos bem delimitados:</p>
+
+<table>
+<tr><th style="width:150px">Ano</th><th>Marco</th></tr>
+<tr><td><b>1970</b></td><td>Edgar F. Codd propõe o <b>modelo relacional</b>, base dos bancos de dados estruturados.</td></tr>
+<tr><td><b>1997</b></td><td>Michael Cox e David Ellsworth (NASA) empregam o termo <b>"big data"</b> para descrever dados que excediam a memória disponível.</td></tr>
+<tr><td><b>2001</b></td><td>Doug Laney (Gartner) define os <b>3 Vs</b>: Volume, Velocidade e Variedade.</td></tr>
+<tr><td><b>2006</b></td><td>A Yahoo! desenvolve o <b>Hadoop</b>, com base nos artigos do Google (GoogleFS e MapReduce).</td></tr>
+<tr><td><b>2009</b></td><td>Surge o <b>Spark</b>, da UC Berkeley — processamento em memória, superior ao Hadoop em velocidade.</td></tr>
+</table>
+
+<p>Na atualidade, o modelo de 3 Vs foi ampliado para <b>5 Vs</b>, framework conceitual que se mostra
+indispensável ao domínio do tema.</p>
+
+<h4>Os 5 Vs do Big Data</h4>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">1. Volume</span></div>
+  <div class="corpo">Refere-se à <b>quantidade massiva de dados</b>: terabytes, petabytes e exabytes. É a
+  dimensão mais conhecida. Estima-se que, diariamente, sejam gerados cerca de <b>2,5 quintilhões de
+  bytes</b> de dados no mundo.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">2. Velocidade</span></div>
+  <div class="corpo">Diz respeito à <b>rapidez</b> com que os dados são gerados e necessitam de análise — em
+  muitos casos em <b>tempo real</b>. Exemplo: detecção de fraude financeira em milissegundos.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">3. Variedade</span></div>
+  <div class="corpo">Corresponde à <b>diversidade de formatos</b>: estruturados (planilhas), semiestruturados
+  (JSON/XML) e não estruturados (texto, imagem, áudio e vídeo).</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">4. Veracidade</span></div>
+  <div class="corpo">Remete à <b>qualidade e confiabilidade</b> dos dados. Dados imprecisos ou inconsistentes
+  produzem conclusões falhas — desafio progressivamente mais relevante.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">5. Valor</span></div>
+  <div class="corpo">Indica o <b>benefício</b> passível de extração. Constitui o propósito de todo o processo:
+  dados só adquirem relevância quando se convertem em <b>insight acionável</b>.</div>
+</div>
+
+<div class="caixa info"><div class="t">Alguns autores acrescentam mais "Vs"</div>
+<p>Você pode encontrar <b>Variabilidade</b> (a estrutura muda com o tempo), <b>Visualização</b> (representar
+o que é complexo) e <b>Vulnerabilidade</b> (riscos de segurança e privacidade). Conhecer os 5 Vs principais já
+te dá segurança para a maioria das discussões.</p>
+</div>
+
+<h3>1.3 Prática — manifestações no contexto contemporâneo</h3>
+<p>O Big Data está presente em decisões cotidianas, em distintos setores:</p>
+<ul>
+<li><b>Varejo</b> — sistemas de recomendação, precificação dinâmica e previsão de estoque.</li>
+<li><b>Finanças</b> — detecção de fraude em tempo real e análise de risco de crédito.</li>
+<li><b>Saúde</b> — diagnóstico por imagem, medicina de precisão e monitoramento de pacientes.</li>
+<li><b>Agropecuária</b> — agricultura de precisão, previsão de safras e uso otimizado de insumos.</li>
+<li><b>Setor público</b> — planejamento urbano, gestão de tráfego e resposta a emergências.</li>
+</ul>
+
+<figure>
+<svg viewBox="0 0 760 224" xmlns="http://www.w3.org/2000/svg">
+<style>
+.dt{font:bold 14px sans-serif;fill:#2f3830}.dl{font:13px sans-serif;fill:#5c6657}
+.mk1{font:bold 15px sans-serif;fill:#43523d}.mk2{font:bold 13px sans-serif;fill:#43523d}
+</style>
+<rect x="0" y="0" width="760" height="224" rx="10" fill="#fffdf9" stroke="#e3d9c6"/>
+<rect x="18" y="22" width="225" height="92" rx="9" fill="#e6ebdf"/>
+<text x="34" y="52" class="dt">Dados brutos</text>
+<text x="34" y="80" class="mk1">Muitos &middot; rápidos</text>
+<text x="34" y="100" class="mk1">mistos</text>
+<path d="M268 68 l42 0" stroke="#c98a5d" stroke-width="3"/><path d="M306 61 l10 7 -10 7" fill="#c98a5d"/>
+<rect x="320" y="22" width="200" height="92" rx="9" fill="#f3e3d4"/>
+<text x="336" y="52" class="dt">Processamento</text>
+<text x="336" y="80" class="mk2">Frameworks</text>
+<text x="336" y="100" class="mk2">e ML</text>
+<path d="M545 68 l42 0" stroke="#c98a5d" stroke-width="3"/><path d="M583 61 l10 7 -10 7" fill="#c98a5d"/>
+<rect x="597" y="22" width="145" height="92" rx="9" fill="#e6ebdf"/>
+<text x="613" y="52" class="dt">Insight</text>
+<text x="613" y="80" class="mk1">Decisão</text>
+<text x="18" y="158" class="dl">Big Data = capacidade de transformar um mar de dados brutos em decisão.</text>
+<text x="18" y="182" class="dl">O valor está na última etapa: dados só importam quando geram alguma ação.</text>
+</svg>
+<figcaption>Do dado bruto ao insight: o percurso que o Big Data habilita.</figcaption>
+</figure>
+
+<h3>1.4 Como abordar o tema (e os erros comuns)</h3>
+<div class="caixa alerta"><div class="t">Erros que quase todo iniciante comete</div>
+<ul>
+<li><b>Confundir Big Data com "muito Excel".</b> O que define Big Data não é só o tamanho, é a <b>impossibilidade</b> de usar as ferramentas comuns.</li>
+<li><b>Decorar os 5 Vs sem entender.</b> Pense em exemplos reais de cada V para cada conceito.</li>
+<li><b>Ignorar a veracidade.</b> Um "big" dado pode estar errado — qualidade é tão importante quanto quantidade.</li>
+<li><b>Esquecer o valor.</b> Coletar dados sem perguntar "para que serve" é desperdício.</li>
+</ul>
+</div>
+
+<h3>1.5 Aprofundamento</h3>
+<p>Se este módulo te despertou interesse, siga depois para os <b>frameworks</b> (<b>Hadoop</b> —
+processamento em lote com MapReduce; <b>Spark</b> — processamento em memória, rápido; <b>Storm/Kafka</b> —
+dados em tempo real). Esses são os nomes que você vai ouvir em qualquer conversa técnica sobre a área.</p>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — O que é Ciência de Dados</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Explicação</h3>
+<p>Se o Big Data é a <b>infraestrutura</b> (como guardar e processar muita coisa), a <b>Ciência de Dados</b>
+é o <b>método</b> (o que fazer com isso para gerar conhecimento). Ela combina <b>estatística</b>,
+<b>computação</b> e <b>conhecimento de uma área</b> para transformar dados em decisões.</p>
+
+<div class="caixa info"><div class="t">Big Data × Ciência de Dados</div>
+<table>
+<tr><th style="width:150px">Dimensão</th><th>Big Data</th><th>Ciência de Dados</th></tr>
+<tr><td>Foco</td><td>tecnologias e infraestrutura</td><td>métodos e interpretação</td></tr>
+<tr><td>Preocupação</td><td>escala e eficiência</td><td>profundidade e rigor</td></tr>
+<tr><td>Competências</td><td>engenharia, sistemas distribuídos</td><td>estatística, modelagem, visualização</td></tr>
+<tr><td>Pergunta</td><td>"como processar tudo isso?"</td><td>"o que os dados contam?"</td></tr>
+</table>
+</div>
+
+<p>Eles são <b>complementares</b>: o Big Data fornece o "cano" por onde a informação flui; a Ciência de
+Dados faz o "refinamento" que transforma esse fluxo em conhecimento.</p>
+
+<h3>2.2 Fundamentação teórica — o ciclo de vida do dado</h3>
+<p>Todo dado percorre um <b>ciclo de vida</b>, e entender esse ciclo é essencial para planejar qualquer
+trabalho sério com dados. As principais etapas são:</p>
+
+<table>
+<tr><th style="width:200px">Etapa</th><th>O que acontece</th></tr>
+<tr><td><b>Criação / aquisição</b></td><td>os dados nascem ou são coletados (sensores, transações, pesquisas, APIs).</td></tr>
+<tr><td><b>Processamento / preparação</b></td><td>limpar, validar, normalizar, enriquecer com metadados.</td></tr>
+<tr><td><b>Armazenamento / gestão</b></td><td>guardar em bancos, NoSQL, data lakes ou data warehouses.</td></tr>
+<tr><td><b>Acesso / compartilhamento</b></td><td>disponibilizar com segurança a quem tem permissão.</td></tr>
+<tr><td><b>Utilização / análise</b></td><td>gerar insights, alimentar algoritmos, apoiar decisões.</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Há também as fases de arquivamento e descarte</div>
+<p>Quando os dados não são mais usados no dia a dia, eles são <b>arquivados</b> (por necessidade histórica,
+legal ou analítica) ou <b>descartados</b> com segurança — sempre seguindo normas como a <b>LGPD</b> (Brasil)
+ou o <b>GDPR</b> (Europa).</p>
+</div>
+
+<p>O ciclo raramente é <b>linear</b>: dados voltam a etapas anteriores para serem reprocessados ou
+enriquecidos. Isso é normal e esperado.</p>
+
+<h3>2.3 Fundamentação teórica — as fases de um projeto</h3>
+<p>Metodologias como <b>CRISP-DM</b> organizam o trabalho em fases. Você vai usar isso em qualquer
+pesquisa ou projeto de dados. As fases clássicas:</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Compreender o negócio/problema</b>
+Definir o problema com precisão, as métricas de sucesso e alinhar as expectativas. É a fase mais importante.</div></div>
+
+<div class="passo"><div class="num">2</div><div class="txt"><b>Adquirir e compreender os dados</b>
+Coletar de fontes diversas, avaliar a qualidade e entender estrutura, distribuição e vieses.</div></div>
+
+<div class="passo"><div class="num">3</div><div class="txt"><b>Preparar e engenharia de dados</b>
+A etapa mais demorada (60–80% do tempo): limpar, transformar, criar <b>features</b>, reduzir dimensão.</div></div>
+
+<div class="passo"><div class="num">4</div><div class="txt"><b>Modelar e avaliar</b>
+Treinar modelos, validar com métricas corretas e garantir robustez (validação cruzada, testes de hipótese).</div></div>
+
+<div class="passo"><div class="num">5</div><div class="txt"><b>Implementar e monitorar</b>
+Colocar em produção (APIs, dashboards), acompanhar desvio do modelo (<i>concept drift</i>) e retreinar.</div></div>
+
+<div class="caixa dica"><div class="t">A realidade é iterativa</div>
+<p>No papel parece uma linha reta; na prática, é um <b>laço</b> com muitos retornos. Descobertas na
+modelagem exigem voltar a coletar dados ou reformular o problema. Isso é bom, não é erro.</p>
+</div>
+
+<h3>2.4 Prática — o vocabulário que você precisa</h3>
+<p>A Ciência de Dados tem sua própria linguagem. Aqui está um glossário essencial:</p>
+
+<table>
+<tr><th style="width:200px">Termo</th><th>Significado simples</th></tr>
+<tr><td><b>Overfitting</b></td><td>o modelo decorou os dados de treino e não generaliza (erro comum!).</td></tr>
+<tr><td><b>Underfitting</b></td><td>o modelo é simples demais e não captura a complexidade.</td></tr>
+<tr><td><b>Feature engineering</b></td><td>criar/selecionar variáveis para melhorar o modelo.</td></tr>
+<tr><td><b>Cross-validation</b></td><td>método para testar se o modelo generaliza de verdade.</td></tr>
+<tr><td><b>Outlier</b></td><td>valor atípico — pode ser erro ou fenômeno importante.</td></tr>
+<tr><td><b>Imputação</b></td><td>preencher valores faltantes com métodos estatísticos.</td></tr>
+<tr><td><b>Data lake</b></td><td>repositório que guarda dados brutos de todos os formatos.</td></tr>
+<tr><td><b>ETL/ELT</b></td><td>processos para mover e transformar dados (Extrair, Transformar, Carregar).</td></tr>
+<tr><td><b>Correlação ≠ causalidade</b></td><td>duas coisas andarem juntas não significa que uma causa a outra.</td></tr>
+</table>
+
+<h3>2.5 Como abordar</h3>
+<div class="caixa ok"><div class="t">O que separa um bom trabalho de um raso</div>
+<p>Não é a ferramenta sofisticada: é o <b>rigor metodológico</b> e a <b>interpretação</b>. Saber perguntar
+"o que os dados realmente mostram?" e "isso é causa ou só coincidência?" vale mais do que decorar o
+algoritmo mais novo.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Onde usar: as aplicações reais</h2>
+<span class="onde app">PRÁTICA</span>
+
+<p>Saber o <b>porquê</b> é o que dá motivação. Big Data e Ciência de Dados transformam setores inteiros —
+e isso é o que torna o tema fascinante para pesquisar.</p>
+
+<h3>3.1 Educação</h3>
+<ul>
+<li><b>Learning Analytics</b> — acompanhar engajamento e progresso, e <b>prever evasão</b> antes que aconteça.</li>
+<li><b>Aprendizagem adaptativa</b> — ajustar conteúdo e dificuldade ao ritmo de cada estudante.</li>
+<li><b>Previsão de desempenho</b> — estimar resultados e sugerir intervenções pedagógicas.</li>
+<li><b>Análise de eficácia de materiais</b> — descobrir quais recursos funcionam para cada perfil.</li>
+</ul>
+
+<h3>3.2 Ciência e pesquisa</h3>
+<p>Na pesquisa, o Big Data <b>acelera descobertas</b> em escalas antes impossíveis — genômica, astronomia,
+climatologia e ciências sociais computacionais. Essa é a sua porta de entrada para uma carreira acadêmica.</p>
+
+<h3>3.3 Outros setores de alto impacto</h3>
+<table>
+<tr><th style="width:170px">Setor</th><th>Aplicações</th></tr>
+<tr><td><b>Varejo</b></td><td>recomendação, preço dinâmico, previsão de estoque, jornada omnichannel.</td></tr>
+<tr><td><b>Finanças</b></td><td>detecção de fraude, risco de crédito, trading algorítmico.</td></tr>
+<tr><td><b>Saúde</b></td><td>medicina de precisão, diagnóstico por imagem, monitoramento remoto.</td></tr>
+<tr><td><b>Manufatura</b></td><td>manutenção preditiva, cadeia de suprimentos, controle de qualidade.</td></tr>
+<tr><td><b>Agro</b></td><td>agricultura de precisão, previsão de safras.</td></tr>
+<tr><td><b>Setor público</b></td><td>gestão de tráfego, resposta a emergências, segurança pública.</td></tr>
+</table>
+
+<div class="caixa alerta"><div class="t">Os desafios que acompanham a tecnologia</div>
+<p>Nem tudo é benefício. <b>Privacidade</b>, <b>vieses algorítmicos</b> (quando os dados não representam a
+<span style="font-style:normal">diversidade real</span>), <b>segurança</b> e a <b>divisão digital</b> (quem tem
+ acesso vs. quem não tem) são temas centrais — e áreas riquíssimas de pesquisa. A <b>LGPD</b> no Brasil e a
+ <b>GDPR</b> na Europa regulam isso.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — O cientista de dados: perfil e formação</h2>
+<span class="onde geo">PERFIL</span>
+
+<h3>4.1 Explicação</h3>
+<p>O <b>cientista de dados</b> é o profissional que extrai <b>insights acionáveis</b> de dados complexos — no
+cruzamento entre <b>estatística, programação e conhecimento de um domínio</b>. Diferente do analista
+(tradicionalmente descritivo), ele constrói modelos <b>preditivos e prescritivos</b>.</p>
+
+<div class="caixa info"><div class="t">As três dimensões do papel</div>
+<table>
+<tr><th style="width:150px">Dimensão</th><th>O que envolve</th></tr>
+<tr><td><b>Analítica</b></td><td>formular hipóteses, desenhar experimentos, avaliar e quantificar incertezas.</td></tr>
+<tr><td><b>Tecnológica</b></td><td>manipular dados, programar (Python, R, SQL), usar frameworks de Big Data.</td></tr>
+<tr><td><b>Estratégica</b></td><td>traduzir questões de negócio, comunicar com não-técnicos, medir retorno.</td></tr>
+</table>
+</div>
+
+<h3>4.2 Competências centrais</h3>
+<div class="rota">
+  <div class="op"><h4>Base técnica</h4>Programação (Python, R, SQL), manipulação e visualização de dados, plataformas de Big Data.</div>
+  <div class="op esc"><h4>Núcleo analítico</h4>Estatística (inferência, teste de hipóteses, modelagem), machine learning, e deep learning para dados não estruturados.</div>
+  <div class="op"><h4>Contexto</h4>Conhecer o domínio (finanças, saúde, agro), suas métricas e regras.</div>
+  <div class="op esc"><h4>Soft skills</h4>Comunicação e storytelling, pensamento crítico, colaboração, ética e aprendizado contínuo.</div>
+</div>
+
+<h3>4.3 Formação e caminhos de carreira</h3>
+<p>A boa notícia: <b>não existe um único caminho</b>. Há profissionais de estatística, computação,
+engenharia, e de áreas aplicadas (como a agro ou a saúde). Essa diversidade é um ponto forte.</p>
+
+<table>
+<tr><th style="width:150px">Trajetória</th><th>Possível destino</th></tr>
+<tr><td><b>Técnica</b></td><td>cientista de dados sênior, especialista em ML, principal data scientist.</td></tr>
+<tr><td><b>Gerencial</b></td><td>gerente de ciência de dados, diretor de analytics, <b>chief data officer (CDO)</b>.</td></tr>
+<tr><td><b>Híbrida</b></td><td>liderar equipes e, ao mesmo tempo, manter a profundidade técnica.</td></tr>
+</table>
+
+<h3>4.4 Como abordar — construção do perfil</h3>
+<div class="caixa dica"><div class="t">Um ponto de partida</div>
+<p>Recomenda-se evitar a tentação de dominar tudo simultaneamente. Um percurso provechoso consiste em
+<b>eleger um domínio</b> (ex.: agropecuária, saúde ou meio ambiente), consolidar os <b>fundamentos de
+estatística</b> e de <b>programação (Python/R)</b> e progredir a partir de um <b>problema real do
+domínio</b>. É essa combinação que forma o profissional de maior valor.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Por onde começar: um roteiro</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Compreendido o <b>conceito</b> e a sua <b>relevância</b>, apresenta-se um percurso prático e realista
+de início — organizado para evitar a dispersão em meio à vastidão de conteúdo.</p>
+
+<h3>5.1 O caminho passo a passo</h3>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Domine os fundamentos de estatística</b>
+Priorize: estatística descritiva (média, mediana, desvio), inferência, correlação e a distinção entre
+<b>correlação e causalidade</b>.</div></div>
+
+<div class="passo"><div class="num">2</div><div class="txt"><b>Aprenda Python ou R</b>
+Inicie com Python e bibliotecas <b>pandas</b> (manipulação de dados) e <b>matplotlib/seaborn</b>
+(visualização) — o trajeto com maior disponibilidade de recursos.</div></div>
+
+<div class="passo"><div class="num">3</div><div class="txt"><b>Aprenda SQL</b>
+A despeito do Big Data, a parcela majoritária dos dados organizacionais reside em bancos relacionais;
+<b>SQL é, portanto, imprescindível</b>.</div></div>
+
+<div class="passo"><div class="num">4</div><div class="txt"><b>Pratique com dados reais do seu domínio</b>
+Utilize bases abertas. No interesse por agropecuária ou meio ambiente, explore dados de sensoriamento
+remoto e climatológicos.</div></div>
+
+<div class="passo"><div class="num">5</div><div class="txt"><b>Explore machine learning gradualmente</b>
+Inicie com regressão e classificação simples (scikit-learn), compreendendo validação cruzada e
+overfitting.</div></div>
+
+<h3>5.2 Ferramentas que você vai encontrar</h3>
+<table>
+<tr><th style="width:170px">Categoria</th><th>Ferramentas</th></tr>
+<tr><td><b>Linguagens</b></td><td>Python, R, SQL, Scala</td></tr>
+<tr><td><b>Análise de dados</b></td><td>pandas, NumPy, dplyr</td></tr>
+<tr><td><b>Visualização</b></td><td>matplotlib, seaborn, Plotly, Tableau, Power BI</td></tr>
+<tr><td><b>Machine learning</b></td><td>scikit-learn, TensorFlow, PyTorch</td></tr>
+<tr><td><b>Big Data</b></td><td>Hadoop, Spark, Kafka</td></tr>
+<tr><td><b>Bancos</b></td><td>PostgreSQL (relacional), MongoDB (NoSQL), data lakes</td></tr>
+</table>
+
+<h3>5.3 Primeiro exercício guiado</h3>
+<p>Nenhuma estratégia consolida o aprendizado de forma tão eficaz quanto a prática com um caso concreto.
+Este exercício calcula estatísticas básicas e visualiza um conjunto de dados em Python:</p>
+
+<div class="cole cod"><div class="cab"><span>CÓDIGO — primeiro contato com dados</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> pandas <b>as</b> pd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+
+# lê um CSV (troque pelo seu arquivo)
+df = pd.read_csv(<u>"dados.csv"</u>)
+
+# estatísticas descritivas
+print(df.describe())
+
+# correlação entre colunas
+print(df.corr())
+
+# um gráfico simples
+plt.scatter(df[<u>"x"</u>], df[<u>"y"</u>])
+plt.show()</pre>
+</div>
+
+<h3>5.4 Checklist de progressão</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Capaz de explicar os 5 Vs do Big Data com um exemplo de cada</span></li>
+<li><input type="checkbox"><span>Distingo Big Data (infraestrutura) de Ciência de Dados (método)</span></li>
+<li><input type="checkbox"><span>Conheço as fases de um projeto de dados (CRISP-DM)</span></li>
+<li><input type="checkbox"><span>Compreendo overfitting e a distinção entre correlação e causalidade</span></li>
+<li><input type="checkbox"><span>Elegi um domínio de interesse para aplicação</span></li>
+<li><input type="checkbox"><span>Planejei o estudo de Python + SQL</span></li>
+<li><input type="checkbox"><span>Reconheço os desafios éticos (privacidade, viés, LGPD)</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Sugere-se iniciar com um projeto <b>modesto, porém singular</b>: uma investigação simples sobre um
+problema autêntico do domínio ensina mais do que uma série de cursos introdutórios. Convém recordar que a
+<b>interpretação</b> é o que distingue um trabalho apenas técnico de uma investigação científica
+genuinamente consistente.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

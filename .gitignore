@@ -1,0 +1,13 @@
+# Arquivos temporários do Windows
+desktop.ini
+Thumbs.db
+
+# Arquivos e pastas do sistema
+.DS_Store
+*.log
+
+# Pastas de editor / IDE
+.vscode/
+.idea/
+
+# Você pode adicionar aqui outros arquivos que não devem ir ao GitHub

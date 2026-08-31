@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Storytelling — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Data Storytelling</h1>
+  <div class="sub">A arte de contar histórias com dados: transformar números em <b>narrativas memoráveis</b>
+    que movem decisões — para qualquer público.</div>
+  <div class="fatos">
+    <div class="fato"><b>Estruturas narrativas</b> &middot; público &middot; design</div>
+    <div class="fato">Teoria &middot; Prática &middot; Storytelling</div>
+    <div class="fato">Comunicação &middot; Visualização &middot; Ciência</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> Do dado ao design: como <b>estruturar, visualizar e apresentar</b> dados que ressoam e inspiram ação.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia explica <b>Data Storytelling</b> — a união entre análise de dados e arte narrativa. Ele segue a
+estrutura comum do Ludimi: <b>explicação, fundamentação teórica, prática, como abordar e aprofundamento</b>.</p>
+
+<p>É feito para você que tem um insight ou uma pesquisa, mas quer que ela <b>seja entendida</b> — em artigos,
+apresentações, defesas e no mundo profissional.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> O que é storytelling</td><td>por que dados + narrativa = impacto</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> Estruturas narrativas</td><td>os 4 arcos que organizam sua história</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Conhecer o público</td><td>adaptar a mensagem a quem escuta</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> Visualização</td><td>princípios de design, gráficos e o que evitar</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>5</b> Por onde começar</td><td>um passo a passo para montar sua primeira história</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — O que é Data Storytelling</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p><b>Data Storytelling</b> consiste na fusão da análise de dados com a narrativa: em lugar de apenas exibir
+números, <b>constrói-se uma história</b> que conecta fatos a contexto e emoção, tornando o insight
+acessível e memorável.</p>
+
+<div class="caixa ok"><div class="t">A ideia central</div>
+<p>Um dado isolado é abstrato; uma história confere <b>sequência, causa e sentido</b>. Afirmar que "as vendas
+caíram 12%" é apresentar um dado. Relatar que "as vendas caíram 12% após a saída do fornecedor X — o que
+representou R$ 200 mil no trimestre" é <b>storytelling</b>: o número foi associado a uma causa e a uma
+consequência.</p>
+</div>
+
+<h3>1.2 Por que importa</h3>
+<p>Narrativas configuram a forma como o cérebro humano processa e <b>retém</b> informações. Dados apresentados
+sob forma de história têm maior probabilidade de:</p>
+<ul>
+<li>serem <b>lembrados</b>;</li>
+<li>gerarem <b>decisão</b>;</li>
+<li>superarem a <b>resistência</b> de quem receia mudanças;</li>
+<li>comunicarem complexidade <b>sem excesso de simplificação</b>.</li>
+</ul>
+
+<h3>1.3 Fundamentação teórica</h3>
+<p>O tema apoia-se em autores de visualização e comunicação. O principal é <b>Cole Nussbaumer Knaflic</b>,
+autora de <i>Storytelling with Data</i> (2015), para quem a narrativa:</p>
+<div class="caixa dica"><div class="t">A citação que orienta o tema</div>
+<p><i>"A estrutura narrativa não deve ser um molde rígido imposto aos dados, mas um veículo flexível que
+emerge organicamente dos padrões encontrados durante a análise."</i> — <b>Knaflic, 2015</b></p>
+</div>
+<p>Em termos práticos: a história não se inventa — ela <b>se descobre</b> nos dados. Por essa razão o processo
+é iterativo: hipótese → análise → reformulação.</p>
+
+<h3>1.4 Como abordar</h3>
+<div class="caixa alerta"><div class="t">Erros recorrentes</div>
+<ul>
+<li><b>Apresentar dados sem mensagem.</b> "Aqui está o relatório" não constitui uma história.</li>
+<li><b>Forçar uma narrativa.</b> Se os dados não sustentam a história, o resultado é uma invenção.</li>
+<li><b>Desconsiderar o público.</b> O que funciona para especialistas não se aplica a leigos.</li>
+</ul>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — As estruturas narrativas</h2>
+<span class="onde teoria">TEORIA</span>
+
+<p>Uma boa história de dados costuma seguir um de <b>quatro arcos</b> (que podem se combinar). Escolher o
+certo depende dos seus dados, do seu insight e do seu público.</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">1. Mudança ao longo do tempo</span></div>
+  <div class="corpo"><b>Uso:</b> mostrar evolução, tendência e transformação. Ideal para <b>séries
+  temporais</b>. <b>Técnica:</b> mostrar um "estado normal" e depois destacar os <b>pontos de inflexão</b>.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">2. Comparação</span></div>
+  <div class="corpo"><b>Uso:</b> contrastar períodos, segmentos, regiões ou grupos. Evidencia <b>disparidades e
+  oportunidades</b>. <b>Técnica:</b> contextualizar por que as categorias comparadas são relevantes.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">3. Problema → Solução</span></div>
+  <div class="corpo"><b>Uso:</b> o mais alinhado com decisões e ciência. Problema mostrado pelos dados → causas
+  → solução baseada em evidência. <b>Técnica:</b> quantificar os <b>benefícios esperados</b> da solução.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">4. Zoom-in / Zoom-out</span></div>
+  <div class="corpo"><b>Uso:</b> alternar entre visão macro (panorama) e micro (caso concreto). Combate a
+  "paralisia por análise". <b>Técnica:</b> contextualizar dados granulares em padrões amplos.</div>
+</div>
+
+<div class="caixa info"><div class="t">Estruturas híbridas</div>
+<p>Histórias sofisticadas <b>combinam</b> arcos. Ex.: começar com o panorama (zoom-out), mostrar a tendência
+(mudança no tempo) e fechar no problema-solução. A regra é o arco servir à mensagem — nunca o contrário.</p>
+</div>
+
+<h3>2.1 Prática — escolhendo o arco</h3>
+<table>
+<tr><th style="width:220px">Seu objetivo</th><th>Arco sugerido</th></tr>
+<tr><td>Mostrar que algo vem piorando</td><td>Mudança ao longo do tempo</td></tr>
+<tr><td>Comparar duas unidades</td><td>Comparação</td></tr>
+<tr><td>Convencer a resolver um problema</td><td>Problema → Solução</td></tr>
+<tr><td>Explicar o detalhe dentro do geral</td><td>Zoom-in / Zoom-out</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Conhecer seu público</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>A mesma história não serve para todo mundo. Antes de montar a narrativa, mapeie <b>quem vai ouvir</b>.</p>
+
+<div class="rota">
+  <div class="op esc"><b>Análise de necessidades</b><br>que perguntas o público quer responder com os dados?</div>
+  <div class="op"><b>Nível de conhecimento</b><br>quão familiarizado está com estatística e o domínio?</div>
+  <div class="op esc"><b>Preferências</b><br>como gosta de consumir — detalhe, gráfico, resumo?</div>
+  <div class="op"><b>Antecipar objeções</b><br>o que pode gerar resistência ou dúvida?</div>
+</div>
+
+<div class="caixa dica"><div class="t">Três perfis típicos</div>
+<table>
+<tr><th style="width:170px">Público</th><th>O que espera</th></tr>
+<tr><td><b>Tomador de decisão</b></td><td>o resumo, o risco e a recomendação. Vá direto ao ponto.</td></tr>
+<tr><td><b>Especialista / científico</b></td><td>método, premissas e limites. Precisa de rigor e referências.</td></tr>
+<tr><td><b>Leigo / geral</b></td><td>contexto e analogias. Evite jargão, use exemplos concretos.</td></tr>
+</table>
+</div>
+
+<h3>3.1 Como abordar</h3>
+<div class="caixa ok"><div class="t">A palavra-chave é a adaptação</div>
+<p>Não se altera o <b>dado</b> — altera-se a <b>moldura</b>. Para o especialista, aprofundam-se as fontes; para o
+tomador de decisão, destacam-se as providências requeridas; para o leigo, traduzem-se os números em
+consequências concretas.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Visualização: princípios, gráficos e o que evitar</h2>
+<span class="onde app">PRÁTICA</span>
+
+<p>A visualização constitui o "revestimento" da história. Um gráfico mal construído compromete um insight
+de qualidade.</p>
+
+<h3>4.1 Princípios de design visual</h3>
+<ul>
+<li><b>Reduza o ruído.</b> Elimine tudo o que não contribui: excesso de grade, bordas e decoração.</li>
+<li><b>Destaque o essencial.</b> Use cor e tamanho para conduzir o olhar ao ponto principal.</li>
+<li><b>Seja honesto nos eixos.</b> Manipular escalas para exagerar diferenças é enganoso.</li>
+<li><b>Contraste e atenção.</b> A informação mais relevante deve sobressair em primeiro plano.</li>
+</ul>
+
+<h3>4.2 Tipos de dados → gráfico apropriado</h3>
+<table>
+<tr><th style="width:200px">O que você quer mostrar</th><th>Gráfico recomendado</th></tr>
+<tr><td>Comparar categorias</td><td>Barras</td></tr>
+<tr><td>Tendência ao longo do tempo</td><td>Linha</td></tr>
+<tr><td>Relação entre duas variáveis</td><td>Dispersão (scatter)</td></tr>
+<tr><td>Distribuição</td><td>Histograma / boxplot</td></tr>
+<tr><td>Proporções de um todo</td><td>Pizza (só com poucos itens)</td></tr>
+<tr><td>Localização / mapa temático</td><td>Mapa coroplético (choropleth)</td></tr>
+</table>
+
+<h3>4.3 O que evitar</h3>
+<div class="caixa alerta"><div class="t">Tipos de representações que enganam</div>
+<ul>
+<li><b>Eixos cortados</b> (sem começar em 0) para exagerar crescimento.</li>
+<li><b>Gráficos 3D</b> — distorcem a percepção de tamanho.</li>
+<li><b>Mais de um eixo Y</b> — confunde e sugere relações falsas.</li>
+<li><b>Pizza com muitas fatias</b> — comparar dosimetria pequena é impossível.</li>
+<li><b>Cor sem função</b> — cor decorativa tira a atenção do conteúdo.</li>
+</ul>
+</div>
+
+<h3>4.4 O papel da cor</h3>
+<div class="caixa dica"><div class="t">Use a cor com intenção</div>
+<p>A cor é o instrumento mais eficaz para <b>atrair a atenção</b>, mas também o mais mal empregado. Regra
+prática: <b>predomínio de tons neutros e uma cor vibrante</b> para o essencial. Evite paletas em arco-íris
+sem significação e garanta contraste adequado à acessibilidade.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Por onde começar</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Monte sua primeira história de dados em cinco passos.</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Defina a mensagem em uma frase</b>
+"O que se deseja que o destinatário faça ou compreenda ao final?" Se não couber em uma frase, ainda não se
+trata de uma história.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Conheça o público</b>
+Aplique o Módulo 3: necessidades, nível, preferências, objeções.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Escolha o arco</b>
+Mudança no tempo, comparação, problema-solução ou zoom — aquele que serve à mensagem.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Visualize com propósito</b>
+Gráfico adequado, sem ruído, cor com intenção, eixos honestos.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Conte e refine</b>
+Apresente, observe as reações e ajuste. A história evolui com quem a recebe.</div></div>
+
+<h3>5.1 Exemplo prático em Python</h3>
+<div class="cole cod"><div class="cab"><span>CÓDIGO — uma história simples de tendência</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> pandas <b>as</b> pd
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+
+df = pd.read_csv(<u>"vendas.csv"</u>)
+
+plt.figure(figsize=(9, 4))
+plt.plot(df[<u>"mes"</u>], df[<u>"vendas"</u>], marker=<u>"o"</u>)
+plt.axvline(df[<u>"mes"</u>][df[<u>"vendas"</u>].idxmax()], color=<u>"#c98a5d"</u>, ls=<u>"--"</u>)
+plt.title(<u>"Vendas dispararam após a nova campanha"</u>)
+plt.grid(alpha=.3); plt.show()</pre>
+<div class="obs">A linha vertical assinala o <b>ponto de inflexão</b> — é ele que converte o gráfico em história.</div>
+</div>
+
+<h3>5.2 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Sou capaz de resumir a mensagem em uma frase</span></li>
+<li><input type="checkbox"><span>Identifico para quem estou falando</span></li>
+<li><input type="checkbox"><span>Elejo um arco narrativo</span></li>
+<li><input type="checkbox"><span>Removo o ruído e uso cor com intenção</span></li>
+<li><input type="checkbox"><span>Evito eixos enganosos e gráficos 3D</span></li>
+<li><input type="checkbox"><span>Minha história é fiel aos dados</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Um bom contar histórias não é quem dispõe dos dados mais elaborados, mas quem consegue <b>fazer o outro
+enxergar o que foi visto</b>. Convém partir da mensagem, adaptá-la ao público e permitir que a história
+emana dos dados — jamais o contrário.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

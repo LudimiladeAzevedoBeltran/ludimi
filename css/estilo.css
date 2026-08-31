@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, Arial, sans-serif;
+  line-height: 1.7;
+  color: #2f3830;
+  background: #f4efe5;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.topo {
+  background: #43523d;
+  color: #fff;
+}
+
+.topo .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.menu a {
+  color: #e6ded0;
+  text-decoration: none;
+  margin-left: 1.25rem;
+  font-weight: 500;
+}
+
+.menu a.ativo,
+.menu a:hover {
+  color: #c98a5d;
+}
+
+.hero {
+  background: #5a6b4e;
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 0;
+}
+
+.hero h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  opacity: 0.9;
+}
+
+main {
+  padding: 3rem 0 4rem;
+}
+
+.titulo-secao {
+  font-size: 1.3rem;
+  color: #43523d;
+  border-bottom: 2px solid #c98a5d;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.cartao {
+  background: #fffdf9;
+  border: 1px solid #e3d9c6;
+  border-radius: 10px;
+  padding: 1.35rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cartao:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(67, 82, 61, 0.12);
+}
+
+.cartao .tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #5a6b4e;
+  background: #eae4d5;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+.cartao h4 {
+  font-size: 1.1rem;
+  color: #3a4733;
+  margin-bottom: 0.5rem;
+}
+
+.cartao p {
+  font-size: 0.95rem;
+  color: #5c6657;
+}
+
+.cartao .data {
+  font-size: 0.8rem;
+  color: #9a917e;
+  margin-top: 0.7rem;
+}
+
+.cartao-tema {
+  text-align: left;
+  padding: 1.6rem;
+}
+
+.cartao-tema .icone-tema {
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.cartao-tema h4 {
+  font-size: 1.25rem;
+}
+
+.cartao-tema p {
+  min-height: 2.9em;
+}
+
+.rodape {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #43523d;
+  color: #e6ded0;
+  font-size: 0.9rem;
+}

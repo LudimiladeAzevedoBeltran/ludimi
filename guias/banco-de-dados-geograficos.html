@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bancos de Dados Geográficos — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Bancos de Dados Geográficos</h1>
+  <div class="sub">Como guardar e consultar <b>dados espaciais</b> — da arquitetura dual à representação
+    matricial e vetorial, com <b>Python na prática</b>.</div>
+  <div class="fatos">
+    <div class="fato"><b>Matricial · Vetorial</b> &middot; Arquitetura dual</div>
+    <div class="fato">Teoria &middot; Aplicação em Python</div>
+    <div class="fato">Geotecnologia &middot; SIG &middot; Banco de dados</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> Do conceito de dado geográfico à consulta espacial, com <b>Python</b> aplicável.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia apresenta os <b>bancos de dados geográficos</b>, que combinam dados espaciais (formas no espaço)
+com dados descritivos (atributos). Segue a estrutura comum do Ludimi, com blocos de <b>Python</b>.</p>
+
+<p>É especialmente útil para quem trabalha com <b>geotecnologias</b>: sensoriamento remoto, geoprocessamento,
+SIG e sistemas de informação geográfica.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> Dado geográfico</td><td>o que é e como a informação geoespacial é representada</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> Representação</td><td>modelos <b>matricial</b> e <b>vetorial</b></td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Arquiteturas</td><td>dual, SGBD espacial e sistemas GIS</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> PostGIS</td><td>trabalhar com geometria no banco</td><td><span class="tag cod">Código</span></td></tr>
+<tr><td><b>5</b> Python + geo</td><td>geopandas e a leitura de dados espaciais</td><td><span class="tag cod">Código</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — O que é um dado geográfico</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p>Um <b>dado geográfico</b> é aquela informação que tem uma <b>localização</b> associada: um rio, uma cidade,
+um fragmento florestal. Ele combina duas partes inseparáveis:</p>
+
+<div class="caixa ok"><div class="t">As duas componentes de um dado geográfico</div>
+<ul>
+<li><b>Geométrica (espacial)</b> — a forma e posição no espaço: um ponto, uma linha, um polígono.</li>
+<li><b>Convencional (descritiva/atributos)</b> — as características: nome, população, uso do solo.</li>
+</ul>
+</div>
+
+<p>O grande desafio dos bancos de dados geográficos é <b>armazenar e consultar</b> essas duas partes de forma
+conjunta e eficiente.</p>
+
+<h3>1.2 Fundamentação teórica — os universos</h3>
+<p>A literatura (camada de Silva, 2002) organiza a modelagem geográfica em três universos:</p>
+<table>
+<tr><th style="width:170px">Universo</th><th>O que faz</th></tr>
+<tr><td><b>Ontológico</b></td><td>como o mundo real é percebido: o que existe (rio, cidade, floresta).</td></tr>
+<tr><td><b>Formal</b></td><td>a teoria da medida: como quantificar e representar (coordenadas, escala).</td></tr>
+<tr><td><b>Estrutural</b></td><td>a estrutura de dados: <b>matricial</b> ou <b>vetorial</b>.</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — Representação: matricial e vetorial</h2>
+<span class="onde teoria">TEORIA</span>
+
+<p>No universo estrutural, existem dois grandes modelos de representação espacial.</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">1. Matricial (raster / tesselação)</span></div>
+  <div class="corpo">O espaço é dividido em uma <b>grade de células</b>, cada uma com um valor. É a base de
+  <b>imagens de satélite</b> e dos dados de <b>sensoriamento remoto</b>. Cada pixel representa a média de uma
+  área. <b>Uso:</b> tipos de solo, uso da terra, modelos de elevação.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">2. Vetorial</span></div>
+  <div class="corpo"><b>O espaço é representado por objetos geométricos</b>: pontos, linhas e polígonos,
+  definidos por coordenadas. <b>Uso:</b> limites de municípios, ruas, cadastro de imóveis. Permite precisão e
+  consultas topológicas (o que está dentro, o que faz vizinhança).</div>
+</div>
+
+<div class="caixa info"><div class="t">Escolhendo o modelo</div>
+<table>
+<tr><th style="width:180px">Característica do dado</th><th>Modelo</th></tr>
+<tr><td>Variável contínua no espaço (temperatura, relevo)</td><td>Matricial</td></tr>
+<tr><td>Objetos bem definidos com contorno (rios, lotes)</td><td>Vetorial</td></tr>
+<tr><td>Grande área, imagem de satélite</td><td>Matricial</td></tr>
+<tr><td>Análise topológica precisa</td><td>Vetorial</td></tr>
+</table>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Arquitetura de bancos de dados geográficos</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<h3>3.1 Arquitetura Dual</h3>
+<p>A <b>arquitetura dual</b> separa os dois tipos de dado: os <b>atributos</b> ficam em um banco relacional
+(SGBD), e a <b>geometria</b> fica em estruturas internas da ferramenta SIG. Um <b>identificador comum
+(geo-id)</b> conecta as duas partes.</p>
+
+<div class="caixa ok"><div class="t">Vantagem e desvantagem</div>
+<p><b>Vantagem:</b> flexibilidade — você escolhe o SGBD relacional que preferir. <b>Desvantagem:</b> para
+responder uma consulta simples, dois processos são acionados (espacial + descritivo), e a integridade pode
+ficar comprometida se a conexão falhar.</p>
+</div>
+
+<p>Dois exemplos clássicos de arquitetura dual: <b>Arc-Info (ESRI)</b> e o <b>SPRING (INPE)</b> — este
+último usa o modelo relacional para dados não espaciais e o modelo orientado a objetos para os geográficos,
+além da linguagem <b>LEGAL</b> para manipulação espacial.</p>
+
+<h3>3.2 A alternativa: SGBD espacial</h3>
+<p>Com o tempo, os próprios bancos passaram a suportar <b>tipos espaciais</b> nativamente (ex.: <b>PostGIS</b>,
+extensão do PostgreSQL). Nessa abordagem, geometria e atributos ficam <b>no mesmo banco</b>, o que simplifica
+as consultas e garante integridade — é a opção usada hoje pela maioria dos sistemas.</p>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Consultas espaciais com SQL/PostGIS</h2>
+<span class="onde cod">CÓDIGO</span>
+
+<h3>4.1 Explicação</h3>
+<p>Programas como <b>PostGIS</b> adicionam aos bancos relacionais a capacidade de armazenar <b>geometria</b>
+(GEOMETRY, GEOGRAPHY) e de responder a <b>consultas espaciais</b>: "o que está dentro desta área?", "o que está
+próximo?", "o que se sobrepõe?".</p>
+
+<div class="cole cod"><div class="cab"><span>SQL — consultas espaciais com PostGIS</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>CREATE TABLE</b> municipios (
+    id SERIAL PRIMARY <b>KEY</b>,
+    nome TEXT,
+    geom GEOMETRY(GEOMETRY, 4326)   <em>-- SRID 4326 = WGS84 (lat/lon)</em>
+);
+
+<b>SELECT</b> ST_Area(geom) <b>AS</b> area, nome
+<b>FROM</b> municipios;
+
+<em>-- o que está dentro de uma área de interesse</em>
+<b>SELECT</b> m.nome
+<b>FROM</b> municipios m
+<b>WHERE</b> ST_Within(m.geom, ST_GeomFromText(<u>'POLYGON((...))'</u>, 4326));</pre>
+<div class="obs"><code>ST_Within</code>, <code>ST_Area</code>, <code>ST_Intersects</code> são funções
+espaciais. O <b>SRID</b> informa o sistema de coordenadas usado (WGS84 é o padrão global).</div>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Python na prática: geopandas</h2>
+<span class="onde cod">CÓDIGO</span>
+
+<p>O <b>geopandas</b> é a sua ferramenta para trabalhar com dados geoespaciais em Python: une a manipulação do
+pandas com a capacidade de lidar com <b>geometrias</b>.</p>
+
+<h3>5.1 Lendo e visualizando um arquivo geoespacial</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — lendo um shapefile com geopandas</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+
+gdf = gpd.read_file(<u>"municipios.shp"</u>)
+
+print(gdf.head())          <em># dados descritivos</em>
+print(gdf.geometry)        <em># geometrias (vetoriais)</em>
+print(gdf.crs)             <em># sistema de coordenadas (CRS)</em></pre>
+</div>
+
+<h3>5.2 Consultas espaciais em Python</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — o que está dentro de um polígono</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+<b>from</b> shapely.geometry <b>import</b> Point
+
+pontos = gpd.GeoDataFrame(
+    {<u>"nome"</u>: [<u>"A"</u>, <u>"B"</u>]},
+    geometry=[Point(-48, -15), Point(-47, -12)]
+)
+
+# área de referência (um polígono)
+area = gpd.GeoDataFrame(geometry=[Point(-48, -15).buffer(0.5)])
+
+dentro = pontos[pontos.geometry.within(area.geometry.iloc[0])]
+print(dentro)</pre>
+<div class="obs"><code>within</code>, <code>intersects</code> e <code>distance</code> são as operações
+espaciais que você mais usará. Elas respondem "o que está dentro, perto ou encima de quê".</div>
+</div>
+
+<h3>5.3 Visualizando no mapa</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — plotando geometrias</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> geopandas <b>as</b> gpd
+
+gdf = gpd.read_file(<u>"municipios.shp"</u>)
+gdf.plot(column=<u>"populacao"</u>, cmap=<u>"Greens"</u>, legend=<b>True</b>)</pre>
+<div class="obs">Um único método (<code>plot</code>) gera um mapa temático (coroplético) — o mesmo conceito que
+você viu em Data Storytelling, aplicado a dados geográficos.</div>
+</div>
+
+<h3>5.4 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Diferencio a componente geométrica da descritiva de um dado geográfico</span></li>
+<li><input type="checkbox"><span>Sei a diferença entre representação matricial e vetorial</span></li>
+<li><input type="checkbox"><span>Entendo a arquitetura dual e a sua limitação</span></li>
+<li><input type="checkbox"><span>Sei o que é PostGIS e para que servem as funções espaciais</span></li>
+<li><input type="checkbox"><span>Li um shapefile com geopandas e fiz uma consulta de overlap</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Bancos de dados geográficos são a espinha dorsal das <b>geotecnologias</b>. Entender como o dado espacial é
+representado (matricial ou vetorial) e como armazená-lo e consultá-lo — agora com ferramentas como
+<b>PostGIS</b> e <b>geopandas</b> — é o que permite transformar mapas em decisões e em pesquisa científica.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

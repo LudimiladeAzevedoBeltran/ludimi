@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytics e a Tomada de Decisão — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Analytics e a Tomada de Decisão</h1>
+  <div class="sub">Como dados viram decisões: o caminho do dado bruto ao insight — e as <b>quatro camadas
+    da análise</b> que sustentam decisões melhor embasadas.</div>
+  <div class="fatos">
+    <div class="fato"><b>4 níveis</b> &middot; descritiva → prescritiva</div>
+    <div class="fato">Teoria &middot; Prática &middot; Ética</div>
+    <div class="fato">Dados &middot; BI &middot; Inteligência de negócio</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> Cada seção responde o <b>que é</b>, o <b>porquê</b> e o <b>como aplicar</b> — do dado bruto à decisão e à ética.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia explica <b>analytics</b> — a arte de transformar dados em decisões — de forma acessível e
+com profundidade. Ele segue a mesma estrutura de todos os guias do Ludimi: <b>explicação, fundamentação
+teórica, prática, como abordar e aprofundamento</b>.</p>
+
+<p>É ideal para quem está começando a carreira acadêmica ou no mundo corporativo orientado por dados, e
+quer entender como a análise se conecta com a <b>decisão</b>.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> A hierarquia do saber</td><td>dados → informação → conhecimento (a escada do valor)</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> Decisão baseada em dados</td><td>é o que é, seus princípios e o processo</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Os 4 níveis de analytics</td><td>descritiva, diagnóstica, preditiva, prescritiva</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> Analisar no dia a dia</td><td>visualização, cultura, storytelling e ética</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>5</b> Por onde começar</td><td>um roteiro e um primeiro exercício guiado</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — A hierarquia do saber: dados, informação e conhecimento</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p>Antes de examinar a análise em si, é necessário compreender a <b>escada do valor</b>. Nem todo dado é
+valioso por si — ele precisa ser transformado. A hierarquia clássica, proposta por <b>Ackoff (1989)</b>,
+distingue três níveis:</p>
+
+<table>
+<tr><th style="width:160px">Nível</th><th>Definição</th><th>Exemplo</th></tr>
+<tr><td><b>Dados</b></td><td>fatos brutos, descontextualizados, sem significado intrínseco.</td><td>23,7°C; latitude -15,79; código 4471</td></tr>
+<tr><td><b>Informação</b></td><td>dados processados e contextualizados, com significado.</td><td>"A temperatura máxima desta semana foi 30°C, recorde do mês."</td></tr>
+<tr><td><b>Conhecimento</b></td><td>informação interpretada à luz de experiência e valores, orientando ações.</td><td>"Aumentar a irrigação no turno mais quente reduz a perda de produção."</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">A pergunta que cada nível responde</div>
+<p>Os <b>dados</b> são isolados. A <b>informação</b> responde "quem", "o que", "onde" e "quando". O
+<b>conhecimento</b> responde "como" e "por quê" — e é nesse nível que emergem as decisões. O objetivo da
+análise é justamente promover essa ascensão, do nível inferior ao superior.</p>
+</div>
+
+<h3>1.2 Fundamentação teórica</h3>
+<p>Essa escada é o alicerce de toda a cultura analítica. Os autores clássicos de referência são:</p>
+<ul>
+<li><b>Ackoff (1989)</b> — a hierarquia Dado → Informação → Conhecimento → Sabedoria (DIKW).</li>
+<li><b>Davenport &amp; Prusak (1998)</b> — como o conhecimento é criado e gerido nas organizações.</li>
+<li><b>Nonaka &amp; Takeuchi (1995)</b> — conhecimento tácito (na mente das pessoas) em contraste com o explícito (formalizável).</li>
+</ul>
+
+<div class="caixa ok"><div class="t">Implicação para a pesquisa</div>
+<p>É frequente, no meio acadêmico, a confusão entre "dispor de muitos dados" e "possuir conhecimento". Um
+repositório extenso, destituído de interpretação, permanece apenas <b>dados</b>. O que gera conhecimento é a
+<b>questão de investigação</b> aplicada a esse acervo.</p>
+</div>
+
+<h3>1.3 Como abordar</h3>
+<div class="caixa alerta"><div class="t">Erros recorrentes</div>
+<ul>
+<li><b>Coletar dados sem propósito</b> — na ausência de objetivo, o resultado é mero acúmulo.</li>
+<li><b>Confundir informação com conhecimento.</b> Um relatório bem elaborado é informação; aplicá-lo à ação constitui conhecimento.</li>
+<li><b>Desprezar o conhecimento tácito.</b> O especialista do domínio percebe aquilo que o dado, isolado, não revela.</li>
+</ul>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — Decisão baseada em dados (DDDM)</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Explicação</h3>
+<p>A tomada de decisão baseada em dados — <b>Data-Driven Decision Making (DDDM)</b> — é o paradigma segundo o
+qual as decisões se apoiam em <b>análises sistemáticas de dados objetivos</b>, e não apenas na intuição ou na
+experiência. Não se trata de descartar a experiência, mas de <b>complementá-la com evidência empírica</b>.</p>
+
+<div class="caixa info"><div class="t">Modelos de decisão</div>
+<p>Nem toda decisão é idêntica. A literatura distingue os seguintes modelos:</p>
+<table>
+<tr><th style="width:220px">Modelo</th><th>Idea central</th></tr>
+<tr><td><b>Racional</b></td><td>maximização da utilidade por otimização matemática.</td></tr>
+<tr><td><b>Racionalidade limitada (Simon)</b></td><td>adota-se a melhor opção possível, consideradas as limitações cognitivas e informacionais.</td></tr>
+<tr><td><b>Político</b></td><td>considera as dinâmicas de poder e influência.</td></tr>
+<tr><td><b>Incrementalista</b></td><td>mudança gradual, com avaliação contínua.</td></tr>
+</table>
+</div>
+
+<h3>2.2 Fundamentação teórica — os princípios</h3>
+<p>Para ser confiável, a DDDM se sustenta em cinco pilares:</p>
+<div class="rota">
+  <div class="op"><b>Objetividade</b><br>evidências empíricas antes de opiniões.</div>
+  <div class="op esc"><b>Replicabilidade</b><br>a análise pode ser repetida e validada.</div>
+  <div class="op"><b>Transparência</b><br>documentar métodos e premissas.</div>
+  <div class="op esc"><b>Iteratividade</b><br>refinamento contínuo com feedback e novos dados.</div>
+  <div class="op"><b>Escalabilidade</b><br>adaptação a volume e diversidade crescentes.</div>
+</div>
+
+<h3>2.3 Prática — o processo em 5 passos</h3>
+<div class="passo"><div class="num">1</div><div class="txt"><b>Identificar o problema</b>
+Definir com clareza a questão decisória, os critérios de avaliação e as restrições.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Coletar e preparar os dados</b>
+Obter, limpar, transformar e integrar dados de múltiplas fontes.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Analisar e modelar</b>
+Aplicar estatística e algoritmos para extrair padrões e tendências.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Interpretar e contextualizar</b>
+Avaliar criticamente os resultados à luz do domínio e das limitações metodológicas.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Implementar e monitorar</b>
+Executar a decisão e acompanhar sistematicamente os resultados.</div></div>
+
+<div class="caixa dica"><div class="t">O equilíbrio entre evidência e expertise</div>
+<p>A literatura sugere que a combinação de análise computacional <b>com</b> julgamento humano tende a superar
+qualquer uma das duas abordagens isoladas. O dado revela o que ocorreu; o especialista fornece o contexto
+necessário à decisão.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Os 4 níveis de analytics</h2>
+<span class="onde app">PRÁTICA</span>
+
+<p>O núcleo deste tema é a classificação dos <b>4 níveis</b> de análise, popularizada pela <b>Gartner
+(2013)</b>. Cada nível responde a uma questão específica e agrega maior valor — e maior complexidade.</p>
+
+<figure>
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg">
+<style>
+.p{font:bold 15px sans-serif;fill:#43523d}.q{font:bold 12px sans-serif;fill:#5c6657}
+.t{font:bold 22px sans-serif;fill:#fff}.th{font:10px sans-serif;fill:#5c6657}
+</style>
+<rect x="180" y="150" width="400" height="34" rx="7" fill="#43523d"/>
+<text x="205" y="173" class="t">Descritiva</text>
+<text x="205" y="196" class="q" fill="#fff">O que aconteceu?</text>
+<rect x="150" y="105" width="460" height="34" rx="7" fill="#5a6b4e"/>
+<text x="175" y="128" class="t" font-size="20">Diagnóstica</text>
+<text x="175" y="151" class="th" fill="#fff" font-size="12">Por que aconteceu?</text>
+<rect x="120" y="60" width="520" height="34" rx="7" fill="#6b7f3d"/>
+<text x="145" y="83" class="t" font-size="20">Preditiva</text>
+<text x="145" y="106" class="q" fill="#fff" font-size="12">O que provavelmente vai acontecer?</text>
+<rect x="90" y="15" width="580" height="34" rx="7" fill="#c98a5d"/>
+<text x="115" y="38" class="t" font-size="20">Prescritiva</text>
+<text x="115" y="61" class="q" fill="#fff" font-size="12">O que devemos fazer?</text>
+<text x="85" y="240" class="th" fill="#43523d" font-weight="bold">Valor crescente ↑ · Complexidade crescente ↑</text>
+</svg>
+<figcaption>Os quatro níveis de análise: da compreensão do passado à prescrição da ação.</figcaption>
+</figure>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">1. Analytics Descritiva — "O que aconteceu?"</span></div>
+  <div class="corpo"><b>O fundamento de tudo.</b> Resume o passado com estatísticas descritivas, gráficos e
+  relatórios. Ferramentas: <b>dashboards, scorecards, sistemas OLAP</b>. É o "espelho retrovisor".</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">2. Analytics Diagnóstica — "Por que aconteceu?"</span></div>
+  <div class="corpo"><b>Vai um passo além.</b> Busca relações causais: <b>correlação, drill-down
+  multidimensional, testes de hipótese</b>. Ex.: "por que as vendas caíram na região Sul?"</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">3. Analytics Preditiva — "O que provavelmente acontecerá?"</span></div>
+  <div class="corpo"><b>Olha para o futuro.</b> Usa regressão, árvores de decisão, redes neurais e ensemble
+  methods. Ex.: previsão de demanda, credit scoring, detecção de fraude e <b>churn prediction</b>.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">4. Analytics Prescritiva — "O que devemos fazer?"</span></div>
+  <div class="corpo"><b>O topo da pirâmide.</b> Combina previsão com <b>otimização</b> — otimização linear,
+  simulação de Monte Carlo, sistemas baseados em regras. Recomenda o melhor curso de ação.</div>
+</div>
+
+<div class="caixa ok"><div class="t">Sequência lógica</div>
+<p>Não é possível ser preditivo sem compreender o passado (descritiva), nem identificar causas sem a descritiva.
+Os níveis se sustentam mutuamente: <b>descritiva → diagnóstica → preditiva → prescritiva</b>. Recomenda-se
+iniciar pelo degrau já dominado e ascender gradualmente.</p>
+</div>
+
+<h3>3.1 Prática — o fluxo de um projeto de análise</h3>
+<div class="passo"><div class="num">1</div><div class="txt"><b>Definição do problema</b>
+Traduzir a questão de negócio em um problema analítico com métricas de sucesso.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Coleta e preparação</b>
+Extrair, limpar, tratar valores ausentes e outliers.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Modelagem e análise</b>
+Aplicar técnicas adequadas, com validação cruzada e avaliação de desempenho.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Comunicação e ação</b>
+Transformar resultados em insights acionáveis com visualização e narrativa.</div></div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Analisar no dia a dia: visualização, cultura, storytelling e ética</h2>
+<span class="onde app">PRÁTICA</span>
+
+<p>Analytics não se restringe à técnica. Para produzir efeito efetivo, ela depende da forma como é
+<b>comunicada</b>, da <b>cultura</b> organizacional e de princípios <b>éticos</b>.</p>
+
+<h3>4.1 Visualização e storytelling</h3>
+<p>Um insight mal apresentado equivale a um insight perdido. O <b>Data Storytelling</b> une dados e narrativa
+para tornar o complexo memorável. <i>(Há um guia dedicado a esse tema no Ludimi.)</i></p>
+<div class="caixa dica"><div class="t">Princípios essenciais de design</div>
+<ul>
+<li><b>Menos é mais</b> — eliminar o ruído e destacar o essencial.</li>
+<li><b>Cor e tamanho com intenção</b> — evitar a cor meramente decorativa.</li>
+<li><b>Escolha o gráfico adequado</b> — barras para comparar, linhas para tendência, dispersão para correlação.</li>
+<li><b>Evite gráficos enganosos</b> — eixos cortados, elementos 3D, mais de dois eixos Y.</li>
+</ul>
+</div>
+
+<h3>4.2 Cultura orientada a dados</h3>
+<p>Uma organização genuinamente <b>data-driven</b> valoriza a experimentação e a medição. Papéis e
+processos estruturam-se para esse fim:</p>
+<ul>
+<li><b>Self-service e augmented analytics</b> — viabilizar que não-especialistas analisem dados autonomamente.</li>
+<li><b>Alfabetização analítica</b> — capacitar as pessoas a interpretar números.</li>
+<li><b>BI (Business Intelligence) × Big Data</b> — o BI centra-se no retrospecto e em relatórios; o Big Data, em escala e tempo real; a analytics integra ambos.</li>
+</ul>
+
+<h3>4.3 Ética e governança</h3>
+<div class="caixa alerta"><div class="t">Pontos de risco da análise</div>
+<ul>
+<li><b>Vieses algorítmicos</b> — modelos reproduzem os preconceitos presentes nos dados de origem.</li>
+<li><b>Correlação × causalidade</b> — a armadilha clássica: duas variáveis que variam juntas não implicam relação causal.</li>
+<li><b>Privacidade</b> — coleta e uso responsáveis, em conformidade com a <b>LGPD</b> (Brasil) e a <b>GDPR</b> (Europa).</li>
+<li><b>Governança de dados</b> — definição de qualidade, permissões de acesso e procedimentos de auditoria.</li>
+</ul>
+</div>
+
+<div class="caixa info"><div class="t">A confiabilidade como ativo</div>
+<p>Um processo analítico consistente documenta <b>métodos, premissas e limitações</b>. Isso assegura que os
+resultados possam ser <b>replicados e auditados</b> — exatamente o que uma cultura de evidências exige.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Por onde começar</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Compreendida a lógica subjacente, apresenta-se um percurso prático e realista de início.</p>
+
+<h3>5.1 Roteiro passo a passo</h3>
+<div class="passo"><div class="num">1</div><div class="txt"><b>Domine, inicialmente, a análise descritiva</b>
+Aprender a resumir e visualizar: média, mediana, desvio, histogramas e boxplots.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Aprenda uma ferramenta</b>
+Python + pandas, ou uma plataforma de BI como Power BI ou Tableau.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Evolua para a análise diagnóstica</b>
+Correlação, agrupamento (<i>clustering</i>) e testes de hipótese.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Avance à preditiva</b>
+Regressão e classificação com scikit-learn — e, em seguida, as técnicas de ensemble.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Pense em prescrever</b>
+Otimização e simulação — o nível mais avançado e, também, o menos explorado.</div></div>
+
+<h3>5.2 Primeiro exercício guiado</h3>
+<div class="cole cod"><div class="cab"><span>CÓDIGO — da descritiva à diagnóstica</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> pandas <b>as</b> pd
+<b>import</b> seaborn <b>as</b> sns
+<b>import</b> matplotlib.pyplot <b>as</b> plt
+
+df = pd.read_csv(<u>"dados.csv"</u>)
+
+# Descritiva: resumo e correlação
+print(df.describe())
+sns.heatmap(df.corr(), annot=True)  <em># diagnóstica: onde há relação?</em>
+plt.show()</pre>
+<div class="obs">A matriz de correlação já representa uma transição do nível <b>descritivo → diagnóstico</b>: ela revela relações que suscitam novas questões.</div>
+</div>
+
+<h3>5.3 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Diferencio dado, informação e conhecimento</span></li>
+<li><input type="checkbox"><span>Conheço os 4 níveis de analytics e a questão de cada um</span></li>
+<li><input type="checkbox"><span>Dominio os 5 passos do processo de DDDM</span></li>
+<li><input type="checkbox"><span>Reconheço os princípios de uma boa visualização</span></li>
+<li><input type="checkbox"><span>Sei indicar um risco ético (viés, privacidade, causalidade)</span></li>
+<li><input type="checkbox"><span>Planejei iniciar pelo nível descritivo</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>Sugere-se <b>iniciar pelo degrau já dominado</b> e ascendê-lo um a um. A pressa em "prever" sem saber
+descrever e diagnosticar constitui a principal causa de decisões mal embasadas. Convém recordar: o dado
+responde, mas quem decide é o agente — com contexto e ética.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PCA e Clusters: uma introdução prática — Ludimi" />
+  <title>PCA e Clusters — Ludimi</title>
+  <link rel="stylesheet" href="../css/estilo.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="container">
+      <h1 class="logo"><a href="../index.html" style="color:#fff; text-decoration:none;">Ludimi</a></h1>
+      <nav class="menu">
+        <a href="../index.html">Início</a>
+        <a href="#artigos">Artigos</a>
+        <a href="../about.html">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:3rem;">
+    <article>
+      <span class="tag">Estatística</span>
+      <h1 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">PCA e Clusters: uma introdução prática</h1>
+      <p class="data">2026-08-01</p>
+
+      <p>Análise de Componentes Principais (PCA) é uma técnica para reduzir a dimensionalidade dos dados, preservando a maior parte da variância. Ela é muito usada antes de técnicas de agrupamento (clustering) para melhorar a visualização e o desempenho.</p>
+
+      <h2>O que é PCA?</h2>
+      <p>O PCA transforma as variáveis originais em novas combinações lineares chamadas de componentes principais, ordenadas pela quantidade de variância que explicam.</p>
+
+      <h2>Agrupamento com K-Means</h2>
+      <p>Com os componentes principais, aplicamos o K-Means para separar os dados em grupos com características semelhantes, facilitando a interpretação dos resultados.</p>
+
+      <pre><code>from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+
+X_pca = PCA(n_components=2).fit_transform(X)
+clusters = KMeans(n_clusters=4).fit_predict(X_pca)</code></pre>
+
+      <h2>Próximos passos</h2>
+      <p>No próximo post, vamos aprofundar na escolha do número de componentes e de clusters.</p>
+    </article>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>© 2026 Ludimi — Feito com HTML e café.</p>
+    </div>
+  </footer>
+</body>
+</html>

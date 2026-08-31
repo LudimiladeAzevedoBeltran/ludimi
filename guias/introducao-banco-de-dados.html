@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introdução a Banco de Dados — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Introdução a Banco de Dados</h1>
+  <div class="sub">Os fundamentos de como a informação é <b>organizada, modelada e consultada</b> — do modelo
+    relacional à normalização, com <b>Python na prática</b>.</div>
+  <div class="fatos">
+    <div class="fato"><b>Modelo relacional</b> &middot; DER &middot; SQL</div>
+    <div class="fato">Teoria &middot; Aplicação em Python</div>
+    <div class="fato">Banco de dados &middot; Ciência da computação</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> Do modelo relacional à normalização, com blocos de <b>Python</b> aplicáveis a cada conceito.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia apresenta os fundamentos de <b>bancos de dados</b>. Segue a estrutura comum do Ludimi:
+<b>explicação, fundamentação teórica, prática e como abordar</b> — e, como você gosta de trabalhar com
+<b>Python</b>, cada conceito é ilustrado com um bloco de código executável.</p>
+
+<p>É ideal para quem está começando na carreira acadêmica ou precisa entender como os dados são guardados e
+consultados.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> Modelo relacional</td><td>tabelas, chaves e por que esse modelo domina</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> Entidades e relacionamentos (DER)</td><td>modelar o mundo em entidades e associações</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> Normalização</td><td>reduzir redundância e as formas normais</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> SQL</td><td>consultar dados de forma declarativa</td><td><span class="tag cod">Código</span></td></tr>
+<tr><td><b>5</b> Python + BD</td><td>aplicar tudo com <b>sqlite3</b> e <b>pandas</b></td><td><span class="tag cod">Código</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — O modelo relacional</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p>O <b>modelo relacional</b>, proposto por <b>Edgar F. Codd (1970)</b>, organiza os dados em <b>tabelas</b>
+(chamadas formalmente de <i>relações</i>). Cada tabela é um conjunto de <b>linhas</b> (registros) e
+<b>colunas</b> (atributos).</p>
+
+<div class="caixa ok"><div class="t">A ideia central</div>
+<p>Imagine uma planilha: cada linha é um registro (um aluno, um produto), cada coluna é um atributo (nome,
+nota, preço). O relacionável transforma essa intuição em uma estrutura rígida e <b>consistente</b>, com regras
+matemáticas bem definidas (a álgebra relacional).</p>
+</div>
+
+<h3>1.2 Fundamentação teórica</h3>
+<table>
+<tr><th style="width:150px">Conceito</th><th>Significado</th></tr>
+<tr><td><b>Relação (tabela)</b></td><td>conjunto de registros com estrutura definida.</td></tr>
+<tr><td><b>Atributo (coluna)</b></td><td>característica que descreve os registros.</td></tr>
+<tr><td><b>Tupla (linha)</b></td><td>um registro individual.</td></tr>
+<tr><td><b>Chave primária (PK)</b></td><td>atributo (ou conjunto) que identifica <b>de forma única</b> cada linha.</td></tr>
+<tr><td><b>Chave estrangeira (FK)</b></td><td>referência à chave primária de outra tabela, criando relacionamentos.</td></tr>
+<tr><td><b>Entidade</b></td><td>objeto do mundo real que se deseja representar (Aluno, Disciplina).</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Por que o modelo relacional domina</div>
+<p>Ele oferece <b>integridade</b> (regras que impedem dados inconsistentes), <b>flexibilidade</b> (consultas
+ad-hoc) e <b>isolamento</b> entre os dados. O <b>SQL</b> (Structured Query Language) é a linguagem padrão de
+operação sobre esses bancos.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — Entidades, relacionamentos e o DER</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Explicação</h3>
+<p>Antes de criar tabelas, é necessário <b>modelar</b> o mundo real. O <b>Diagrama de Entidades e
+Relacionamentos (DER)</b> é a ferramenta que representa as entidades e como elas se associam.</p>
+
+<h3>2.2 Fundamentação teórica</h3>
+<table>
+<tr><th style="width:150px">Elemento</th><th>Descrição</th><th>Exemplo</th></tr>
+<tr><td><b>Entidade</b></td><td>objeto com existência própria.</td><td>Aluno, Disciplina, Curso</td></tr>
+<tr><td><b>Atributo</b></td><td>uma propriedade da entidade.</td><td>Nome, CPF, CargaHoraria</td></tr>
+<tr><td><b>Relacionamento</b></td><td>associação entre entidades.</td><td>Aluno <i>está matriculado em</i> Disciplina</td></tr>
+<tr><td><b>Cardinalidade</b></td><td>quantos registros se relacionam.</td><td>1:N, N:M, 1:1</td></tr>
+</table>
+
+<h3>2.3 Tipos de relacionamento</h3>
+<div class="recurso">
+  <div class="cab"><span class="nm">1:N — Um para muitos</span></div>
+  <div class="corpo">Um registro de A liga-se a vários de B. Ex.: <b>um Curso possui várias Disciplinas</b>.</div>
+</div>
+<div class="recurso">
+  <div class="cab"><span class="nm">N:M — Muitos para muitos</span></div>
+  <div class="corpo">Vários A ligam-se a vários B. Ex.: <b>um Aluno cursa várias Disciplinas e cada Disciplina
+  tem vários Alunos</b>. Resolve-se com uma <b>tabela intermediária</b> (ex.: Matrícula).</div>
+</div>
+<div class="recurso">
+  <div class="cab"><span class="nm">1:1 — Um para um</span></div>
+  <div class="corpo">Cada registro de A liga-se a um único de B. Ex.: <b>uma Pessoa possui um Passaporte</b>.</div>
+</div>
+
+<h3>2.4 Estudo de caso — sistema acadêmico</h3>
+<p>Para um sistema de ensino, identificam-se entidades como <b>Aluno, Professor, Curso, Disciplina, Turma e
+Matrícula</b>. A relação <b>Aluno : Disciplina</b> é N:M, materializada pela entidade associativa
+<b>Matrícula</b>, que pode guardar atributos próprios (data de matrícula, situação).</p>
+
+<div class="caixa dica"><div class="t">Armadilha comum na modelagem</div>
+<p>Confundir <b>entidade</b> com <b>atributo</b> é frequente. "Telefone" deve ser <b>atributo</b> da entidade
+Cliente — a menos que precise existir de forma independente. Modelar demais ou de menos compromete a
+qualidade do banco.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — Normalização: reduzindo a redundância</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<h3>3.1 Explicação</h3>
+<p>A <b>redundância</b> (mesma informação em vários lugares) gera <b>inconsistência</b>: basta atualizar uma
+cópia e esquecer a outra. A <b>normalização</b> é o processo que organiza as tabelas para minimizar esse
+problema, aplicando <b>formas normais</b> progressivas.</p>
+
+<div class="caixa alerta"><div class="t">O problema da redundância</div>
+<p>Se o endereço de um professor está <b>na tabela de professores e também na de funcionários</b>, uma mudança
+de endereço exige atualizar os dois lugares. Se apenas um for alterado, o banco passa a conter
+<b>informações contraditórias</b>. Normalizar evita exatamente isso.</p>
+</div>
+
+<h3>3.2 As formas normais</h3>
+<table>
+<tr><th style="width:110px">Forma</th><th>Regra principal</th></tr>
+<tr><td><b>1FN</b></td><td>atributos <b>atômicos</b>; sem grupos repetitivos (cada célula, um valor).</td></tr>
+<tr><td><b>2FN</b></td><td>além da 1FN, atributos não-chave dependem de <b>toda</b> a chave (não de parte dela).</td></tr>
+<tr><td><b>3FN</b></td><td>além da 2FN, nenhum atributo não-chave depende de outro atributo não-chave (sem dependência transitiva).</td></tr>
+<tr><td><b>BCNF</b></td><td>refina a 3FN: todo determinante é chave candidata.</td></tr>
+</table>
+
+<div class="caixa ok"><div class="t">Equilíbrio: quando desnormalizar</div>
+<p>Em <b>data warehouses</b> e sistemas de <b>leitura intensa</b>, a desnormalização (redundância deliberada) é
+válida para acelerar consultas. O segredo é <b>escolher com consciência</b> — e garantir a consistência por
+outros meios (ETL, triggers).</p>
+</div>
+
+<h3>3.3 Prática — normalização passo a passo</h3>
+<p>Vejamos uma tabela desorganizada e como a normalização a decompõe:</p>
+
+<div class="cole cod"><div class="cab"><span>CÓDIGO — detectando problemas com pandas (1FN)</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> pandas <b>as</b> pd
+
+# Tabela "desnormalizada": um aluno com várias disciplinas na mesma linha
+df = pd.DataFrame({
+    <u>"aluno"</u>: [<u>"Ana"</u>, <u>"Ana"</u>],
+    <u>"disciplinas"</u>: [<u>"Matemática, Física"</u>, <u>"Estatística"</u>],
+    <u>"nota"</u>: [9.0, 8.5]
+})
+df</pre>
+<div class="obs">Violação da <b>1FN</b>: a célula "disciplinas" contém <b>múltiplos valores</b>. Devemos separar
+cada disciplina em seu próprio registro.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — SQL: consultando os dados</h2>
+<span class="onde cod">CÓDIGO</span>
+
+<h3>4.1 Explicação</h3>
+<p>O <b>SQL</b> é a linguagem <b>declarativa</b> com a qual você diz <b>o que</b> quer obter, e não <b>como</b>
+fazer. É a ponte entre o modelo e o resultado.</p>
+
+<div class="cole cod"><div class="cab"><span>SQL — criar uma tabela</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>CREATE TABLE</b> aluno (
+    matricula INT PRIMARY <b>KEY</b>,
+    nome       TEXT NOT <b>NULL</b>,
+    cpf        TEXT UNIQUE,
+    curso      TEXT
+);</pre>
+</div>
+
+<div class="cole cod"><div class="cab"><span>SQL — consultar com JOIN</span><button onclick="cp(this)">copiar</button></div>
+<pre><em>-- aluno (matricula, nome) ; matricula_disciplina (matricula, codigo, nota)</em>
+<b>SELECT</b> a.nome, d.nome, m.nota
+<b>FROM</b> aluno a
+<b>JOIN</b> matricula_disciplina m <b>ON</b> a.matricula = m.matricula
+<b>JOIN</b> disciplina d <b>ON</b> m.codigo = d.codigo
+<b>WHERE</b> d.nome = <u>"Estatística"</u>;</pre>
+<div class="obs">O <b>JOIN</b> combina tabelas por chaves (chave estrangeira). É a operação mais usada em
+consultas relacionais.</div>
+</div>
+
+<h3>4.2 As operações da álgebra relacional</h3>
+<table>
+<tr><th style="width:150px">Operação</th><th>O que faz</th></tr>
+<tr><td><b>Seleção (σ)</b></td><td>filtra linhas (<code>WHERE</code>).</td></tr>
+<tr><td><b>Projeção (π)</b></td><td>escolhe colunas (<code>SELECT</code>).</td></tr>
+<tr><td><b>Junção (⋈)</b></td><td>combina tabelas (<code>JOIN</code>).</td></tr>
+<tr><td><b>União (∪)</b></td><td>reúne registros de tabelas semelhantes (<code>UNION</code>).</td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Python na prática: sqlite3 e pandas</h2>
+<span class="onde cod">CÓDIGO</span>
+
+<p>Você trabalha com Python — então nada melhor do que aplicar tudo isso resolvendo um problema real. O
+módulo <b>sqlite3</b> (embutido no Python) permite criar um banco relacional de verdade no seu computador.</p>
+
+<h3>5.1 Criando e populando o banco</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — criar tabelas e inserir dados</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> sqlite3
+
+con = sqlite3.connect(<u>"academico.db"</u>)
+cur = con.cursor()
+
+cur.execute(<b>"""CREATE TABLE IF NOT EXISTS aluno (
+    matricula INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    curso TEXT
+)"""</b>)
+
+cur.execute(<b>"INSERT INTO aluno VALUES (?, ?, ?)"</b>, (1, <u>"Ana Silva"</u>, <u>"Estatística"</u>))
+cur.execute(<b>"INSERT INTO aluno VALUES (?, ?, ?)"</b>, (2, <u>"Bruno Costa"</u>, <u>"Computação"</u>))
+con.commit(); con.close()</pre>
+</div>
+
+<h3>5.2 Consultando com Python e pandas</h3>
+<div class="cole cod"><div class="cab"><span>PYTHON — seleção e projeção via pandas</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>import</b> pandas <b>as</b> pd
+<b>import</b> sqlite3
+
+con = sqlite3.connect(<u>"academico.db"</u>)
+
+# Projeção + seleção: colunas escolhidas, linhas filtradas
+df = pd.read_sql_query(
+    <b>"SELECT nome, curso FROM aluno WHERE curso = ?"</b>, con,
+    params=(<u>"Estatística"</u>,)
+)
+print(df)
+con.close()</pre>
+<div class="obs">Com <b>pandas</b>, o resultado do SQL já vira um <code>DataFrame</code> — pronto para análise e
+visualização. É a ponte entre o banco relacional e a ciência de dados.</div>
+</div>
+
+<h3>5.3 Atividade sugerida</h3>
+<p>Construa o banco do sistema acadêmico completo (Aluno, Disciplina, Matrícula) e responda: <b>listar todos os
+alunos matriculados em uma disciplina de um professor</b>. Esse é o tipo de consulta que mostra o poder do
+modelo relacional.</p>
+
+<h3>5.4 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Sei explicar o que são chave primária e chave estrangeira</span></li>
+<li><input type="checkbox"><span>Diferencio relacionamentos 1:N, N:M e 1:1</span></li>
+<li><input type="checkbox"><span>Compreendo 1FN, 2FN e 3FN</span></li>
+<li><input type="checkbox"><span>Sei usar SELECT, WHERE e JOIN em SQL</span></li>
+<li><input type="checkbox"><span>Criei um banco com sqlite3 e consultei com pandas</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p>O modelo relacional pode parecer antigo, mas é a base de quase todo sistema do mundo — e entender
+<b>modelagem</b> e <b>normalização</b> é o que separa um banco confiável de um "pântano" de dados. Com
+Python, você não apenas consulta: <b>você analisa</b>.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>

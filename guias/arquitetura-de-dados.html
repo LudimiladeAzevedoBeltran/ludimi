@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arquitetura de Dados — Ludimi</title>
+<link rel="stylesheet" href="guia.css">
+</head>
+<body>
+
+<div id="capa"><div class="in">
+  <h1>Arquitetura de Dados</h1>
+  <div class="sub">O alicerce de qualquer iniciativa orientada a dados: como <b>estruturar, integrar e governar</b>
+    os fluxos de informação para extrair valor estratégico.</div>
+  <div class="fatos">
+    <div class="fato"><b>Warehouse · Lake · Lakehouse</b> &middot; e além</div>
+    <div class="fato">Modelagem &middot; Governança &middot; Nuvem</div>
+    <div class="fato">Teoria &middot; Prática &middot; Arquitetura</div>
+  </div>
+</div></div>
+
+<div id="barra">
+  <b>Guia único.</b> De <b>como modelar</b> a <b>onde guardar</b> e como governar os dados — com as arquiteturas que você vai encontrar no mercado.
+  <span style="flex:1"></span>
+  <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
+</div>
+
+<div id="corpo">
+<nav id="indice"></nav>
+<main>
+
+<!-- ==================================================================== -->
+<h2 id="p0">Como usar este guia</h2>
+
+<p>Este guia explica <b>Arquitetura de Dados</b> — a disciplina que define <b>como os dados são
+estruturados, armazenados, integrados e protegidos</b> em uma organização. Segue a estrutura comum do
+Ludimi: <b>explicação, fundamentação teórica, prática, como abordar e aprofundamento</b>.</p>
+
+<p>É para quem quer entender o "esqueleto" por trás de qualquer sistema de dados — e como escolher a
+arquitetura certa para cada necessidade.</p>
+
+<h3 id="mapa">Os módulos</h3>
+
+<table>
+<tr><th style="width:170px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b> Fundamentos</td><td>conceitos-chave, metadados, linhagem e tipos de dados</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>2</b> Modelagem de dados</td><td>os níveis conceitual, lógico e físico</td><td><span class="tag dados">Teoria</span></td></tr>
+<tr><td><b>3</b> As arquiteturas</td><td>warehouse, lake, lakehouse, mesh, fabric, eventos</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>4</b> Governança e qualidade</td><td>quem responde pelos dados e como garantir que são bons</td><td><span class="tag prat">Prática</span></td></tr>
+<tr><td><b>5</b> Por onde começar</td><td>um roteiro e um primeiro passo prático</td><td><span class="tag geo">Roteiro</span></td></tr>
+</table>
+
+<!-- ==================================================================== -->
+<h2 id="m1" class="mod">Módulo 1 — Fundamentos da Arquitetura de Dados</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>1.1 Explicação</h3>
+<p><b>Arquitetura de Dados</b> é o conjunto de princípios, práticas e tecnologias que define <b>como os dados
+fluem</b> no âmbito de uma organização — da coleta ao consumo. Metaforicamente, equivale à "planta da
+residência": sem ela, cada instrumento opera de modo isolado; com ela, tudo se interconecta.</p>
+
+<div class="caixa ok"><div class="t">Por que importa</div>
+<p>Dispor de dados não é suficiente: <b>organizações que estruturam bem seus dados decidem melhor</b>. Uma
+arquitetura consistente equilibra três dimensões, que se influenciam reciprocamente: <b>técnica</b> (a
+ferramenta adequada), <b>organizacional</b> (a repartição de responsabilidades) e <b>regulatória</b> (o que é
+permitido, ex.: LGPD).</p>
+</div>
+
+<h3>1.2 Conceitos-chave</h3>
+<table>
+<tr><th style="width:160px">Conceito</th><th>Significado</th></tr>
+<tr><td><b>Metadados</b></td><td>"dados sobre dados": origem, formato, qualidade, relacionamentos.</td></tr>
+<tr><td><b>Data Lineage</b></td><td>rastrear de onde veio e por onde passou um dado.</td></tr>
+<tr><td><b>Data Fabric</b></td><td>integrar dados distribuídos com acesso unificado, independente da localização.</td></tr>
+<tr><td><b>Data Mesh</b></td><td>tratar domínios de dados como <b>produtos</b>, com responsabilidade descentralizada.</td></tr>
+<tr><td><b>Latência</b></td><td>tempo entre o dado ser criado e estar disponível — influencia a arquitetura.</td></tr>
+</table>
+
+<h3>1.3 Fundamentação teórica — tipos de dados</h3>
+<p>É recorrente o equívoco de tratar todos os dados como equivalentes. Cada categoria impõe requisitos
+distintos de armazenamento, processamento e governança.</p>
+
+<table>
+<tr><th style="width:170px">Tipo</th><th>Característica</th><th>Exemplo</th></tr>
+<tr><td><b>Estruturado</b></td><td>formato rígido, fácil de buscar com SQL (~20% dos dados).</td><td>tabelas relacionais, transações</td></tr>
+<tr><td><b>Semiestruturado</b></td><td>tem estrutura flexível, com tags/elementos.</td><td>JSON, XML, HTML</td></tr>
+<tr><td><b>Não estruturado</b></td><td>sem formato pré-definido — a maior parte do volume (80%+).</td><td>texto, imagem, áudio, vídeo</td></tr>
+<tr><td><b>Mestres</b></td><td>dados críticos compartilhados entre sistemas (exigem MDM).</td><td>clientes, produtos, funcionários</td></tr>
+<tr><td><b>Referência</b></td><td>listas estáticas de classificação.</td><td>países, categorias, unidades</td></tr>
+<tr><td><b>Transacional</b></td><td>registro de eventos, alto volume e dinamismo.</td><td>vendas, compras, pagamentos</td></tr>
+<tr><td><b>Temporal</b></td><td>muda com o tempo, guarda histórico.</td><td>séries, auditorias</td></tr>
+<tr><td><b>Grande (Big Data)</b></td><td>os 5 Vs — exige arquiteturas distribuídas.</td><td>logs, sensores, redes sociais</td></tr>
+</table>
+
+<div class="caixa info"><div class="t">Insight</div>
+<p>Integrar <b>todos esses tipos</b> de forma eficiente é um dos maiores desafios da área. É exatamente isso
+que as arquiteturas dos módulos seguintes tentam resolver.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m2" class="mod">Módulo 2 — Modelagem de dados</h2>
+<span class="onde teoria">TEORIA</span>
+
+<h3>2.1 Explicação</h3>
+<p><b>Modelagem de dados</b> é o processo de traduzir requisitos de negócio em <b>estruturas de dados</b>.
+Corresponde ao "projeto" antes da "obra": na ausência de um modelo adequado, o banco torna-se confuso e
+lento.</p>
+
+<h3>2.2 Fundamentação — os três níveis de abstração</h3>
+<table>
+<tr><th style="width:170px">Nível</th><th>O que faz</th><th>Pensa em</th></tr>
+<tr><td><b>Conceitual</b></td><td>entidades, relações e regras de negócio, em alto nível.</td><td>o que existe no mundo (independente de tecnologia)</td></tr>
+<tr><td><b>Lógico</b></td><td>estrutura detalhada, tabelas, chaves, mas ainda sem detalhes de gravação.</td><td>como organizar os dados</td></tr>
+<tr><td><b>Físico</b></td><td>como os dados são efetivamente armazenados (índices, tipos, particionamento).</td><td>performance e armazenamento</td></tr>
+</table>
+
+<div class="caixa dica"><div class="t">A progressão lógica</div>
+<p>Recomenda-se iniciar pelo <b>conceitual</b> (o que importa), prosseguir ao <b>lógico</b> (a estrutura) e
+concluir no <b>físico</b> (a otimização). Ignorar o conceitual, visando acelerar a execução, é a origem de
+bancos mal estruturados.</p>
+</div>
+
+<h3>2.3 Prática — modelo dimensional</h3>
+<p>Para fins analíticos, o modelo mais empregado é o <b>dimensional</b>, com os esquemas:</p>
+<ul>
+<li><b>Star schema</b> — uma tabela de fatos (eventos) circundada por tabelas de dimensões (contexto).</li>
+<li><b>Snowflake schema</b> — dimensões normalizadas em um conjunto maior de tabelas.</li>
+</ul>
+<div class="caixa ok"><div class="t">Aplicação</div>
+<p>Esse modelo é o núcleo dos <b>data warehouses</b>: fatos = valores que se pretende somar (vendas);
+dimensões = critérios de segmentação (tempo, região, produto). É o que viabiliza, por exemplo, "vendas por
+região no mês corrente".</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m3" class="mod">Módulo 3 — As arquiteturas: do warehouse ao mesh</h2>
+<span class="onde app">PRÁTICA</span>
+
+<p>Esta é, porventura, a parte de maior interesse: compreender os <b>modelos arquiteturais</b> e suas
+respectivas aplicações.</p>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">1. Data Warehouse (DW) — o tradicional</span></div>
+  <div class="corpo"><b>Consolidado nos anos 1990.</b> Repositório central, otimizado para análise.
+  <b>Bill Inmon</b> o define como "coleção de dados orientada a assuntos, integrada, não volátil e variante no
+  tempo". <br><b>Prós:</b> relatórios consistentes e confiáveis. <b>Contras:</b> rígido e caro para dados não
+  estruturados. <b>Padrão:</b> ETL em lote, modelo dimensional.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">2. Data Lake — o bruto e flexível</span></div>
+  <div class="corpo"><b>Com o Big Data.</b> Guarda dados <b>brutos</b> (sem transformar antes) pelo princípio
+  <b>schema-on-read</b>. <br><b>Prós:</b> qualquer formato, barato, escalável. <b>Contras:</b> sem estrutura,
+  vira "pântano" (data swamp) sem governança. <b>Padrão:</b> ELT, transformação tardia.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">3. Lakehouse — o melhor dos dois</span></div>
+  <div class="corpo"><b>O híbrido moderno.</b> Junta a <b>flexibilidade</b> do lake com a <b>estrutura e
+  transações</b> do warehouse, usando tecnologias como <b>Delta Lake, Iceberg, Hudi</b> sobre
+  armazenamento de objetos. <br><b>Uso:</b> é hoje o ponto de partida de muitas organizações.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">4. Data Mesh — o descentralizado</span></div>
+  <div class="corpo"><b>Criado por Zhamak Dehghani.</b> Trata <b>dados como produtos</b>, com a propriedade
+  descentralizada por domínio. Quatro princípios: <b>propriedade por domínio, dados como produto,
+  plataforma self-service e governança federada</b>.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">5. Data Fabric — o integrador inteligente</span></div>
+  <div class="corpo"><b>Integra fontes heterogêneas distribuídas</b> com metadados ativos e automação/IA.
+  Dá acesso unificado independente de onde os dados estão.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">6. Arquitetura orientada a eventos (Event-Driven)</span></div>
+  <div class="corpo"><b>O evento é a unidade principal.</b> Usa brokers (ex.: <b>Kafka</b>) e streaming.
+  <b>Uso:</b> detecção de fraude, monitoramento IoT, personalização em tempo real.</div>
+</div>
+
+<div class="recurso">
+  <div class="cab"><span class="nm">7. Arquitetura Lambda</span></div>
+  <div class="corpo"><b>De Nathan Marz.</b> Combina <b>batch</b> e <b>streaming</b>: uma camada
+  <b>batch</b> (histórico), uma <b>speed</b> (tempo real) e uma <b>serving</b> (consolida).</div>
+</div>
+
+<div class="caixa dica"><div class="t">Como escolher</div>
+<table>
+<tr><th style="width:190px">Sua necessidade</th><th>Arquitetura</th></tr>
+<tr><td>Relatórios consistentes e corporativos</td><td>Warehouse</td></tr>
+<tr><td>Explorar dados variados e baratos</td><td>Lake</td></tr>
+<tr><td>Analisar + machine learning no mesmo lugar</td><td>Lakehouse</td></tr>
+<tr><td>Muitas equipes e domínios bem definidos</td><td>Mesh</td></tr>
+<tr><td>Fontes muito dispersas</td><td>Fabric</td></tr>
+<tr><td>Tempo real + histórico ao mesmo tempo</td><td>Lambda</td></tr>
+</table>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m4" class="mod">Módulo 4 — Governança e qualidade de dados</h2>
+<span class="onde prat">PRÁTICA</span>
+
+<p>Arquitetura destituída de <b>governança</b> assemelha-se a uma residência sem normas de convivência:
+funciona, porém rapidamente se deteriora. É nesse âmbito que se define <b>quem responde pelos dados</b>.</p>
+
+<div class="caixa info"><div class="t">Papéis-chave</div>
+<table>
+<tr><th style="width:160px">Papel</th><th>Responsabilidade</th></tr>
+<tr><td><b>Data Owner</b></td><td>responde pelo dado e decide sobre ele.</td></tr>
+<tr><td><b>Data Steward</b></td><td>responsável pela qualidade e pelo uso quotidiano.</td></tr>
+<tr><td><b>Data Custodian</b></td><td>responsável pelo aspecto técnico (armazenamento, segurança).</td></tr>
+</table>
+</div>
+
+<h3>4.1 Qualidade de dados</h3>
+<p>Uma governança adequada assegura dados de <b>qualidade</b>, avaliada por dimensões como:</p>
+<ul>
+<li><b>Precisão</b> — o valor está correto?</li>
+<li><b>Completude</b> — há lacunas de informação?</li>
+<li><b>Consistência</b> — a mesma informação é registrada sempre da mesma forma?</li>
+<li><b>Atualidade</b> — corresponde ao momento vigente?</li>
+<li><b>Unicidade</b> — inexistem duplicidades?</li>
+</ul>
+
+<h3>4.2 Segurança e privacidade</h3>
+<div class="caixa alerta"><div class="t">O que a arquitetura deve assegurar</div>
+<ul>
+<li><b>Controle de acesso</b> — definição de quem pode visualizar cada dado (permissões).</li>
+<li><b>Privacidade</b> — conformidade com a <b>LGPD</b> e a <b>GDPR</b>.</li>
+<li><b>Rastreabilidade</b> — <b>data lineage</b> para auditar a origem de cada dado.</li>
+<li><b>Metadados ativos</b> — catálogo que viabiliza a <b>descoberta</b> do que existe.</li>
+</ul>
+</div>
+
+<div class="caixa ok"><div class="t">A regra prática</div>
+<p>Escalabilidade e desempenho só se mostram sustentáveis com <b>governança mínima</b> de qualidade e
+segurança. Um data lake desprovido de catálogo e permissões converte-se em "pântano" — e ninguém lhe confere
+credibilidade.</p>
+</div>
+
+<!-- ==================================================================== -->
+<h2 id="m5" class="mod">Módulo 5 — Por onde começar</h2>
+<span class="onde grid">ROTEIRO</span>
+
+<p>Não é necessário projetar a arquitetura de uma organização inteira; basta começar pelo essencial.</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><b>Entenda os tipos de dados disponíveis</b>
+Estruturados? Não estruturados? Em grande ou pequena quantidade? Essa avaliação condiciona todas as etapas
+subsequentes.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><b>Modele o que importa</b>
+Elabore o modelo conceitual do seu domínio (entidades e relações).</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><b>Escolha uma arquitetura</b>
+Para iniciar: um <b>warehouse</b> (se o foco é relatório) ou um <b>lakehouse</b> (se é análise + machine learning).</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><b>Documente os metadados</b>
+Registre a origem e a nomenclatura dos dados — o mínimo necessário para evitar a desorganização.</div></div>
+<div class="passo"><div class="num">5</div><div class="txt"><b>Considere a segurança desde o início</b>
+Defina as permissões de acesso e observe a LGPD e a GDPR.</div></div>
+
+<h3>5.1 Primeiro exercício prático</h3>
+<div class="cole cod"><div class="cab"><span>CÓDIGO — modelo dimensional simples em SQL</span><button onclick="cp(this)">copiar</button></div>
+<pre><b>CREATE TABLE</b> dim_tempo (id_tempo INT PRIMARY <b>KEY</b>, ano INT, mes INT);
+<b>CREATE TABLE</b> dim_regiao (id_regiao INT PRIMARY <b>KEY</b>, nome_regiao TEXT);
+<b>CREATE TABLE</b> fato_vendas (id INT PRIMARY <b>KEY</b>,
+                      id_tempo INT, id_regiao INT, valor NUMERIC);</pre>
+<div class="obs"><b>Fato</b> (vendas) + <b>dimensões</b> (tempo, região) = o modelo que sustenta as análises.</div>
+</div>
+
+<h3>5.2 Checklist</h3>
+<ul class="check">
+<li><input type="checkbox"><span>Diferencio os tipos de dados</span></li>
+<li><input type="checkbox"><span>Conheço os 3 níveis de modelagem (conceitual, lógico, físico)</span></li>
+<li><input type="checkbox"><span>Reconheço warehouse, lake, lakehouse e mesh</span></li>
+<li><input type="checkbox"><span>Compreendo metadados e data lineage</span></li>
+<li><input type="checkbox"><span>Entendo os papéis de owner, steward e custodian</span></li>
+<li><input type="checkbox"><span>Sei por que a governança evita o "pântano de dados"</span></li>
+</ul>
+
+<div class="caixa ok"><div class="t">Consideração final</div>
+<p><b>Estrutura não é burocracia</b> — é o que propicia velocidade com confiança. Recomenda-se começar de
+forma simples, documentar os metadados, eleger uma arquitetura coerente com o objetivo e crescer
+progressivamente. Uma boa planta concebida hoje evita a reforma de amanhã.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('indice'), h='';
+  document.querySelectorAll('main h2, main h3').forEach(function(e){
+    if(!e.id) return;
+    h+='<a class="'+(e.tagName=='H2'?(e.className.indexOf('mod')>-1?'p dst':'p'):'s')+
+       '" href="#'+e.id+'">'+e.textContent+'</a>';
+  });
+  nav.innerHTML=h;
+})();
+function cp(b){
+  var t=b.closest('.cole').querySelector('pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var o=b.textContent; b.textContent='copiado!';
+    setTimeout(function(){b.textContent=o;},1400);
+  });
+}
+</script>
+</body>
+</html>
