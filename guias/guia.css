@@ -74,6 +74,11 @@ strong{color:var(--moss-deep)}
 
 /* Caixas (callouts) — ícone + gradiente */
 .caixa{display:flex;gap:13px;padding:16px 18px;border-radius:var(--r);margin:18px 0;border:1px solid var(--line);background:var(--surface)}
+/* Caixas que contêm código/pre não podem ser flex — deixam o conteúdo fluir */
+.caixa:has(pre){display:block}
+.caixa:has(pre)::before,.caixa:has(pre) .ic{display:none}
+.caixa pre{overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.6;padding:10px 12px;
+  background:var(--bg2);border:1px solid var(--line-soft);border-radius:6px;margin:8px 0}
 .caixa .t{font-weight:700;margin-bottom:5px;font-size:16px;font-family:var(--serif)}
 .caixa .ic{font-family:var(--serif);font-size:22px;line-height:1;flex:none;padding-top:2px}
 .caixa p:last-child,.caixa ul:last-child,.caixa ol:last-child,.caixa table:last-child,.caixa pre:last-child{margin-bottom:0}
@@ -124,14 +129,14 @@ td.n{text-align:right;font-family:var(--mono)}
 .fbox.dest{background:linear-gradient(135deg,#4a5937,#35402b);border-color:#35402b;color:#f6f0e6}
 .fbox.dest .h{color:#f2dccd}
 .fbox.dest .b{color:#efe7da}
-.fsep{align-self:center;color:var(--fe);font-size:15px;font-weight:700;line-height:1;padding:0 1px;flex:none}
 
-/* Árvore (ramificações) — níveis ligados por linhas verticais */
-.farm{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:stretch;position:relative;margin:4px 0 4px 4px}
-.farm::before{content:"";position:absolute;left:-9px;top:10px;bottom:10px;width:2px;background:var(--line);border-radius:2px}
-.farm .fbox::before{content:"";position:absolute;left:-14px;top:14px;width:11px;height:2px;background:var(--line)}
-.farm .fbox{flex:1 1 200px}
-.fnote{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:4px 0 4px 22px;letter-spacing:.02em}
+/* Árvore (ramificações) — nível acima, descendentes abaixo, com setas */
+.farm{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:stretch;position:relative;margin:4px 0}
+.farm .fbox{flex:1 1 200px;min-width:160px}
+/* seta entre níveis */
+.fsep{align-self:center;color:var(--terra);font-size:15px;font-weight:700;line-height:1;padding:0 1px;flex:none}
+.fsep.v{display:block;text-align:center;color:var(--terra);font-size:13px;margin:0;padding:2px 0}
+.fnote{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:4px 0 4px 4px;letter-spacing:.02em}
 
 .fmeta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:12px;letter-spacing:.02em}
 

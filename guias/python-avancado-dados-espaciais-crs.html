@@ -113,9 +113,11 @@ plt.show()</pre>
 </div>
 
 <h3>2.2 A explicação</h3>
-<p><code>to_crs(codigo)</code> converte o GeoDataFrame para outro sistema de referência. É o que você usa para:
-- <b>unificar</b> camadas de fontes diferentes;
-- passar de graus (EPSG:4326) para <b>metros</b> e poder <b>calcular áreas e distâncias</b> corretamente.
+<p><code>to_crs(codigo)</code> converte o GeoDataFrame para outro sistema de referência. É o que você usa para:</p>
+<ul>
+<li><b>unificar</b> camadas de fontes diferentes;</li>
+<li>passar de graus (EPSG:4326) para <b>metros</b> e poder <b>calcular áreas e distâncias</b> corretamente.</li>
+</ul>
 
 <div class="caixa info"><div class="t">Criar um GeoDataFrame já reprojetado</div>
 <pre>campo = gpd.GeoDataFrame(geometry=[<u>sua_geometria</u>],

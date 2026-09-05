@@ -179,17 +179,17 @@ a cada nó, o modelo faz uma pergunta e segue por um dos ramos, até chegar a um
   <div class="frow">
     <div class="fbox d1"><div class="h">Raiz</div><div class="b">Pétala larga &gt; 0,8?</div></div>
   </div>
-  <div class="farm">
-    <div class="fbox d2"><div class="h">Sim</div><div class="b">Pétala comprida → classe <em>versicolor</em></div></div>
-    <div class="frow" style="width:100%">
-      <div class="fbox d3"><div class="h">Não</div><div class="b">Pétala larga &gt; 0,2?</div></div>
-    </div>
-    <div class="farm">
-      <div class="fbox d4"><div class="h">Sim</div><div class="b">Classe <em>setosa</em></div></div>
-      <div class="fbox dest"><div class="h">Não</div><div class="b">Classe <em>virginica</em></div></div>
-    </div>
+  <div class="fsep v">▼</div>
+  <div class="frow">
+    <div class="fbox d2"><div class="h">Sim&nbsp;&nbsp;→</div><div class="b">Pétala comprida → classe <em>versicolor</em></div></div>
+    <div class="fbox d3"><div class="h">Não&nbsp;&nbsp;→</div><div class="b">Pétala larga &gt; 0,2?</div></div>
   </div>
-  <div class="fmeta">Cada <em>nó</em> é uma pergunta; cada <em>folha</em> é uma resposta. É assim que a árvore decide.</div>
+  <div class="fsep v">▼</div>
+  <div class="frow">
+    <div class="fbox d4"><div class="h">Sim&nbsp;&nbsp;→</div><div class="b">Classe <em>setosa</em></div></div>
+    <div class="fbox dest"><div class="h">Não&nbsp;&nbsp;→</div><div class="b">Classe <em>virginica</em></div></div>
+  </div>
+  <div class="fmeta">Cada <em>nó</em> é uma pergunta; cada <em>folha</em> é uma resposta. Siga a seta que corresponde à resposta.</div>
 </div>
 
 <h3>4.2 Clustering (não supervisionado)</h3>
