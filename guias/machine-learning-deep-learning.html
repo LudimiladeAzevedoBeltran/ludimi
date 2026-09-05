@@ -4,23 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine Learning e Deep Learning — Ludimi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="guia.css">
 </head>
 <body>
 
 <div id="capa"><div class="in">
-  <h1>Machine Learning e Deep Learning</h1>
-  <div class="sub"><b>Como máquinas aprendem</b>: dos tipos de aprendizado e algoritmos ao overfitting e às
-    redes neurais profundas — com <b>Python na prática</b>.</div>
+  <p class="kicker">Guia &middot; Inteligência Artificial</p>
+  <h1>Machine Learning e <span class="accent">Deep Learning</span></h1>
+  <p class="sub">Como máquinas aprendem — dos tipos de aprendizado e algoritmos ao overfitting e às redes neurais profundas, sempre com <em>Python na prática</em>.</p>
   <div class="fatos">
-    <div class="fato"><b>Supervisionado · Não supervisionado</b></div>
-    <div class="fato">Teoria &middot; Código &middot; Prática</div>
-    <div class="fato">Inteligência artificial &middot; Pesquisa</div>
+    <span class="fato"><b>Supervisionado · Não supervisionado</b></span>
+    <span class="fato"><b>Teoria</b> · Código · Prática</span>
+    <span class="fato"><b>IA</b> · Pesquisa</span>
   </div>
 </div></div>
 
 <div id="barra">
-  <b>Guia da área Inteligência Artificial.</b> Do básico do aprendizado às redes neurais, com código.
+  <b>Guia da área IA.</b> Do básico do aprendizado às redes neurais, com código.
   <span style="flex:1"></span>
   <button class="btn" onclick="window.print()">Imprimir / salvar PDF</button>
 </div>
@@ -30,110 +33,100 @@
 <main>
 
 <!-- ==================================================================== -->
-<h2 id="p0">Como usar este guia</h2>
+<h2 data-n="·" id="p0">Sobre este guia</h2>
 
-<p>Este guia apresenta o <b>Machine Learning</b> (ML) e o <b>Deep Learning</b> (DL): o que são, como se
-classificam os tipos de aprendizado, e os conceitos que você precisa dominar para não cair em armadilhas
-(<b>overfitting</b>, má validação). Cometemos, como sempre, <b>código e explicação</b>, com dados criados no
-próprio código.</p>
+<p class="reveal">Este guia apresenta o <strong>Machine Learning</strong> (ML) e o <strong>Deep Learning</strong>
+(DL): o que são, como se classificam os tipos de aprendizado, e os conceitos que você precisa dominar para não
+cair em armadilhas (<em>overfitting</em>, má validação). Aqui, seguimos <strong>código e explicação</strong>,
+com dados criados no próprio código.</p>
 
 <h3 id="mapa">Os módulos</h3>
 
-<table>
-<tr><th style="width:190px">Módulo</th><th>Você entende...</th><th>Tipo</th></tr>
-<tr><td><b>1</b> O que é ML</td><td>a ideia central e o processo</td><td><span class="tag dados">Teoria</span></td></tr>
-<tr><td><b>2</b> Tipos de aprendizado</td><td>supervisionado e não supervisionado</td><td><span class="tag dados">Teoria</span></td></tr>
-<tr><td><b>3</b> Overfitting e validação</td><td>os conceitos que salvam uma análise</td><td><span class="tag prat">Prática</span></td></tr>
-<tr><td><b>4</b> Algoritmos em Python</td><td>classificação e clustering com sklearn</td><td><span class="tag cod">Código</span></td></tr>
-<tr><td><b>5</b> Deep Learning</td><td>redes neurais, CNN e RNN</td><td><span class="tag prat">Prática</span></td></tr>
+<table class="reveal">
+<tr><th style="width:120px">Nº</th><th>Você entende...</th><th>Tipo</th></tr>
+<tr><td><b>1</b></td><td>a ideia central e o processo</td><td><span class="pill verde">Teoria</span></td></tr>
+<tr><td><b>2</b></td><td>supervisionado e não supervisionado</td><td><span class="pill verde">Teoria</span></td></tr>
+<tr><td><b>3</b></td><td>os conceitos que salvam uma análise</td><td><span class="pill laranja">Prática</span></td></tr>
+<tr><td><b>4</b></td><td>classificação e clustering com sklearn</td><td><span class="pill cinza">Código</span></td></tr>
+<tr><td><b>5</b></td><td>redes neurais, CNN e RNN</td><td><span class="pill laranja">Prática</span></td></tr>
 </table>
 
 <!-- ==================================================================== -->
-<h2 id="m1" class="mod">Módulo 1 — O que é Machine Learning</h2>
-<span class="onde teoria">TEORIA</span>
+<h2 data-n="01" id="m1">O que é Machine Learning</h2>
+<div class="onde teoria">Teoria</div>
 
-<h3>1.1 Explicação</h3>
-<p><b>Machine Learning</b> é um campo da <b>Inteligência Artificial</b> que desenvolve algoritmos capazes de
-<b>aprender com dados</b> e melhorar com a experiência, <b>sem serem explicitamente programados</b> para cada
-caso.</p>
+<h3>1.1 A ideia central</h3>
+<p><strong>Machine Learning</strong> é um campo da <strong>Inteligência Artificial</strong> que desenvolve
+algoritmos capazes de <strong>aprender com dados</strong> e melhorar com a experiência, <strong>sem serem
+explicitamente programados</strong> para cada caso.</p>
 
-<div class="caixa ok"><div class="t">A ideia central</div>
-<p>No programação tradicional, você escreve as regras. No ML, você dá <b>exemplos</b> ao algoritmo e ele
-<b>descobre as regras sozinho</b>. Em vez de programar "se o e-mail tem X, é spam", você mostra milhares de
-e-mails (spam e não-spam) e o modelo aprende a distinguir.</p>
-</div>
+<div class="caixa ok reveal"><span class="ic">✓</span><div>
+<strong>A ideia central.</strong> No programação tradicional, você escreve as regras. No ML, você dá
+<strong>exemplos</strong> ao algoritmo e ele <strong>descobre as regras sozinho</strong>. Em vez de programar "se
+o e-mail tem X, é spam", você mostra milhares de e-mails (spam e não-spam) e o modelo aprende a distinguir.
+</div></div>
 
-<h3>1.2 O processo de ML</h3>
-<div class="passo"><div class="num">1</div><div class="txt"><b>Definir o problema</b>
-O que você quer prever ou agrupar?</div></div>
-<div class="passo"><div class="num">2</div><div class="txt"><b>Preparar os dados</b>
-Limpar, tratar valores ausentes, escolher as variáveis (<i>features</i>).</div></div>
-<div class="passo"><div class="num">3</div><div class="txt"><b>Treinar o modelo</b>
-Uma parte dos dados ensina o algoritmo.</div></div>
-<div class="passo"><div class="num">4</div><div class="txt"><b>Avaliar</b>
-Testar em dados <b>não vistos</b> para medir a generalização.</div></div>
-<div class="passo"><div class="num">5</div><div class="txt"><b>Prever e monitorar</b>
-Usar em produção e acompanhar se continua funcionando.</div></div>
+<h3>1.2 O processo de ML — o fluxo</h3>
+<div class="flow reveal"><pre>
+ <span class="t">PROBLEMA</span> ──► <span class="t">DADOS</span> ──► <span class="t">TREINO</span> ──► <span class="t">AVALIAÇÃO</span> ──► <span class="t">PREVISÃO</span>
+  definir        limpar        o algoritmo      testar em         uso real +
+  a pergunta      e escolher    aprende         dados novos       monitorar
+  a prever       as features    o padrão        (generalização)   se continua bem
+</pre><div class="cap">O ciclo do ML: do problema à previsão — e de volta, sempre que os dados mudam.</div></div>
 
-<div class="caixa dica"><div class="t">Aplicações que você conhece</div>
-<p>Diagnóstico médico, previsão de demanda, detecção de fraude, recomendação, e — na sua área — <b>modelos
-preditivos</b> de produtividade, classificação de queimadas e análise de clusters. É exatamente o que você
-trabalha nos seus artigos.</p>
-</div>
+<div class="caixa dica reveal"><span class="ic">◆</span><div>
+<strong>Aplicações que você conhece.</strong> Diagnóstico médico, previsão de demanda, detecção de fraude — e na
+sua área, <strong>modelos preditivos</strong> de produtividade, classificação de queimadas e análise de clusters.
+É exatamente o que você trabalha nos artigos.
+</div></div>
 
 <!-- ==================================================================== -->
-<h2 id="m2" class="mod">Módulo 2 — Tipos de aprendizado</h2>
-<span class="onde teoria">TEORIA</span>
+<h2 data-n="02" id="m2">Tipos de aprendizado</h2>
+<div class="onde teoria">Teoria</div>
 
-<p>O ML se divide em dois grandes grupos, conforme os dados disponíveis.</p>
+<p class="reveal">O ML se divide em dois grandes grupos, conforme os dados disponíveis.</p>
 
-<div class="recurso">
-  <div class="cab"><span class="nm">1. Aprendizado supervisionado</span></div>
-  <div class="corpo">Você tem <b>rótulos</b> (a resposta certa) e ensina o modelo. Subdivide-se em:
-  <b>classificação</b> (categoria — ex.: é queimada ou não) e <b>regressão</b> (valor contínuo — ex.: área
-  queimada).</div>
+<div class="recurso reveal">
+  <div class="cab">1. Aprendizado supervisionado</div>
+  <div class="corpo">Você tem <strong>rótulos</strong> (a resposta certa) e ensina o modelo. Subdivide-se em:
+  <strong>classificação</strong> (categoria — ex.: é queimada ou não) e <strong>regressão</strong> (valor
+  contínuo — ex.: área queimada).</div>
 </div>
 
-<div class="recurso">
-  <div class="cab"><span class="nm">2. Aprendizado não supervisionado</span></div>
-  <div class="corpo">Você <b>não tem rótulos</b>; o algoritmo descobre padrões por conta própria. O principal
-  exemplo é o <b>clustering</b> (agrupamento) — como o K-Means que você usa na análise de clusters.</div>
+<div class="recurso reveal">
+  <div class="cab">2. Aprendizado não supervisionado</div>
+  <div class="corpo">Você <strong>não tem rótulos</strong>; o algoritmo descobre padrões por conta própria. O
+  principal exemplo é o <strong>clustering</strong> (agrupamento) — como o K-Means que você usa na análise de
+  clusters.</div>
 </div>
 
-<div class="recurso">
-  <div class="cab"><span class="nm">3. Aprendizado por reforço</span></div>
-  <div class="corpo">O agente aprende por <b>tentativa e recompensa</b> (como ensinar um robô a andar). Menos
-  comum em análise de dados, mas parte do campo.</div>
+<div class="recurso reveal">
+  <div class="cab">3. Aprendizado por reforço</div>
+  <div class="corpo">O agente aprende por <strong>tentativa e recompensa</strong> (como ensinar um robô a andar).
+  Menos comum em análise de dados, mas parte do campo.</div>
 </div>
 
-<div class="caixa info"><div class="t">Como escolher</div>
-<table>
-<tr><th style="width:220px">Seus dados têm rótulos?</th><th>Use</th></tr>
-<tr><td>Sim (categorias)</td><td>Classificação</td></tr>
-<tr><td>Sim (valores contínuos)</td><td>Regressão</td></tr>
-<tr><td>Não</td><td>Clustering</td></tr>
-</table>
-</div>
+<div class="caixa info reveal"><span class="ic">ℹ</span><div>
+<strong>Como escolher.</strong> Seus dados têm rótulos? Se são categorias → <em>classificação</em>; se são valores
+contínuos → <em>regressão</em>; se não têm rótulos → <em>clustering</em>.
+</div></div>
 
 <!-- ==================================================================== -->
-<h2 id="m3" class="mod">Módulo 3 — Overfitting, underfitting e validação</h2>
-<span class="onde prat">PRÁTICA</span>
+<h2 data-n="03" id="m3">Overfitting, underfitting e validação</h2>
+<div class="onde prat">Prática</div>
 
-<h3>3.1 Os conceitos — explicação</h3>
-<div class="caixa alerta"><div class="t">As duas armadilhas</div>
-<ul>
-<li><b>Underfitting</b> — o modelo é <b>simples demais</b> e não aprende o padrão (desempenho ruim até no
-treino).</li>
-<li><b>Overfitting</b> — o modelo <b>decorou os dados de treino</b> e não generaliza (arrasa no treino, falha
-em dados novos).</li>
-</ul>
-</div>
+<div class="caixa alerta reveal"><span class="ic">◈</span><div>
+<strong>As duas armadilhas.</strong>
+<ul><li><strong>Underfitting</strong> — o modelo é <strong>simples demais</strong> e não aprende o padrão
+(desempenho ruim até no treino).</li>
+<li><strong>Overfitting</strong> — o modelo <strong>decorou os dados de treino</strong> e não generaliza (arrasa
+no treino, falha em dados novos).</li></ul>
+</div></div>
 
-<p>O objetivo é encontrar o <b>equilíbrio</b>: um modelo que aprenda o padrão, mas não o "ruído". A principal
-ferramenta para isso é a <b>validação cruzada</b>.</p>
+<p class="reveal">O objetivo é encontrar o <strong>equilíbrio</strong>: um modelo que aprenda o padrão, mas não o
+"ruído". A principal ferramenta para isso é a <strong>validação cruzada</strong>.</p>
 
-<h3>3.2 O código</h3>
-<div class="cole cod"><div class="cab"><span>PYTHON — validação cruzada</span><button onclick="cp(this)">copiar</button></div>
+<div class="cole cod reveal"><div class="cab"><span>PYTHON — validação cruzada</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>from</b> sklearn.datasets <b>import</b> load_iris
 <b>from</b> sklearn.tree <b>import</b> DecisionTreeClassifier
 <b>from</b> sklearn.model_selection <b>import</b> cross_val_score
@@ -144,20 +137,16 @@ modelo = DecisionTreeClassifier(max_depth=3)
 notas = cross_val_score(modelo, X, y, cv=5)
 print(notas)                       <em># 5 notas, uma por dobra</em>
 print(<u>"média:"</u>, notas.mean())</pre>
-</div>
-
-<div class="caixa dica"><div class="t">O que a validação cruzada faz</div>
-<p>Ela divide os dados em 5 partes (<code>cv=5</code>), treina em 4 e testa em 1, repetindo. Isso dá uma medida
-<b>mais honesta</b> de como o modelo se comporta em dados nunca vistos — bem melhor do que testar nos próprios
-dados de treino.</p>
+<div class="obs">Ela divide os dados em <code>cv=5</code> partes, treina em 4 e testa em 1, repetindo — mede a
+generalização de forma <strong>honesta</strong>.</div>
 </div>
 
 <!-- ==================================================================== -->
-<h2 id="m4" class="mod">Módulo 4 — Algoritmos em Python</h2>
-<span class="onde cod">CÓDIGO</span>
+<h2 data-n="04" id="m4">Algoritmos em Python</h2>
+<div class="onde cod">Código</div>
 
 <h3>4.1 Classificação (supervisionado)</h3>
-<div class="cole cod"><div class="cab"><span>PYTHON — árvore de decisão</span><button onclick="cp(this)">copiar</button></div>
+<div class="cole cod reveal"><div class="cab"><span>PYTHON — árvore de decisão</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>from</b> sklearn.datasets <b>import</b> load_iris
 <b>from</b> sklearn.model_selection <b>import</b> train_test_split
 <b>from</b> sklearn.tree <b>import</b> DecisionTreeClassifier
@@ -171,12 +160,12 @@ modelo.fit(X_tr, y_tr)
 pred = modelo.predict(X_te)
 
 print(<u>"Acurácia:"</u>, accuracy_score(y_te, pred))</pre>
-<div class="obs">Árvores de decisão são <b>interpretáveis</b>: você consegue ver as regras que o modelo usou —
-ótimo para explicar resultados em artigos.</div>
+<div class="obs">Árvores são <strong>interpretáveis</strong>: você vê as regras que o modelo usou — ótimo para
+explicar em artigos.</div>
 </div>
 
 <h3>4.2 Clustering (não supervisionado)</h3>
-<div class="cole cod"><div class="cab"><span>PYTHON — K-Means</span><button onclick="cp(this)">copiar</button></div>
+<div class="cole cod reveal"><div class="cab"><span>PYTHON — K-Means</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>from</b> sklearn.cluster <b>import</b> KMeans
 <b>import</b> numpy <b>as</b> np
 
@@ -186,50 +175,46 @@ modelo.fit(X)
 
 print(modelo.labels_)            <em># o grupo de cada ponto</em>
 print(modelo.cluster_centers_)   <em># o centro de cada grupo</em></pre>
-<div class="obs">É o mesmo princípio dos seus estudos de <b>cluster</b> — os dados se agrupam naturalmente, e
-você interpreta cada grupo com o conhecimento do domínio.</div>
+<div class="obs">O mesmo princípio dos seus estudos de <strong>cluster</strong> — os dados se agrupam
+naturalmente, e você interpreta cada grupo com o conhecimento do domínio.</div>
 </div>
 
 <!-- ==================================================================== -->
-<h2 id="m5" class="mod">Módulo 5 — Deep Learning</h2>
-<span class="onde prat">PRÁTICA</span>
+<h2 data-n="05" id="m5">Deep Learning</h2>
+<div class="onde prat">Prática</div>
 
-<h3>5.1 Explicação</h3>
-<p>O <b>Deep Learning</b> é uma subárea do ML baseada em <b>redes neurais artificiais</b> com <b>muitas camadas</b>
-(por isso "deep"). Elas se destacam quando há <b>muito dado</b> e problemas complexos, como imagens, áudio e
-texto.</p>
+<p class="reveal">O <strong>Deep Learning</strong> é uma subárea do ML baseada em <strong>redes neurais
+artificiais</strong> com <strong>muitas camadas</strong> (por isso "deep"). Elas se destacam quando há
+<strong>muito dado</strong> e problemas complexos, como imagens, áudio e texto.</p>
 
-<div class="caixa ok"><div class="t">Redes neurais artificiais (RNAs)</div>
-<p>Inspiradas no cérebro, as RNAs têm <b>neurônios</b> organizados em <b>camadas</b> (entrada, ocultas, saída).
-Cada conexão tem um <b>peso</b>, ajustado durante o treino por um processo chamado <b>backpropagation</b> — que
-corrige os pesos a partir do erro. Funções de <b>ativação</b> (como ReLU e sigmoide) decidem o que cada neurônio
-"dispara".</p>
+<div class="caixa ok reveal"><span class="ic">✓</span><div>
+<strong>Redes neurais artificiais (RNAs).</strong> Inspiradas no cérebro, têm <strong>neurônios</strong> em
+<strong>camadas</strong> (entrada, ocultas, saída). Cada conexão tem um <strong>peso</strong>, ajustado no treino
+pelo <strong>backpropagation</strong> — que corrige os pesos a partir do erro. Funções de <strong>ativação</strong>
+(ReLU, sigmoide) decidem o que cada neurônio "dispara".
+</div></div>
+
+<div class="recurso reveal">
+  <div class="cab">CNNs — Redes Neurais Convolucionais</div>
+  <div class="corpo">Especializadas em <strong>imagens</strong>. Detectam padrões visuais (bordas, formas,
+  texturas) e são a base do reconhecimento de imagens — muito relevantes para <strong>sensoriamento remoto</strong>
+  e análise de queimadas.</div>
 </div>
 
-<div class="recurso">
-  <div class="cab"><span class="nm">CNNs — Redes Neurais Convolucionais</span></div>
-  <div class="corpo">Especializadas em <b>imagens</b>. Detectam padrões visuais (bordas, formas, texturas) e são a
-  base do reconhecimento de imagens — muito relevantes para <b>sensoriamento remoto</b> e análise de queimadas.</div>
+<div class="recurso reveal">
+  <div class="cab">RNNs / LSTMs — Redes Neurais Recorrentes</div>
+  <div class="corpo">Especializadas em <strong>sequências</strong>: texto, áudio e séries temporais. As
+  <strong>LSTM</strong> memorizam relações de longo prazo — úteis para séries climáticas e temporais.</div>
 </div>
 
-<div class="recurso">
-  <div class="cab"><span class="nm">RNNs / LSTMs — Redes Neurais Recorrentes</span></div>
-  <div class="corpo">Especializadas em <b>sequências</b>: texto, áudio e séries temporais. As <b>LSTM</b> (Long
-  Short-Term Memory) memorizam relações de longo prazo — úteis para séries climáticas e temporais.</div>
-</div>
+<div class="caixa dica reveal"><span class="ic">◆</span><div>
+<strong>Quando usar deep learning.</strong> Você tem muitos dados? O problema é complexo (imagens, texto)? Métodos
+clássicos não funcionam? Caso contrário, os modelos clássicos de ML costumam ser <strong>mais simples,
+interpretáveis e suficientes</strong> — e é com eles que você provavelmente trabalhará na pesquisa.
+</div></div>
 
-<div class="caixa dica"><div class="t">Quando usar deep learning</div>
-<ul>
-<li>Você tem <b>muitos dados</b> (dezenas de milhares de exemplos).</li>
-<li>O problema é <b>complexo</b> (imagens, texto, áudio).</li>
-<li>Métodos clássicos (regressão, árvores) <b>não funcionam bem</b>.</li>
-</ul>
-<p>Caso contrário, os modelos clássicos de ML costumam ser <b>mais simples, interpretáveis e suficientes</b> —
-e é com eles que você provavelmente trabalhará na pesquisa.</p>
-</div>
-
-<h3>5.2 Primeiro contato com uma rede neural</h3>
-<div class="cole cod"><div class="cab"><span>PYTHON — uma rede simples com Keras</span><button onclick="cp(this)">copiar</button></div>
+<h3>5.1 Primeiro contato com uma rede neural</h3>
+<div class="cole cod reveal"><div class="cab"><span>PYTHON — uma rede simples com Keras</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>from</b> tensorflow.keras <b>import</b> Sequential
 <b>from</b> tensorflow.keras.layers <b>import</b> Dense
 
@@ -239,12 +224,12 @@ modelo = Sequential([
 ])
 modelo.compile(optimizer=<u>"adam"</u>, loss=<u>"categorical_crossentropy"</u>, metrics=[<u>"accuracy"</u>])
 print(modelo.summary())</pre>
-<div class="obs">Uma rede com uma camada oculta (8 neurônios, ReLU) e uma de saída (3 classes, softmax). O
-<code>summary()</code> mostra a <b>arquitetura</b> — o "esqueleto" da rede que você construiu.</div>
+<div class="obs">Uma camada oculta (8 neurônios, ReLU) + uma de saída (3 classes, softmax). O
+<code>summary()</code> mostra a <strong>arquitetura</strong> — o "esqueleto" da rede.</div>
 </div>
 
 <h3>Checklist</h3>
-<ul class="check">
+<ul class="check reveal">
 <li><input type="checkbox"><span>Sei a diferença entre supervised e unsupervised learning</span></li>
 <li><input type="checkbox"><span>Entendo overfitting e underfitting</span></li>
 <li><input type="checkbox"><span>Usei validação cruzada</span></li>
@@ -252,17 +237,24 @@ print(modelo.summary())</pre>
 <li><input type="checkbox"><span>Sei o que são CNNs e RNNs</span></li>
 </ul>
 
-<div class="caixa ok"><div class="t">Consideração final</div>
-<p>Machine Learning é uma ferramenta poderosa, mas não é a resposta para tudo. O que diferencia uma boa análise é
-o <b>problema bem definido</b>, os <b>dados de qualidade</b> e a <b>validação honesta</b> — não o algoritmo mais
-sofisticado. Comece com modelos simples e interpretáveis; só avance para o deep learning se a complexidade
-exigir.</p>
-</div>
+<div class="caixa ok reveal"><span class="ic">✓</span><div>
+<strong>Consideração final.</strong> Machine Learning é poderosa, mas não é a resposta para tudo. O que diferencia
+uma boa análise é o <strong>problema bem definido</strong>, os <strong>dados de qualidade</strong> e a
+<strong>validação honesta</strong> — não o algoritmo mais sofisticado. Comece com modelos simples e
+interpretáveis.
+</div></div>
 
 </main>
 </div>
 
+<footer class="rodape" style="max-width:940px;margin:0 auto;padding:0 var(--pad) 40px">
+  <p><strong>Ludimi · Machine Learning e Deep Learning.</strong> Guia de divulgação científica, por Ludimila Beltran.</p>
+  <p class="sign">— do dado à decisão, um passo de cada vez.</p>
+</footer>
+
 <script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -40px 0px',threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 (function(){
   var nav=document.getElementById('indice'), h='';
   document.querySelectorAll('main h2, main h3').forEach(function(e){
