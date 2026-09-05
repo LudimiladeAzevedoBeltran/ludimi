@@ -106,6 +106,21 @@ td.n{text-align:right;font-family:var(--mono)}
 .flow .cap{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:10px;letter-spacing:.02em}
 .flow pre b{color:var(--terra-deep)}
 
+/* FLUXOGRAMA em caixinhas (linha) */
+.flow{--fc:#fbf8f2;--fb:#e2e8d2;--fe:#b96a4c}
+.frow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:stretch;margin:2px 0}
+.fbox{flex:1 1 150px;min-width:120px;max-width:230px;background:var(--fb);border:1px solid var(--line);
+  border-radius:8px;padding:10px 12px;text-align:left;position:relative}
+.fbox .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+.fbox .b{font-family:var(--body);font-size:13px;color:var(--ink);margin-top:3px;line-height:1.35}
+.fbox.alt{background:var(--terra-tint)}
+.fbox.alt .h{color:var(--moss-deep)}
+.fsep{align-self:center;color:var(--fe);font-size:15px;font-weight:700;line-height:1;padding:0 1px;flex:none}
+.fsep.v{font-size:11px}
+.fmeta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:12px;letter-spacing:.02em}
+
+@media(max-width:560px){.fbox{flex:1 1 100%;max-width:none}.fsep{display:none}}
+
 /* Código (cole) */
 .cole{border:1px solid var(--line);border-radius:var(--r);margin:16px 0;overflow:hidden;background:var(--moss-deep)}
 .cole .cab{background:#2e352c;color:#e9e4d6;padding:8px 14px;font-family:var(--mono);font-size:12px;

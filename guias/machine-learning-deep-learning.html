@@ -67,12 +67,20 @@ o e-mail tem X, é spam", você mostra milhares de e-mails (spam e não-spam) e 
 </div></div>
 
 <h3>1.2 O processo de ML — o fluxo</h3>
-<div class="flow reveal"><pre>
- <span class="t">PROBLEMA</span> ──► <span class="t">DADOS</span> ──► <span class="t">TREINO</span> ──► <span class="t">AVALIAÇÃO</span> ──► <span class="t">PREVISÃO</span>
-  definir        limpar        o algoritmo      testar em         uso real +
-  a pergunta      e escolher    aprende         dados novos       monitorar
-  a prever       as features    o padrão        (generalização)   se continua bem
-</pre><div class="cap">O ciclo do ML: do problema à previsão — e de volta, sempre que os dados mudam.</div></div>
+<div class="flow reveal">
+  <div class="frow">
+    <div class="fbox"><div class="h">Problema</div><div class="b">Definir a pergunta e o que prever</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox"><div class="h">Dados</div><div class="b">Limpar e escolher as variáveis</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox"><div class="h">Treino</div><div class="b">O algoritmo aprende o padrão</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox"><div class="h">Avaliação</div><div class="b">Testar em dados nunca vistos</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox alt"><div class="h">Previsão</div><div class="b">Uso real + monitoramento contínuo</div></div>
+  </div>
+  <div class="fmeta">O ciclo do ML: do problema à previsão — e de volta, sempre que os dados mudam.</div>
+</div>
 
 <div class="caixa dica reveal"><span class="ic">◆</span><div>
 <strong>Aplicações que você conhece.</strong> Diagnóstico médico, previsão de demanda, detecção de fraude — e na
