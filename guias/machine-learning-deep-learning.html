@@ -69,15 +69,15 @@ o e-mail tem X, é spam", você mostra milhares de e-mails (spam e não-spam) e 
 <h3>1.2 O processo de ML — o fluxo</h3>
 <div class="flow reveal">
   <div class="frow">
-    <div class="fbox"><div class="h">Problema</div><div class="b">Definir a pergunta e o que prever</div></div>
+    <div class="fbox d1"><div class="h">Problema</div><div class="b">Definir a pergunta e o que prever</div></div>
     <div class="fsep">›</div>
-    <div class="fbox"><div class="h">Dados</div><div class="b">Limpar e escolher as variáveis</div></div>
+    <div class="fbox d2"><div class="h">Dados</div><div class="b">Limpar e escolher as variáveis</div></div>
     <div class="fsep">›</div>
-    <div class="fbox"><div class="h">Treino</div><div class="b">O algoritmo aprende o padrão</div></div>
+    <div class="fbox d3"><div class="h">Treino</div><div class="b">O algoritmo aprende o padrão</div></div>
     <div class="fsep">›</div>
-    <div class="fbox"><div class="h">Avaliação</div><div class="b">Testar em dados nunca vistos</div></div>
+    <div class="fbox d4"><div class="h">Avaliação</div><div class="b">Testar em dados nunca vistos</div></div>
     <div class="fsep">›</div>
-    <div class="fbox alt"><div class="h">Previsão</div><div class="b">Uso real + monitoramento contínuo</div></div>
+    <div class="fbox dest"><div class="h">Previsão</div><div class="b">Uso real + monitoramento contínuo</div></div>
   </div>
   <div class="fmeta">O ciclo do ML: do problema à previsão — e de volta, sempre que os dados mudam.</div>
 </div>
@@ -170,6 +170,26 @@ pred = modelo.predict(X_te)
 print(<u>"Acurácia:"</u>, accuracy_score(y_te, pred))</pre>
 <div class="obs">Árvores são <strong>interpretáveis</strong>: você vê as regras que o modelo usou — ótimo para
 explicar em artigos.</div>
+</div>
+
+<p class="reveal">Uma árvore de decisão funciona exatamente como a <strong>ramificação de um fluxograma</strong>:
+a cada nó, o modelo faz uma pergunta e segue por um dos ramos, até chegar a uma folha (a classe final).</p>
+
+<div class="flow reveal">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">Raiz</div><div class="b">Pétala larga &gt; 0,8?</div></div>
+  </div>
+  <div class="farm">
+    <div class="fbox d2"><div class="h">Sim</div><div class="b">Pétala comprida → classe <em>versicolor</em></div></div>
+    <div class="frow" style="width:100%">
+      <div class="fbox d3"><div class="h">Não</div><div class="b">Pétala larga &gt; 0,2?</div></div>
+    </div>
+    <div class="farm">
+      <div class="fbox d4"><div class="h">Sim</div><div class="b">Classe <em>setosa</em></div></div>
+      <div class="fbox dest"><div class="h">Não</div><div class="b">Classe <em>virginica</em></div></div>
+    </div>
+  </div>
+  <div class="fmeta">Cada <em>nó</em> é uma pergunta; cada <em>folha</em> é uma resposta. É assim que a árvore decide.</div>
 </div>
 
 <h3>4.2 Clustering (não supervisionado)</h3>
