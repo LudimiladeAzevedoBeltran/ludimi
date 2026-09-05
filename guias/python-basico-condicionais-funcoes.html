@@ -96,6 +96,18 @@ indentado, o <code>if</code> "não enxerga" o que vem depois e o programa quebra
 verdadeira. Aqui é útil para classificar faixas — como temperatura, concentração, ou qualquer variável
 contínua da sua pesquisa.</p>
 
+<!-- ==== -->
+<div class="flow">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">Condição</div><div class="b">O teste é verdadeiro?</div></div>
+  </div>
+  <div class="farm">
+    <div class="fbox d2"><div class="h">Sim</div><div class="b">Executa este bloco e encerra</div></div>
+    <div class="fbox dest"><div class="h">Não</div><div class="b">Testa o elif seguinte (ou cai no else)</div></div>
+  </div>
+  <div class="fmeta">O if testa, o elif encadeia e o else é o caminho final — a primeira condição verdadeira vence.</div>
+</div>
+
 <div class="caixa dica"><div class="t">Aplicação na ciência</div>
 <p>Essa lógica é usada para classificar dados: "peso abaixo/ideal/acima", "índice de vegetação baixo/médio/
 alto", "risco de queimada". Perceba que <b>ordem das condições importa</b>.</p>

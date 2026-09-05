@@ -178,6 +178,20 @@ print(pontos[pontos.geometry.intersects(area)])</pre>
 
 <p>Vamos juntar tudo: criar polígonos, associar um valor e plotar um mapa colorido por categoria.</p>
 
+<!-- ============ FLUXOGRAMA: análise espacial ============ -->
+<div class="flow">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">GEOMETRIA</div><div class="b">pontos, linhas e polígonos com shapely</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d2"><div class="h">GEODATAFRAME</div><div class="b">tabela com a coluna de geometria</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d3"><div class="h">PLOTAR</div><div class="b">desenhar no mapa e colorir por valor</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox dest"><div class="h">CONSULTAR</div><div class="b">within, intersects e distance</div></div>
+  </div>
+  <div class="fmeta">O caminho da análise espacial: das formas geométricas à consulta sobre o que está dentro ou perto.</div>
+</div>
+
 <div class="cole cod"><div class="cab"><span>PYTHON — mapa temático completo</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> geopandas <b>as</b> gpd
 <b>import</b> matplotlib.pyplot <b>as</b> plt

@@ -206,6 +206,22 @@ gera um HTML que pode <b>incorporar ao seu blog</b> — dando interatividade à 
 
 <p>Vamos juntar tudo em um fluxo realista e reprodutível:</p>
 
+<!-- ============ FLUXOGRAMA: fluxo padrão da análise espacial ============ -->
+<div class="flow">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">CARREGAR</div><div class="b">read_file das camadas de dados</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d2"><div class="h">CHECAR CRS</div><div class="b">conferir o sistema de referência</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d3"><div class="h">REPROJETAR</div><div class="b">to_crs para metros, se preciso</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d4"><div class="h">SJOIN</div><div class="b">associar pontos a áreas por localização</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox dest"><div class="h">MAPA</div><div class="b">visualizar com folium, de forma interativa</div></div>
+  </div>
+  <div class="fmeta">O fluxo padrão da análise espacial: da leitura dos dados ao mapa interativo.</div>
+</div>
+
 <div class="cole cod"><div class="cab"><span>PYTHON — análise espacial completa</span><button onclick="cp(this)">copiar</button></div>
 <pre><b>import</b> geopandas <b>as</b> gpd
 <b>import</b> folium

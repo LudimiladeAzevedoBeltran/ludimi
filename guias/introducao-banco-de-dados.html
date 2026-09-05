@@ -149,6 +149,18 @@ de endereço exige atualizar os dois lugares. Se apenas um for alterado, o banco
 <tr><td><b>BCNF</b></td><td>refina a 3FN: todo determinante é chave candidata.</td></tr>
 </table>
 
+<!-- ============ Fluxograma: a normalização (1FN → 2FN → 3FN) ============ -->
+<div class="flow">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">1FN</div><div class="b">Atributos atômicos, sem grupos repetitivos</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d2"><div class="h">2FN</div><div class="b">Não-chave depende de toda a chave</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox dest"><div class="h">3FN</div><div class="b">Sem dependência transitiva entre não-chaves</div></div>
+  </div>
+  <div class="fmeta">A normalização reduz a redundância em formas progressivas de rigor crescente.</div>
+</div>
+
 <div class="caixa ok"><div class="t">Equilíbrio: quando desnormalizar</div>
 <p>Em <b>data warehouses</b> e sistemas de <b>leitura intensa</b>, a desnormalização (redundância deliberada) é
 válida para acelerar consultas. O segredo é <b>escolher com consciência</b> — e garantir a consistência por

@@ -59,6 +59,22 @@ learning.</p>
 <tr><td><b>5</b> Validação</td><td>resíduos e previsão</td></tr>
 </table>
 
+<!-- ============ FLUXOGRAMA: ciclo da modelagem linear ============ -->
+<div class="flow">
+  <div class="frow">
+    <div class="fbox d1"><div class="h">DADOS</div><div class="b">variáveis x e y observadas</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d2"><div class="h">AJUSTAR</div><div class="b">sm.OLS por mínimos quadrados</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d3"><div class="h">INTERPRETAR</div><div class="b">coeficientes, p-valor e R²</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox d4"><div class="h">VALIDAR</div><div class="b">analisar os resíduos</div></div>
+    <div class="fsep">›</div>
+    <div class="fbox dest"><div class="h">PREVER</div><div class="b">novos valores com predict</div></div>
+  </div>
+  <div class="fmeta">O ciclo da modelagem: dos dados à previsão, com validação no meio do caminho.</div>
+</div>
+
 <!-- ==================================================================== -->
 <h2 id="m1" class="mod">Seção 1 — O que é regressão linear</h2>
 
